@@ -1,0 +1,53 @@
+---
+// NOTA: el catálogo real de "Productos Químicos" en conext.com.mx (Tartrato de
+// Antimonio, Desmoldante, Nitrato de Sodio) es de química para fundición, no
+// coincide con el contenido de aditivos/cosmética del Sites de referencia.
+// Mientras eso se confirma con Selene/Gustavo, estas tarjetas enlazan a la
+// página general de Productos en vez de una pestaña específica incorrecta.
+const quimicos = [
+  {
+    nombre: 'Aditivos alimentarios y nutracéuticos',
+    items: ['NMN', 'NR (Ribósido de nicotinamida)', 'Taurina', 'Monohidrato de creatina', 'Glucosamina y condroitina'],
+  },
+  {
+    nombre: 'Extractos naturales',
+    items: ['Extracto de té verde / EGCG', 'Extracto de ginseng', 'Ginkgo biloba', 'Extracto de hongos / Reishi'],
+  },
+  {
+    nombre: 'Cosméticos y cuidado personal',
+    items: ['Ácido hialurónico', 'Ácido kójico', 'Alfa arbutina', 'Colágeno'],
+  },
+];
+const PRODUCTOS_URL = 'https://conext.com.mx/productos/';
+---
+<section class="products alt" id="quimicos">
+  <div class="container">
+    <span class="eyebrow reveal">Químicos</span>
+    <h2 class="reveal">Soluciones químicas para distintas industrias</h2>
+    <p class="section-lead reveal" style="--d:1">Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente.</p>
+
+    <div class="flip-grid-1">
+      {quimicos.map((q, i) => (
+        <div class="flip-card chem-flip reveal" style={`--d:${i + 1}`}>
+          <a href={PRODUCTOS_URL} target="_blank" rel="noopener" aria-label={`Ver ${q.nombre} en conext.com.mx`}>
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>{q.nombre}</h3>
+                <ul>
+                  {q.items.slice(0, 2).map((it) => <li>{it}</li>)}
+                </ul>
+              </div>
+              <div class="flip-back" style="background: linear-gradient(135deg, #5b6b7a, #010101)">
+                <h3>{q.nombre}</h3>
+                <ul style="text-align:left; color:#f0f0f0; font-size:13px;">
+                  {q.items.map((it) => <li>{it}</li>)}
+                </ul>
+              </div>
+              <span class="flip-hint">↗ conext.com.mx</span>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

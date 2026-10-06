@@ -1,0 +1,54 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'CONEXT | Metales No Ferrosos y Químicos Industriales en Monterrey',
+  description = 'CONEXT: proveedor mexicano desde 1996 de metales no ferrosos y químicos industriales. Presencia en México, Estados Unidos y China.',
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+<!-- TODO: esta LP vive en un subdominio de campaña (ej. promocion.conext.com.mx),
+     separado del sitio real en conext.com.mx. Actualizar canonical/og:url con el
+     subdominio definitivo en cuanto Alex/IT lo asignen. -->
+<link rel="canonical" href="https://promocion.conext.com.mx/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://promocion.conext.com.mx/">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:locale" content="es_MX">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CONEXT",
+  "url": "https://www.conext.com.mx/",
+  "foundingDate": "1996",
+  "telephone": "+52-81-8333-4097",
+  "email": "ventas@conext.com.mx",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Tenango No. 333, Col. Mitras",
+    "postalCode": "64460",
+    "addressLocality": "Monterrey",
+    "addressRegion": "Nuevo León",
+    "addressCountry": "MX"
+  },
+  "description": "Proveedor mexicano de metales no ferrosos y químicos industriales para la industria metalúrgica, con más de 28 años de experiencia."
+})} />
+</head>
+<body>
+  <slot />
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

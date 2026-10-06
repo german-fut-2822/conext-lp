@@ -1,0 +1,41 @@
+---
+const metales = [
+  { symbol: 'Sn', nombre: 'Estaño', color: '#8a8f94', href: 'https://conext.com.mx/productos/#toggle-id-6', desc: 'Lingote y alambre de soldadura' },
+  { symbol: 'Sb', nombre: 'Antimonio', color: '#5b6b7a', href: 'https://conext.com.mx/productos/#toggle-id-1', desc: 'Lingote, granalla y polvo' },
+  { symbol: 'Pb', nombre: 'Plomo', color: '#4a5560', href: 'https://conext.com.mx/productos/#toggle-id-11', desc: 'Plomo afinado' },
+  { symbol: 'Zn', nombre: 'Zinc', color: '#7d8a93', href: 'https://conext.com.mx/productos/#toggle-id-15', desc: 'SHG y High Grade' },
+  { symbol: 'Al', nombre: 'Aluminio', color: '#9aa3ab', href: 'https://conext.com.mx/productos/#toggle-id-17', desc: 'Granalla y P1020' },
+  { symbol: 'Ag', nombre: 'Plata', color: '#b9bec2', href: 'https://conext.com.mx/productos/#toggle-id-9', desc: 'Plata metálica' },
+  { symbol: 'Au', nombre: 'Oro', color: '#c9a24a', href: 'https://conext.com.mx/productos/#toggle-id-10', desc: 'Oro metálico' },
+  { symbol: 'Cu', nombre: 'Cobre', color: '#b5652f', href: 'https://conext.com.mx/wp-content/uploads/2015/09/cobre.pdf', desc: 'Cobre OF — ficha PDF' },
+  { symbol: 'Se', nombre: 'Selenio', color: '#8b5a4a', href: 'https://conext.com.mx/productos/#toggle-id-12', desc: 'Selenio metálico' },
+];
+---
+<section class="products" id="metales">
+  <div class="products-banner reveal">
+    <h2>Metales No Ferrosos</h2>
+  </div>
+  <div class="container">
+    <p class="section-lead reveal" style="--d:1">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
+
+    <div class="flip-grid-3">
+      {metales.map((m, i) => (
+        <div class="flip-card reveal" style={`--d:${(i % 3) + 1}`}>
+          <a href={m.href} target="_blank" rel="noopener" aria-label={`Ver ficha de ${m.nombre} en conext.com.mx`}>
+            <div class="flip-inner">
+              <div class="flip-front">
+                <span class="metal-symbol">{m.symbol}</span>
+                <h3>{m.nombre}</h3>
+              </div>
+              <div class="flip-back" style={`background: linear-gradient(135deg, ${m.color}, #010101)`}>
+                <h3>{m.nombre}</h3>
+                <p>{m.desc}</p>
+              </div>
+              <span class="flip-hint">↗ conext.com.mx</span>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
