@@ -89,25 +89,12 @@ document.addEventListener('DOMContentLoaded', function () {
     counters.forEach(animateCounter);
   }
 
-  // Active nav link highlighting
-  var navAnchors = document.querySelectorAll('a[data-nav]');
-  var sections = Array.prototype.map.call(navAnchors, function (a) {
-    return document.querySelector(a.getAttribute('href'));
-  }).filter(Boolean);
-  if ('IntersectionObserver' in window && sections.length) {
-    var navObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var id = '#' + entry.target.id;
-        var link = document.querySelector('a[data-nav][href="' + id + '"]');
-        if (!link) return;
-        if (entry.isIntersecting) {
-          navAnchors.forEach(function (a) { a.classList.remove('active'); });
-          link.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-    sections.forEach(function (s) { navObserver.observe(s); });
-  }
+  // Active nav link highlighting (by current page path)
+  var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('.nav-links > .nav-item > a').forEach(function (link) {
+    var linkPath = link.getAttribute('href').split('#')[0].replace(/\/$/, '') || '/';
+    if (linkPath === currentPath) link.classList.add('active');
+  });
 
   // Hero gallery (Univar-style rotating cards)
   var heroGallery = document.getElementById('heroGallery');
