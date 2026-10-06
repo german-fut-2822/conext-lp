@@ -105,6 +105,5 @@ window.CONEXT_I18N = {
   'footer.mas.title': { es: 'Más', en: 'More' },
   'footer.mas.sitio': { es: 'Sitio corporativo', en: 'Corporate site' },
   'footer.mas.iso': { es: 'Certificado ISO 9001:2015', en: 'ISO 9001:2015 Certificate' },
-  'footer.mas.privacidad': { es: 'Aviso de Privacidad (pendiente de publicar)', en: 'Privacy Notice (pending publication)' },
   'footer.copyright': { es: '© 2026 CONEXT. Todos los derechos reservados.', en: '© 2026 CONEXT. All rights reserved.' },
 };
