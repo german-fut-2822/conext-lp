@@ -4,6 +4,7 @@
   --naranja: #FB9F32;
   --gris-acero: #5b6b7a;
   --gris-claro: #f4f6f8;
+  --tinte-rojo: #fdf4f3;
   --blanco: #ffffff;
   --texto: #1c2733;
   --font-head: 'Montserrat', sans-serif;
@@ -167,7 +168,7 @@ section { scroll-margin-top: 110px; }
 .hero-arrow:hover { background: var(--negro); color: var(--blanco); }
 
 /* Nosotros / about */
-.about { padding: 72px 0 24px; }
+.about { padding: 72px 0 24px; background: var(--tinte-rojo); }
 .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 36px 0; }
 .stat-card { background: var(--gris-claro); border-radius: 12px; padding: 24px; text-align: center; }
 .stat-card.dark { background: rgba(255,255,255,.08); }
@@ -282,7 +283,7 @@ section { scroll-margin-top: 110px; }
 .chem-flip .flip-front ul { text-align: left; font-size: 12px; color: var(--gris-acero); padding-left: 16px; margin-top: 8px; }
 
 /* Quality */
-.quality { padding: 72px 0; }
+.quality { padding: 72px 0; background: var(--gris-claro); }
 .quality-grid { display: grid; grid-template-columns: 1.4fr .6fr; gap: 48px; align-items: center; }
 .quality-list { list-style: none; padding: 0; }
 .quality-list li { padding: 12px 0 12px 32px; border-bottom: 1px solid #e6e9ec; position: relative; }
