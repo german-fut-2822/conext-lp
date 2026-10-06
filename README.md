@@ -1,43 +1,29 @@
-# Astro Starter Kit: Minimal
+# conext-lp
+
+Landing page de campaña para CONEXT (metales no ferrosos y químicos industriales), construida en [Astro](https://astro.build). No reemplaza el sitio en producción (`conext.com.mx`, WordPress) — vive aparte, en un subdominio de campaña pendiente de asignar.
+
+## Desarrollo local
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Build de producción
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm run build
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Despliegue (Vercel)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. Importar este repo en [vercel.com](https://vercel.com) (Framework Preset: Astro, detección automática).
+2. Configurar la variable de entorno `RESEND_API_KEY` (Settings → Environment Variables) — usada por `api/contacto.js` para enviar el formulario de contacto a `ventas@conext.com.mx` vía [Resend](https://resend.com).
+3. Cada push a `main` despliega automáticamente.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Pendientes conocidos
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Activar reCAPTCHA real (falta dominio final + site key en [google.com/recaptcha/admin](https://www.google.com/recaptcha/admin)).
+- Sustituir fondos/texturas abstractas por fotografía real de producto y planta.
+- Confirmar con Selene/Gustavo el contenido de la sección Químicos (el catálogo real en conext.com.mx no coincide con el del Sites de referencia).
