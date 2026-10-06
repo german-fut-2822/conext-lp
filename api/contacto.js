@@ -1,12 +1,32 @@
 /**
  * Vercel Function (Node.js runtime).
  *
- * Valida el formulario (campos requeridos, formato de correo, honeypot).
- * El envío real del correo y el CAPTCHA siguen pendientes de decisión con
- * el equipo (Alex/Gustavo) — por ahora esta función NO envía nada, solo
- * confirma que los datos son válidos. Conectar un proveedor de correo real
- * (y la verificación de reCAPTCHA) una vez que esas decisiones se cierren.
+ * Valida el formulario (campos requeridos, formato de correo, honeypot) y
+ * verifica el reCAPTCHA contra Google. El envío real del correo sigue
+ * pendiente de decidir el proveedor (Resend/SendGrid/SMTP) — por ahora esta
+ * función no envía el correo, solo valida y confirma.
+ *
+ * Requiere la variable de entorno RECAPTCHA_SECRET_KEY (Secret Key de
+ * reCAPTCHA v2, configurada en Vercel > Settings > Environment Variables).
  */
+
+async function verificarRecaptcha(token) {
+  const secret = process.env.RECAPTCHA_SECRET_KEY;
+  if (!secret) {
+    console.error('Falta RECAPTCHA_SECRET_KEY en las variables de entorno.');
+    return false;
+  }
+  if (!token) return false;
+
+  const params = new URLSearchParams({ secret, response: token });
+  const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params,
+  });
+  const data = await res.json();
+  return data.success === true;
+}
 
 export default async function handler(request, response) {
   if (request.method !== 'POST') {
@@ -15,6 +35,7 @@ export default async function handler(request, response) {
 
   const body = request.body || {};
   const { nombre, empresa, correo, telefono, mensaje, empresa_web: honeypot } = body;
+  const recaptchaToken = body['g-recaptcha-response'];
 
   if (honeypot) {
     return response.status(200).json({ estatus: true, message: 'Gracias, recibimos tu mensaje.' });
@@ -31,8 +52,12 @@ export default async function handler(request, response) {
     return response.status(200).json({ estatus: false, message: 'El correo proporcionado no es válido.' });
   }
 
-  // TODO: envío real de correo (proveedor pendiente de definir) y verificación
-  // de reCAPTCHA (falta site key una vez que el dominio final esté asignado).
+  const recaptchaOk = await verificarRecaptcha(recaptchaToken);
+  if (!recaptchaOk) {
+    return response.status(200).json({ estatus: false, message: 'No se pudo verificar el reCAPTCHA. Intenta de nuevo.' });
+  }
+
+  // TODO: envío real de correo (proveedor pendiente de definir) a ventas@conext.com.mx.
   console.log('Contacto recibido (pendiente de envío real):', { nombre, empresa, correo, telefono });
 
   return response.status(200).json({

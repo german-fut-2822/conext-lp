@@ -361,8 +361,9 @@ section { scroll-margin-top: 110px; }
   outline: none; border-color: var(--rojo); box-shadow: 0 0 0 3px rgba(251,13,7,.12);
 }
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
-.captcha-placeholder { border: 1px dashed #c3cbd3; border-radius: 6px; padding: 10px 12px; font-size: 12px; color: var(--gris-acero); background: #fafbfc; margin-bottom: 16px; }
-.captcha-placeholder a { color: var(--rojo); }
+.g-recaptcha { margin-bottom: 10px; }
+.recaptcha-note { font-size: 11px; color: var(--gris-acero); margin: 0 0 16px; }
+.recaptcha-note a { color: var(--rojo); }
 .form-feedback { margin-top: 12px; font-size: 14px; font-weight: 600; min-height: 20px; }
 .form-feedback.ok { color: #1e7a3c; }
 .form-feedback.err { color: #b3261e; }

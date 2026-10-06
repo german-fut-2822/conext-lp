@@ -46,12 +46,13 @@
         <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
       </div>
       <input type="text" name="empresa_web" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div class="captcha-placeholder" data-i18n="contacto.form.captcha">
-        reCAPTCHA pendiente de activar — falta dar de alta el dominio y la site key en <a href="https://www.google.com/recaptcha/admin" target="_blank" rel="noopener">google.com/recaptcha/admin</a>.
-      </div>
+      <div class="g-recaptcha" data-sitekey="6Lddd-ItAAAAANILbFOD--KXrb7W5i5BE4VHH1aU"></div>
+      <p class="recaptcha-note" data-i18n="contacto.form.recaptchaNote">Este sitio está protegido por reCAPTCHA. Aplican la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidad</a> y los <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Términos de Servicio</a> de Google.</p>
       <button type="submit" class="btn-cta btn-block" data-i18n="contacto.form.enviar">Enviar</button>
       <p class="form-feedback" data-feedback role="status"></p>
       <p class="form-image-note" data-i18n="contacto.form.note">Fondo: textura abstracta de referencia — sustituir por fotografía de metal no ferroso con el mismo tratamiento de blur gris.</p>
     </form>
   </div>
 </section>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>

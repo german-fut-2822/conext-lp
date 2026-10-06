@@ -151,6 +151,12 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
+      if (form.querySelector('.g-recaptcha') && (!window.grecaptcha || !window.grecaptcha.getResponse())) {
+        feedback.textContent = 'Por favor completa el reCAPTCHA.';
+        feedback.className = 'form-feedback err';
+        return;
+      }
+
       var formData = new FormData(form);
       formData.set('origen', form.getAttribute('data-origen') || 'CONEXT LP');
       var params = new URLSearchParams(formData);
@@ -175,11 +181,13 @@ document.addEventListener('DOMContentLoaded', function () {
             feedback.textContent = result.message || 'No se pudo enviar tu mensaje, intenta de nuevo.';
             feedback.className = 'form-feedback err';
           }
+          if (window.grecaptcha && form.querySelector('.g-recaptcha')) window.grecaptcha.reset();
         })
         .catch(function () {
           submitBtn.disabled = false;
           feedback.textContent = 'Hubo un problema de conexión. Escríbenos directo a ventas@conext.com.mx.';
           feedback.className = 'form-feedback err';
+          if (window.grecaptcha && form.querySelector('.g-recaptcha')) window.grecaptcha.reset();
         });
     });
   });

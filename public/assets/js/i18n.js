@@ -93,7 +93,7 @@ window.CONEXT_I18N = {
   'contacto.form.opt3': { es: 'Fundición Maxxima', en: 'Fundición Maxxima' },
   'contacto.form.opt4': { es: 'Otro', en: 'Other' },
   'contacto.form.mensaje': { es: 'Mensaje', en: 'Message' },
-  'contacto.form.captcha': { es: 'reCAPTCHA pendiente de activar — falta dar de alta el dominio y la site key en <a href="https://www.google.com/recaptcha/admin" target="_blank" rel="noopener">google.com/recaptcha/admin</a>.', en: 'reCAPTCHA pending activation — the domain and site key still need to be registered at <a href="https://www.google.com/recaptcha/admin" target="_blank" rel="noopener">google.com/recaptcha/admin</a>.' },
+  'contacto.form.recaptchaNote': { es: 'Este sitio está protegido por reCAPTCHA. Aplican la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidad</a> y los <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Términos de Servicio</a> de Google.', en: 'This site is protected by reCAPTCHA. The Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.' },
   'contacto.form.enviar': { es: 'Enviar', en: 'Send' },
   'contacto.form.note': { es: 'Fondo: textura abstracta de referencia — sustituir por fotografía de metal no ferroso con el mismo tratamiento de blur gris.', en: 'Background: placeholder abstract texture — replace with a non-ferrous metal photo using the same gray blur treatment.' },
 
