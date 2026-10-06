@@ -194,7 +194,7 @@ section { scroll-margin-top: 110px; }
 .map-dot { transform-box: fill-box; transform-origin: center; }
 .map-pulse { animation: mapPulse 2.4s ease-out infinite; animation-delay: var(--pd, 0s); transform-box: fill-box; transform-origin: center; }
 @keyframes mapPulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(2.6); opacity: 0; } }
-.map-label { font-family: var(--font-body); font-size: 12px; font-weight: 700; fill: var(--negro); }
+.map-label { font-family: var(--font-body); font-size: 14px; font-weight: 700; fill: var(--negro); }
 
 .reach-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .reach-card { background: var(--gris-claro); border-radius: 10px; padding: 24px; border-left: 4px solid var(--rojo); transition: transform .25s ease, box-shadow .25s ease, border-left-color .25s ease, background .25s ease; }
@@ -393,21 +393,32 @@ section { scroll-margin-top: 110px; }
   .nav-item.open .dropdown { display: block; }
   .hero-grid, .quality-grid, .contact-grid { grid-template-columns: 1fr; }
   .hero-highlights { grid-template-columns: 1fr; }
-  .reach-cards, .metal-grid, .chem-grid, .mv-grid, .maxxima-grid { grid-template-columns: repeat(2, 1fr); }
+  .reach-cards, .metal-grid, .chem-grid, .mv-grid, .maxxima-grid, .maxxima-photos { grid-template-columns: repeat(2, 1fr); }
   .stat-row { grid-template-columns: repeat(3, 1fr); }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .cert-badge { text-align: left; }
   .cert-note { margin: 8px 0 0; }
+  .industrias { padding: 80px 20px; }
+  .industrias h2 { font-size: 28px; }
+  .industrias p { font-size: 16px; }
 }
 
 @media (max-width: 640px) {
   h1 { font-size: 30px; } h2 { font-size: 24px; }
-  .topbar-inner { font-size: 12px; } .topbar-contact { gap: 12px; }
-  .reach-cards, .metal-grid, .chem-grid, .mv-grid, .maxxima-grid { grid-template-columns: 1fr; }
+  .topbar-inner { flex-direction: column; gap: 6px; padding: 8px 16px; font-size: 12px; }
+  .topbar-contact { gap: 8px 14px; flex-wrap: wrap; justify-content: center; }
+  .lang-toggle { justify-content: center; }
+  .reach-cards, .metal-grid, .chem-grid, .mv-grid, .maxxima-grid, .maxxima-photos { grid-template-columns: 1fr; }
+  .maxxima-photos img { height: 220px; }
   .stat-row { grid-template-columns: 1fr; }
   .floating-cta { right: 16px; bottom: 16px; padding: 12px 18px; font-size: 13px; }
   .footer-grid { grid-template-columns: 1fr; }
+  .industrias { padding: 56px 20px; min-height: 0; }
+  .industrias h2 { font-size: 23px; }
+  .industrias p { font-size: 15px; }
+  .contact-form { padding: 22px; }
+  .container { padding: 0 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
