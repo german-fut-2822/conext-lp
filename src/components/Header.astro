@@ -11,7 +11,9 @@
           ventas@conext.com.mx
         </a>
       </div>
-      <div class="topbar-lang">ES</div>
+      <button class="lang-toggle" id="langToggle" type="button" aria-label="Cambiar idioma / Switch language">
+        <span class="lang-opt active" data-lang-opt="es">ES</span><span class="lang-sep">/</span><span class="lang-opt" data-lang-opt="en">EN</span>
+      </button>
     </div>
   </div>
 
@@ -23,17 +25,17 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
-      <li class="nav-item"><a href="/">Inicio</a></li>
-      <li class="nav-item"><a href="/nosotros">Nosotros</a></li>
+      <li class="nav-item"><a href="/" data-i18n="nav.inicio">Inicio</a></li>
+      <li class="nav-item"><a href="/nosotros" data-i18n="nav.nosotros">Nosotros</a></li>
       <li class="nav-item">
-        <a href="/productos" data-dropdown-toggle>Productos <span class="caret">▾</span></a>
+        <a href="/productos" data-dropdown-toggle><span data-i18n="nav.productos">Productos</span> <span class="caret">▾</span></a>
         <ul class="dropdown">
-          <li><a href="/productos#metales">Metales</a></li>
-          <li><a href="/productos#quimicos">Químicos</a></li>
+          <li><a href="/productos#metales" data-i18n="nav.metales">Metales</a></li>
+          <li><a href="/productos#quimicos" data-i18n="nav.quimicos">Químicos</a></li>
         </ul>
       </li>
-      <li class="nav-item"><a href="/fundicion-maxxima">Fundición Maxxima</a></li>
-      <li class="nav-item"><a href="/contacto" class="btn-cta btn-cta-sm">Contacto</a></li>
+      <li class="nav-item"><a href="/fundicion-maxxima" data-i18n="nav.maxxima">Fundición Maxxima</a></li>
+      <li class="nav-item"><a href="/contacto" class="btn-cta btn-cta-sm" data-i18n="nav.contacto">Contacto</a></li>
     </ul>
   </nav>
 </header>

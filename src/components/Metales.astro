@@ -1,40 +1,32 @@
 ---
 const metales = [
-  { symbol: 'Sn', nombre: 'Estaño', img: '/assets/img/metales/estano.jpg', href: 'https://conext.com.mx/productos/#toggle-id-6', desc: 'Lingote y alambre de soldadura' },
-  { symbol: 'Sb', nombre: 'Antimonio', img: '/assets/img/metales/antimonio.jpg', href: 'https://conext.com.mx/productos/#toggle-id-1', desc: 'Lingote, granalla y polvo' },
-  { symbol: 'Pb', nombre: 'Plomo', img: '/assets/img/metales/plomo.jpg', href: 'https://conext.com.mx/productos/#toggle-id-11', desc: 'Plomo afinado' },
-  { symbol: 'Zn', nombre: 'Zinc', img: '/assets/img/metales/zinc.jpg', href: 'https://conext.com.mx/productos/#toggle-id-15', desc: 'SHG y High Grade' },
-  { symbol: 'Al', nombre: 'Aluminio', img: '/assets/img/metales/aluminio.jpg', href: 'https://conext.com.mx/productos/#toggle-id-17', desc: 'Granalla y P1020' },
-  { symbol: 'Ag', nombre: 'Plata', img: '/assets/img/metales/plata.jpg', href: 'https://conext.com.mx/productos/#toggle-id-9', desc: 'Plata metálica' },
-  { symbol: 'Au', nombre: 'Oro', img: '/assets/img/metales/oro.jpg', href: 'https://conext.com.mx/productos/#toggle-id-10', desc: 'Oro metálico' },
-  { symbol: 'Cu', nombre: 'Cobre', img: '/assets/img/metales/cobre.jpg', href: 'https://conext.com.mx/wp-content/uploads/2015/09/cobre.pdf', desc: 'Cobre OF — ficha PDF' },
-  { symbol: 'Se', nombre: 'Selenio', img: '/assets/img/metales/selenio.jpg', href: 'https://conext.com.mx/productos/#toggle-id-12', desc: 'Selenio metálico' },
+  { symbol: 'Sn', nombre: 'Estaño', en: 'Tin', img: '/assets/img/metales/estano.jpg', href: 'https://conext.com.mx/productos/#toggle-id-6', desc: 'Lingote y alambre de soldadura', descEn: 'Ingot and solder wire' },
+  { symbol: 'Sb', nombre: 'Antimonio', en: 'Antimony', img: '/assets/img/metales/antimonio.jpg', href: 'https://conext.com.mx/productos/#toggle-id-1', desc: 'Lingote, granalla y polvo', descEn: 'Ingot, shot and powder' },
+  { symbol: 'Pb', nombre: 'Plomo', en: 'Lead', img: '/assets/img/metales/plomo.jpg', href: 'https://conext.com.mx/productos/#toggle-id-11', desc: 'Plomo afinado', descEn: 'Refined lead' },
+  { symbol: 'Zn', nombre: 'Zinc', en: 'Zinc', img: '/assets/img/metales/zinc.jpg', href: 'https://conext.com.mx/productos/#toggle-id-15', desc: 'SHG y High Grade', descEn: 'SHG and High Grade' },
+  { symbol: 'Al', nombre: 'Aluminio', en: 'Aluminum', img: '/assets/img/metales/aluminio.jpg', href: 'https://conext.com.mx/productos/#toggle-id-17', desc: 'Granalla y P1020', descEn: 'Shot and P1020' },
+  { symbol: 'Ag', nombre: 'Plata', en: 'Silver', img: '/assets/img/metales/plata.jpg', href: 'https://conext.com.mx/productos/#toggle-id-9', desc: 'Plata metálica', descEn: 'Metallic silver' },
+  { symbol: 'Au', nombre: 'Oro', en: 'Gold', img: '/assets/img/metales/oro.jpg', href: 'https://conext.com.mx/productos/#toggle-id-10', desc: 'Oro metálico', descEn: 'Metallic gold' },
+  { symbol: 'Cu', nombre: 'Cobre', en: 'Copper', img: '/assets/img/metales/cobre.jpg', href: 'https://conext.com.mx/wp-content/uploads/2015/09/cobre.pdf', desc: 'Cobre OF — ficha PDF', descEn: 'OF copper — PDF spec sheet' },
+  { symbol: 'Se', nombre: 'Selenio', en: 'Selenium', img: '/assets/img/metales/selenio.jpg', href: 'https://conext.com.mx/productos/#toggle-id-12', desc: 'Selenio metálico', descEn: 'Metallic selenium' },
 ];
 ---
-<section class="products" id="metales">
-  <div class="products-banner reveal">
-    <h2>Metales No Ferrosos</h2>
-  </div>
+<section class="products metales-section" id="metales">
   <div class="container">
-    <p class="section-lead reveal" style="--d:1">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
+    <span class="eyebrow reveal" data-i18n="metales.eyebrow">Metales</span>
+    <h2 class="reveal" data-i18n="metales.title">Metales No Ferrosos</h2>
+    <p class="section-lead reveal" style="--d:1" data-i18n="metales.lead">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
 
-    <div class="flip-grid-3">
+    <div class="metal-grid">
       {metales.map((m, i) => (
-        <div class="flip-card reveal" style={`--d:${(i % 3) + 1}`}>
-          <a href={m.href} target="_blank" rel="noopener" aria-label={`Ver ficha de ${m.nombre} en conext.com.mx`}>
-            <div class="flip-inner">
-              <div class="flip-front">
-                <span class="metal-symbol">{m.symbol}</span>
-                <h3>{m.nombre}</h3>
-              </div>
-              <div class="flip-back" style={`background-image: url('${m.img}')`}>
-                <h3>{m.nombre}</h3>
-                <p>{m.desc}</p>
-              </div>
-              <span class="flip-hint">↗ conext.com.mx</span>
-            </div>
-          </a>
-        </div>
+        <a href={m.href} target="_blank" rel="noopener" class="metal-card reveal" style={`--d:${(i % 3) + 1}; background-image: url('${m.img}')`} aria-label={`Ver ficha de ${m.nombre} en conext.com.mx`}>
+          <span class="metal-card-tag">{m.symbol}</span>
+          <div class="metal-card-info">
+            <h3 data-i18n={`metales.${m.symbol}.nombre`} data-i18n-es={m.nombre} data-i18n-en={m.en}>{m.nombre}</h3>
+            <p data-i18n={`metales.${m.symbol}.desc`} data-i18n-es={m.desc} data-i18n-en={m.descEn}>{m.desc}</p>
+          </div>
+          <span class="card-hint">↗ conext.com.mx</span>
+        </a>
       ))}
     </div>
   </div>

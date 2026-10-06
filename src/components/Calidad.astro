@@ -1,13 +1,35 @@
+---
+const puntos = [
+  {
+    texto: 'La mejora continua de nuestros procesos',
+    en: 'Continuous improvement of our processes',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>',
+  },
+  {
+    texto: 'El desarrollo de nuestro personal',
+    en: 'The development of our people',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/><path d="M12 2.5V4"/></svg>',
+  },
+  {
+    texto: 'La integración de nuestros proveedores',
+    en: 'The integration of our suppliers',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 12.5a4 4 0 0 0 5.66 0l3-3a4 4 0 1 0-5.66-5.66l-1 1"/><path d="M15.5 11.5a4 4 0 0 0-5.66 0l-3 3a4 4 0 1 0 5.66 5.66l1-1"/></svg>',
+  },
+];
+---
 <section class="quality" id="calidad">
   <div class="container quality-grid">
     <div class="reveal">
-      <span class="eyebrow">Calidad</span>
-      <h2>Nuestra política de calidad</h2>
-      <p>En CONEXT estamos comprometidos con la calidad de los metales, químicos industriales y de minería que entregamos a nuestros clientes, a través de:</p>
+      <span class="eyebrow" data-i18n="calidad.eyebrow">Calidad</span>
+      <h2 data-i18n="calidad.title">Nuestra política de calidad</h2>
+      <p data-i18n="calidad.body">En CONEXT estamos comprometidos con la calidad de los metales, químicos industriales y de minería que entregamos a nuestros clientes, a través de:</p>
       <ul class="quality-list">
-        <li>La mejora continua de nuestros procesos</li>
-        <li>El desarrollo de nuestro personal</li>
-        <li>La integración de nuestros proveedores</li>
+        {puntos.map((p) => (
+          <li>
+            <span class="quality-icon" set:html={p.icon} />
+            <span data-i18n-es={p.texto} data-i18n-en={p.en}>{p.texto}</span>
+          </li>
+        ))}
       </ul>
     </div>
     <div class="cert-badge reveal" style="--d:1">
@@ -15,7 +37,7 @@
       <a href="https://conext.com.mx/wp-content/uploads/2025/01/1502198_QMS_SPA.pdf" target="_blank" rel="noopener">
         <img src="/assets/img/iso-9001-2015.jpg" alt="Certificado ISO 9001:2015 de CONEXT" loading="lazy">
       </a>
-      <p class="cert-note">Certificado ISO 9001:2015 vigente — descarga el PDF oficial.</p>
+      <p class="cert-note" data-i18n="calidad.certNote">Certificado ISO 9001:2015 vigente — descarga el PDF oficial.</p>
     </div>
   </div>
 </section>

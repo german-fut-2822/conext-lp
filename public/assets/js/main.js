@@ -1,6 +1,43 @@
 document.addEventListener('DOMContentLoaded', function () {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Language toggle (ES / EN)
+  var LANG_KEY = 'conext-lang';
+  var dict = window.CONEXT_I18N || {};
+  var langToggle = document.getElementById('langToggle');
+  var originalTitle = document.title;
+
+  var applyLang = function (lang) {
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var entry = dict[el.getAttribute('data-i18n')];
+      if (entry && entry[lang] != null) el.innerHTML = entry[lang];
+    });
+    document.querySelectorAll('[data-i18n-es]').forEach(function (el) {
+      var value = lang === 'en' ? el.getAttribute('data-i18n-en') : el.getAttribute('data-i18n-es');
+      if (value != null) el.innerHTML = value;
+    });
+    var titleEntry = dict[document.body.getAttribute('data-i18n-title')];
+    if (titleEntry) document.title = lang === 'en' && titleEntry.en ? titleEntry.en : originalTitle;
+    document.documentElement.lang = lang === 'en' ? 'en' : 'es-MX';
+    if (langToggle) {
+      langToggle.querySelectorAll('[data-lang-opt]').forEach(function (opt) {
+        opt.classList.toggle('active', opt.getAttribute('data-lang-opt') === lang);
+      });
+    }
+    localStorage.setItem(LANG_KEY, lang);
+  };
+
+  if (langToggle) {
+    langToggle.addEventListener('click', function () {
+      var current = document.documentElement.lang === 'en' ? 'en' : 'es';
+      applyLang(current === 'en' ? 'es' : 'en');
+    });
+  }
+
+  var savedLang = null;
+  try { savedLang = localStorage.getItem(LANG_KEY); } catch (e) { /* storage unavailable */ }
+  if (savedLang === 'en') applyLang('en');
+
   var navToggle = document.getElementById('navToggle');
   var navLinks = document.getElementById('navLinks');
 
@@ -94,44 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.nav-links > .nav-item > a').forEach(function (link) {
     var linkPath = link.getAttribute('href').split('#')[0].replace(/\/$/, '') || '/';
     if (linkPath === currentPath) link.classList.add('active');
-  });
-
-  // Hero gallery (Univar-style rotating cards)
-  var heroGallery = document.getElementById('heroGallery');
-  if (heroGallery) {
-    var slides = heroGallery.querySelectorAll('.hero-slide');
-    var dots = document.querySelectorAll('.hero-dot');
-    var current = 0;
-    var autoTimer;
-
-    var goTo = function (index) {
-      current = (index + slides.length) % slides.length;
-      slides.forEach(function (s, i) { s.classList.toggle('active', i === current); });
-      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
-      slides[current].querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
-    };
-
-    var restartAuto = function () {
-      clearInterval(autoTimer);
-      if (!reduceMotion) autoTimer = setInterval(function () { goTo(current + 1); }, 6000);
-    };
-
-    document.getElementById('heroPrev').addEventListener('click', function () { goTo(current - 1); restartAuto(); });
-    document.getElementById('heroNext').addEventListener('click', function () { goTo(current + 1); restartAuto(); });
-    dots.forEach(function (dot, i) { dot.addEventListener('click', function () { goTo(i); restartAuto(); }); });
-
-    restartAuto();
-  }
-
-  // Flip cards: tap-to-flip fallback for touch devices (hover doesn't exist)
-  document.querySelectorAll('.flip-card').forEach(function (card) {
-    var link = card.querySelector('a');
-    card.addEventListener('click', function (e) {
-      if (window.matchMedia('(hover: none)').matches && !card.classList.contains('flipped')) {
-        e.preventDefault();
-        card.classList.add('flipped');
-      }
-    });
   });
 
   // Contact forms (Inicio + Fundición Maxxima share the same handler)

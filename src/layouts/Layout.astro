@@ -2,10 +2,12 @@
 export interface Props {
   title?: string;
   description?: string;
+  titleKey?: string;
 }
 const {
   title = 'CONEXT | Metales No Ferrosos y Químicos Industriales en Monterrey',
   description = 'CONEXT: proveedor mexicano desde 1996 de metales no ferrosos y químicos industriales. Presencia en México, Estados Unidos y China.',
+  titleKey = 'title.home',
 } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -47,8 +49,9 @@ const {
   "description": "Proveedor mexicano de metales no ferrosos y químicos industriales para la industria metalúrgica, con más de 28 años de experiencia."
 })} />
 </head>
-<body>
+<body data-i18n-title={titleKey}>
   <slot />
+  <script src="/assets/js/i18n.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
 </body>
 </html>

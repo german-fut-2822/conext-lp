@@ -7,46 +7,55 @@
 const quimicos = [
   {
     nombre: 'Aditivos alimentarios y nutracéuticos',
+    nombreEn: 'Food additives & nutraceuticals',
     items: ['NMN', 'NR (Ribósido de nicotinamida)', 'Taurina', 'Monohidrato de creatina', 'Glucosamina y condroitina'],
+    itemsEn: ['NMN', 'NR (Nicotinamide Riboside)', 'Taurine', 'Creatine monohydrate', 'Glucosamine & chondroitin'],
+    gradient: 'linear-gradient(135deg, #c40905, #FB9F32)',
+    icon: 'capsule',
   },
   {
     nombre: 'Extractos naturales',
+    nombreEn: 'Natural extracts',
     items: ['Extracto de té verde / EGCG', 'Extracto de ginseng', 'Ginkgo biloba', 'Extracto de hongos / Reishi'],
+    itemsEn: ['Green tea extract / EGCG', 'Ginseng extract', 'Ginkgo biloba', 'Mushroom extract / Reishi'],
+    gradient: 'linear-gradient(135deg, #2f6b3a, #6b8f3f)',
+    icon: 'leaf',
   },
   {
     nombre: 'Cosméticos y cuidado personal',
+    nombreEn: 'Cosmetics & personal care',
     items: ['Ácido hialurónico', 'Ácido kójico', 'Alfa arbutina', 'Colágeno'],
+    itemsEn: ['Hyaluronic acid', 'Kojic acid', 'Alpha arbutin', 'Collagen'],
+    gradient: 'linear-gradient(135deg, #5b6b7a, #8d99a6)',
+    icon: 'droplet',
   },
 ];
 const PRODUCTOS_URL = 'https://conext.com.mx/productos/';
+
+const icons: Record<string, string> = {
+  capsule: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.93 19.07a5 5 0 0 1 0-7.07l7.07-7.07a5 5 0 1 1 7.07 7.07l-7.07 7.07a5 5 0 0 1-7.07 0Z"/><path d="M9.46 7.46 16.54 14.54"/></svg>',
+  leaf: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-4 2.5-8 10-9 1 5-1 8-3 9"/><path d="M4 13c4.5 0 9-2 11-7"/></svg>',
+  droplet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/></svg>',
+};
 ---
 <section class="products alt" id="quimicos">
   <div class="container">
-    <span class="eyebrow reveal">Químicos</span>
-    <h2 class="reveal">Soluciones químicas para distintas industrias</h2>
-    <p class="section-lead reveal" style="--d:1">Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente.</p>
+    <span class="eyebrow reveal" data-i18n="quimicos.eyebrow">Químicos</span>
+    <h2 class="reveal" data-i18n="quimicos.title">Soluciones químicas para distintas industrias</h2>
+    <p class="section-lead reveal" style="--d:1" data-i18n="quimicos.lead">Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente.</p>
 
-    <div class="flip-grid-1">
+    <div class="chem-grid">
       {quimicos.map((q, i) => (
-        <div class="flip-card chem-flip reveal" style={`--d:${i + 1}`}>
-          <a href={PRODUCTOS_URL} target="_blank" rel="noopener" aria-label={`Ver ${q.nombre} en conext.com.mx`}>
-            <div class="flip-inner">
-              <div class="flip-front">
-                <h3>{q.nombre}</h3>
-                <ul>
-                  {q.items.slice(0, 2).map((it) => <li>{it}</li>)}
-                </ul>
-              </div>
-              <div class="flip-back" style="background: linear-gradient(135deg, #5b6b7a, #010101)">
-                <h3>{q.nombre}</h3>
-                <ul style="text-align:left; color:#f0f0f0; font-size:13px;">
-                  {q.items.map((it) => <li>{it}</li>)}
-                </ul>
-              </div>
-              <span class="flip-hint">↗ conext.com.mx</span>
-            </div>
-          </a>
-        </div>
+        <a href={PRODUCTOS_URL} target="_blank" rel="noopener" class="chem-card reveal" style={`--d:${i + 1}; background: ${q.gradient}`} aria-label={`Ver ${q.nombre} en conext.com.mx`}>
+          <span class="chem-card-icon" set:html={icons[q.icon]} />
+          <div class="chem-card-body">
+            <h3 data-i18n-es={q.nombre} data-i18n-en={q.nombreEn}>{q.nombre}</h3>
+            <ul>
+              {q.items.slice(0, 3).map((it, j) => <li data-i18n-es={it} data-i18n-en={q.itemsEn[j]}>{it}</li>)}
+            </ul>
+          </div>
+          <span class="card-hint">↗ conext.com.mx</span>
+        </a>
       ))}
     </div>
   </div>
