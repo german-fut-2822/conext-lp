@@ -137,7 +137,7 @@ section { scroll-margin-top: 110px; }
 .caret { font-size: 10px; margin-left: 2px; transition: transform .2s ease; }
 
 .dropdown {
-  position: absolute; top: 100%; left: -16px; min-width: 200px;
+  position: absolute; top: 100%; left: -16px; min-width: 160px;
   background: var(--blanco); border-top: 3px solid var(--rojo);
   box-shadow: 0 16px 32px rgba(1,1,1,.14); border-radius: 0 0 8px 8px;
   padding: 8px 0; list-style: none; margin: 0;
