@@ -1,13 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Nosotros from '../components/Nosotros.astro';
+import PageHero from '../components/PageHero.astro';
+import NosotrosCompleto from '../components/NosotrosCompleto.astro';
 import Footer from '../components/Footer.astro';
 ---
 <Layout title="Nosotros | CONEXT" titleKey="title.nosotros">
   <Header />
   <main>
-    <Nosotros />
+    <PageHero
+      eyebrow="Nosotros"
+      eyebrowKey="nosotros.page.heroEyebrow"
+      title="Una trayectoria que conecta metales, química y mercados globales"
+      titleKey="nosotros.page.heroTitle"
+      lead="Más de 28 años desarrollando soluciones a la medida, desde Monterrey hacia el mundo."
+      leadKey="nosotros.page.heroLead"
+      image="/assets/img/hero-nosotros.jpg"
+      imagePosition="center 20%"
+      imageAlt="Patio industrial en Monterrey con metal apilado al atardecer y el Cerro de la Silla de fondo, representando el origen y la trayectoria de CONEXT"
+    />
+    <NosotrosCompleto />
   </main>
   <Footer />
 </Layout>

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import SectionDivider from '../components/SectionDivider.astro';
 import Nosotros from '../components/Nosotros.astro';
 import Metales from '../components/Metales.astro';
 import Industrias from '../components/Industrias.astro';
@@ -15,12 +16,18 @@ import Footer from '../components/Footer.astro';
   <Header />
   <main>
     <Hero />
+    <SectionDivider label="Nosotros" labelKey="nosotros.eyebrow" />
     <Nosotros />
-    <Metales />
-    <Industrias />
-    <Quimicos />
+    <SectionDivider label="Industrias" labelKey="industrias.eyebrow" />
+    <Industrias showEyebrow={false} />
+    <SectionDivider label="Productos" labelKey="nav.productos" />
+    <Metales showEyebrow={false} />
+    <Quimicos showEyebrow={false} />
+    <SectionDivider label="Calidad" labelKey="calidad.eyebrow" />
     <Calidad />
-    <Maxxima />
+    <SectionDivider label="Nuestra empresa hermana" labelKey="maxxima.dividerLabel" />
+    <Maxxima showEyebrow={false} />
+    <SectionDivider label="Contacto" labelKey="nav.contacto" />
     <Contacto />
   </main>
   <Footer />

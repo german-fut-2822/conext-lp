@@ -4,6 +4,10 @@
 // coincide con el contenido de aditivos/cosmética del Sites de referencia.
 // Mientras eso se confirma con Selene/Gustavo, estas tarjetas enlazan a la
 // página general de Productos en vez de una pestaña específica incorrecta.
+export interface Props {
+  showEyebrow?: boolean;
+}
+const { showEyebrow = true } = Astro.props;
 const quimicos = [
   {
     nombre: 'Aditivos alimentarios y nutracéuticos',
@@ -40,7 +44,7 @@ const icons: Record<string, string> = {
 ---
 <section class="products alt tech-grid" id="quimicos">
   <div class="container">
-    <span class="eyebrow reveal" data-i18n="quimicos.eyebrow">Químicos</span>
+    {showEyebrow && <span class="eyebrow reveal" data-i18n="quimicos.eyebrow">Químicos</span>}
     <h2 class="reveal" data-i18n="quimicos.title">Soluciones químicas para distintas industrias</h2>
     <p class="section-lead reveal" style="--d:1" data-i18n="quimicos.lead">Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente.</p>
 

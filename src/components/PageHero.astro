@@ -1,0 +1,22 @@
+---
+export interface Props {
+  eyebrow: string;
+  eyebrowKey?: string;
+  title: string;
+  titleKey?: string;
+  lead?: string;
+  leadKey?: string;
+  image: string;
+  imageAlt: string;
+  imagePosition?: string;
+}
+const { eyebrow, eyebrowKey, title, titleKey, lead, leadKey, image, imageAlt, imagePosition = 'center' } = Astro.props;
+---
+<section class="page-hero" style={`background-image: url('${image}'); background-position: ${imagePosition};`} role="img" aria-label={imageAlt}>
+  <div class="page-hero-overlay" aria-hidden="true"></div>
+  <div class="container page-hero-copy">
+    <span class="eyebrow reveal in-view" data-i18n={eyebrowKey}>{eyebrow}</span>
+    <h1 class="reveal in-view" data-i18n={titleKey}>{title}</h1>
+    {lead && <p class="page-hero-lead reveal in-view" style="--d:1" data-i18n={leadKey}>{lead}</p>}
+  </div>
+</section>

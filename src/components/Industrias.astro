@@ -1,4 +1,8 @@
 ---
+export interface Props {
+  showEyebrow?: boolean;
+}
+const { showEyebrow = true } = Astro.props;
 const sectores = [
   {
     nombre: 'Automotriz',
@@ -61,7 +65,7 @@ const icons: Record<string, string> = {
 ---
 <section class="products dark-section tech-grid tech-grid-dark" id="industrias">
   <div class="container">
-    <span class="eyebrow reveal" data-i18n="industrias.eyebrow">Industrias</span>
+    {showEyebrow && <span class="eyebrow reveal" data-i18n="industrias.eyebrow">Industrias</span>}
     <h2 class="reveal" data-i18n="industrias.title">Respaldamos a industrias de distintos sectores</h2>
     <p class="section-lead reveal" style="--d:1" data-i18n="industrias.body">Con soluciones a la medida y volumen consistente, desarrollando las aleaciones y formulaciones específicas que cada operación requiere.</p>
 
