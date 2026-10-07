@@ -3,64 +3,69 @@ export interface Props {
   showEyebrow?: boolean;
 }
 const { showEyebrow = true } = Astro.props;
+// Industrias/aplicaciones tomadas literalmente de las fichas de producto en
+// conext.com.mx/productos/ (verificado 2026-10-07) — no del Sites de referencia,
+// que no menciona industrias servidas. Ver nota histórica: la lista anterior
+// (Automotriz, Construcción, Minería, Energía y baterías...) no tenía respaldo
+// en ninguna fuente de CONEXT y fue reemplazada por esta.
 const sectores = [
   {
-    nombre: 'Automotriz',
-    nombreEn: 'Automotive',
-    desc: 'Aleaciones y piezas para componentes y líneas de ensamble.',
-    descEn: 'Alloys and parts for components and assembly lines.',
-    icon: 'car',
-    img: '/assets/img/automotriz.jpg',
-  },
-  {
-    nombre: 'Construcción',
-    nombreEn: 'Construction',
-    desc: 'Materiales a volumen para infraestructura y proyectos industriales.',
-    descEn: 'High-volume materials for infrastructure and industrial projects.',
-    icon: 'building',
-    img: '/assets/img/construccion.jpg',
-  },
-  {
-    nombre: 'Electrónica y electrodomésticos',
-    nombreEn: 'Electronics & appliances',
-    desc: 'Metales de alta pureza para manufactura electrónica.',
-    descEn: 'High-purity metals for electronics manufacturing.',
+    nombre: 'Electrónica y electricidad',
+    nombreEn: 'Electronics & electrical',
+    desc: 'Selenio en rectificadores y celdas electrovoltaicas; plata en contactos eléctricos y electrónicos.',
+    descEn: 'Selenium in rectifiers and electrovoltaic cells; silver in electrical and electronic contacts.',
     icon: 'chip',
     img: '/assets/img/electronica.jpg',
   },
   {
     nombre: 'Galvanizado y recubrimientos',
     nombreEn: 'Galvanizing & coatings',
-    desc: 'Zinc y aleaciones para protección anticorrosiva.',
-    descEn: 'Zinc and alloys for anti-corrosion protection.',
+    desc: 'Zinc metálico para el recubrimiento protector de otros metales.',
+    descEn: 'Metallic zinc for the protective coating of other metals.',
     icon: 'shield',
     img: '/assets/img/galvanizado.jpg',
   },
   {
-    nombre: 'Minería',
-    nombreEn: 'Mining',
-    desc: 'Compra y procesamiento de minerales y subproductos.',
-    descEn: 'Purchase and processing of minerals and by-products.',
-    icon: 'mountain',
-    img: '/assets/img/mineria.jpg',
+    nombre: 'Producción electrolítica de zinc y aluminio',
+    nombreEn: 'Electrolytic zinc & aluminum production',
+    desc: 'Placas y contactos bimetálicos, y cátodos de aluminio con inserto de cobre, para la recuperación por electrólisis.',
+    descEn: 'Bimetallic plates and contacts, and copper-insert aluminum cathodes, for electrolytic recovery.',
+    icon: 'layers',
+    img: '/assets/img/metal-texture.jpg',
   },
   {
-    nombre: 'Energía y baterías',
-    nombreEn: 'Energy & batteries',
-    desc: 'Materias primas para celdas y soluciones de almacenamiento.',
-    descEn: 'Raw materials for cells and storage solutions.',
-    icon: 'battery',
-    img: '/assets/img/energia.jpg',
+    nombre: 'Aeronáutica y aeroespacial',
+    nombreEn: 'Aeronautics & aerospace',
+    desc: 'Magnesio y titanio en aleaciones ligeras; placas bimetálicas en estructuras aeroespaciales.',
+    descEn: 'Magnesium and titanium in lightweight alloys; bimetallic plates in aerospace structures.',
+    icon: 'plane',
+    img: '/assets/img/metal-texture.jpg',
+  },
+  {
+    nombre: 'Petroquímica y química',
+    nombreEn: 'Petrochemical & chemical',
+    desc: 'Placas bimetálicas para la industria petroquímica, la industria del cloro y la producción de cloruro de sodio.',
+    descEn: 'Bimetallic plates for the petrochemical industry, the chlorine industry and sodium chloride production.',
+    icon: 'droplet',
+    img: '/assets/img/metal-texture.jpg',
+  },
+  {
+    nombre: 'Fundición y aleaciones industriales',
+    nombreEn: 'Foundry & industrial alloys',
+    desc: 'Antimonio, bismuto y estaño en soldaduras y cojinetes; magnesio y antimonio en hierro gris y acero.',
+    descEn: 'Antimony, bismuth and tin in solders and bearings; magnesium and antimony in gray iron and steel.',
+    icon: 'flame',
+    img: '/assets/img/maxxima/hornos.jpg',
   },
 ];
 
 const icons: Record<string, string> = {
-  car: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l1.5-4.5A2 2 0 0 1 6.4 7h11.2a2 2 0 0 1 1.9 1.5L21 13"/><rect x="3" y="13" width="18" height="5" rx="1.5"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="16.5" cy="18.5" r="1.5"/></svg>',
-  building: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V7l8-4 8 4v14"/><path d="M4 21h16"/><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg>',
   chip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>',
   shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/></svg>',
-  mountain: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19 9 8l4 6 2-3 6 8Z"/></svg>',
-  battery: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="17" height="8" rx="1.5"/><path d="M22 10.5v3"/><path d="M7 11v2M11 11v2M15 11v2"/></svg>',
+  layers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg>',
+  plane: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-1 .1-1.3.5l-.7.9c-.3.4-.2.9.2 1.2L7.8 12H4.5l-1.2 1.4c-.3.3-.2.8.1 1.1L6 16.2l.7 2.4c.1.4.5.6.8.4l1.9-1.2c.2-.1.4-.4.4-.6V14h3.3l3.9 3.9c.3.3.8.4 1.2.2l.9-.7c.4-.3.6-.8.5-1.3Z"/></svg>',
+  droplet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/></svg>',
+  flame: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></svg>',
 };
 ---
 <section class="products dark-section tech-grid tech-grid-dark" id="industrias">
