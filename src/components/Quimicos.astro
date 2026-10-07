@@ -10,7 +10,7 @@ const quimicos = [
     nombreEn: 'Food additives & nutraceuticals',
     items: ['NMN', 'NR (Ribósido de nicotinamida)', 'Taurina', 'Monohidrato de creatina', 'Glucosamina y condroitina'],
     itemsEn: ['NMN', 'NR (Nicotinamide Riboside)', 'Taurine', 'Creatine monohydrate', 'Glucosamine & chondroitin'],
-    gradient: 'linear-gradient(135deg, #0d0d0d, #e2231a)',
+    img: '/assets/img/quimicos/aditivos-alimentarios.jpg',
     icon: 'capsule',
   },
   {
@@ -18,7 +18,7 @@ const quimicos = [
     nombreEn: 'Natural extracts',
     items: ['Extracto de té verde / EGCG', 'Extracto de ginseng', 'Ginkgo biloba', 'Extracto de hongos / Reishi'],
     itemsEn: ['Green tea extract / EGCG', 'Ginseng extract', 'Ginkgo biloba', 'Mushroom extract / Reishi'],
-    gradient: 'linear-gradient(135deg, #202224, #6b6f76)',
+    img: '/assets/img/quimicos/extractos-naturales.jpg',
     icon: 'leaf',
   },
   {
@@ -26,7 +26,7 @@ const quimicos = [
     nombreEn: 'Cosmetics & personal care',
     items: ['Ácido hialurónico', 'Ácido kójico', 'Alfa arbutina', 'Colágeno'],
     itemsEn: ['Hyaluronic acid', 'Kojic acid', 'Alpha arbutin', 'Collagen'],
-    gradient: 'linear-gradient(135deg, #6b6f76, #c7cacd)',
+    img: '/assets/img/quimicos/cosmeticos.jpg',
     icon: 'droplet',
   },
 ];
@@ -46,7 +46,7 @@ const icons: Record<string, string> = {
 
     <div class="chem-grid">
       {quimicos.map((q, i) => (
-        <a href={PRODUCTOS_URL} target="_blank" rel="noopener" class="chem-card reveal" style={`--d:${i + 1}; background: ${q.gradient}`} aria-label={`Ver ${q.nombre} en conext.com.mx`}>
+        <a href={PRODUCTOS_URL} target="_blank" rel="noopener" class="chem-card reveal" style={`--d:${i + 1}; background-image: url('${q.img}')`} aria-label={`Ver ${q.nombre} en conext.com.mx`}>
           <span class="chem-card-icon" set:html={icons[q.icon]} />
           <div class="chem-card-body">
             <h3 data-i18n-es={q.nombre} data-i18n-en={q.nombreEn}>{q.nombre}</h3>
