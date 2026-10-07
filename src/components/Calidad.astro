@@ -17,7 +17,7 @@ const puntos = [
   },
 ];
 ---
-<section class="quality" id="calidad">
+<section class="quality tech-grid" id="calidad">
   <div class="container quality-grid">
     <div class="reveal">
       <span class="eyebrow" data-i18n="calidad.eyebrow">Calidad</span>
@@ -32,10 +32,12 @@ const puntos = [
         ))}
       </ul>
     </div>
-    <div class="cert-badge reveal" style="--d:1">
+    <div class="cert-card reveal" style="--d:1">
+      <span class="cert-ribbon" data-i18n="calidad.certRibbon">Certificado vigente</span>
       <img src="/assets/img/iso-logo-badge.png" alt="CONEXT ISO 9001:2015" class="iso-logo" loading="lazy">
-      <a href="https://conext.com.mx/wp-content/uploads/2025/01/1502198_QMS_SPA.pdf" target="_blank" rel="noopener">
+      <a href="https://conext.com.mx/wp-content/uploads/2025/01/1502198_QMS_SPA.pdf" target="_blank" rel="noopener" class="cert-link">
         <img src="/assets/img/iso-9001-2015.jpg" alt="Certificado ISO 9001:2015 de CONEXT" loading="lazy">
+        <span class="cert-link-label" data-i18n="calidad.certLink">Ver PDF oficial ↗</span>
       </a>
       <p class="cert-note" data-i18n="calidad.certNote">Certificado ISO 9001:2015 vigente — descarga el PDF oficial.</p>
     </div>

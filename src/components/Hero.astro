@@ -3,8 +3,25 @@ const ICONS = {
   globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.4 2.6 3.8 5.8 3.8 9s-1.4 6.4-3.8 9c-2.4-2.6-3.8-5.8-3.8-9s1.4-6.4 3.8-9Z"/></svg>',
   flame: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></svg>',
 };
+
+const EMBERS = Array.from({ length: 14 }, (_, i) => ({
+  left: (5 + (i * 7.1) % 92).toFixed(1),
+  dx: (((i * 37) % 60) - 30).toFixed(0),
+  duration: (7 + (i % 5) * 1.6).toFixed(1),
+  delay: (-(i * 1.3) % 10).toFixed(1),
+}));
 ---
 <section class="hero" id="inicio">
+  <video class="hero-video" autoplay muted loop playsinline poster="/assets/img/hero-poster.jpg">
+    <source src="/assets/video/hero-foundry.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-embers" aria-hidden="true">
+    {EMBERS.map((e) => (
+      <span class="ember" style={`--ex:${e.left}%; --edx:${e.dx}px; --edur:${e.duration}s; --edelay:${e.delay}s`}></span>
+    ))}
+  </div>
+
   <div class="container hero-grid">
     <div class="hero-copy">
       <h1 class="reveal in-view" data-i18n="hero.title">La solución exacta que tu operación necesita</h1>
@@ -12,11 +29,8 @@ const ICONS = {
       <p class="reveal in-view" data-i18n="hero.body">Somos una empresa mexicana con más de <strong>28 años</strong> comprometidos con la más alta calidad y el desarrollo de soluciones a la medida de cada cliente.</p>
       <div class="hero-actions">
         <a href="/contacto" class="btn-cta" data-i18n="hero.cta1">Solicita tu cotización</a>
-        <a href="/productos" class="btn-ghost" data-i18n="hero.cta2">Ver catálogo de productos</a>
+        <a href="/productos" class="btn-ghost light" data-i18n="hero.cta2">Ver catálogo de productos</a>
       </div>
-    </div>
-    <div class="hero-visual hero-visual-photo">
-      <img src="/assets/img/hero-banner-2.jpg" alt="Lingotes de metal CONEXT" loading="eager">
     </div>
   </div>
 

@@ -53,12 +53,15 @@ window.CONEXT_I18N = {
   'quimicos.title': { es: 'Soluciones químicas para distintas industrias', en: 'Chemical solutions for different industries' },
   'quimicos.lead': { es: 'Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente.', en: 'We support industries across different sectors with tailored solutions and consistent volume.' },
 
+  'industrias.eyebrow': { es: 'Industrias', en: 'Industries' },
   'industrias.title': { es: 'Respaldamos a industrias de distintos sectores', en: 'We support industries across different sectors' },
   'industrias.body': { es: 'Con soluciones a la medida y volumen consistente, desarrollando las aleaciones y formulaciones específicas que cada operación requiere.', en: 'With tailored solutions and consistent volume, developing the specific alloys and formulations each operation requires.' },
 
   'calidad.eyebrow': { es: 'Calidad', en: 'Quality' },
   'calidad.title': { es: 'Nuestra política de calidad', en: 'Our quality policy' },
   'calidad.body': { es: 'En CONEXT estamos comprometidos con la calidad de los metales, químicos industriales y de minería que entregamos a nuestros clientes, a través de:', en: 'At CONEXT we are committed to the quality of the metals, industrial chemicals and mining products we deliver to our customers, through:' },
+  'calidad.certRibbon': { es: 'Certificado vigente', en: 'Current certificate' },
+  'calidad.certLink': { es: 'Ver PDF oficial ↗', en: 'View official PDF ↗' },
   'calidad.certNote': { es: 'Certificado ISO 9001:2015 vigente — descarga el PDF oficial.', en: 'Current ISO 9001:2015 certificate — download the official PDF.' },
 
   'maxxima.eyebrow': { es: 'Empresa hermana', en: 'Sister company' },
@@ -95,7 +98,6 @@ window.CONEXT_I18N = {
   'contacto.form.mensaje': { es: 'Mensaje', en: 'Message' },
   'contacto.form.recaptchaNote': { es: 'Este sitio está protegido por reCAPTCHA. Aplican la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidad</a> y los <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Términos de Servicio</a> de Google.', en: 'This site is protected by reCAPTCHA. The Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.' },
   'contacto.form.enviar': { es: 'Enviar', en: 'Send' },
-  'contacto.form.note': { es: 'Fondo: textura abstracta de referencia — sustituir por fotografía de metal no ferroso con el mismo tratamiento de blur gris.', en: 'Background: placeholder abstract texture — replace with a non-ferrous metal photo using the same gray blur treatment.' },
 
   'footer.cities': { es: 'Monterrey, México · Laredo, EUA · Shanghái, China', en: 'Monterrey, Mexico · Laredo, USA · Shanghai, China' },
   'footer.tel': { es: 'Tel:', en: 'Phone:' },

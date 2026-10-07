@@ -70,16 +70,102 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // Floating CTA appears after the hero
+  // Pause the hero background video for users who prefer reduced motion
+  var heroVideo = document.querySelector('.hero-video');
+  if (heroVideo && reduceMotion) heroVideo.pause();
+
+  // Scroll-grid: intensifies the background grid texture as the section scrolls through view
+  var scrollGridEls = document.querySelectorAll('.scroll-grid');
+  if (scrollGridEls.length) {
+    if (reduceMotion) {
+      scrollGridEls.forEach(function (el) { el.style.setProperty('--grid-progress', '.6'); });
+    } else {
+      var gridTicking = false;
+      var updateScrollGrid = function () {
+        scrollGridEls.forEach(function (el) {
+          var rect = el.getBoundingClientRect();
+          var progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+          progress = Math.max(0, Math.min(1, progress));
+          el.style.setProperty('--grid-progress', progress.toFixed(3));
+        });
+        gridTicking = false;
+      };
+      window.addEventListener('scroll', function () {
+        if (!gridTicking) { requestAnimationFrame(updateScrollGrid); gridTicking = true; }
+      }, { passive: true });
+      updateScrollGrid();
+    }
+  }
+
+  // Reach cards <-> world map: hovering (desktop) or tapping (touch) a card highlights
+  // its point and pings a radar ring from it
+  var reachMapPanel = document.getElementById('reachMapPanel');
+  var radarPing = document.getElementById('radarPing');
+  if (reachMapPanel) {
+    var activeCity = null;
+    var activateCity = function (city, point) {
+      activeCity = city;
+      reachMapPanel.setAttribute('data-active', city);
+      reachMapPanel.querySelectorAll('.map-point.is-active').forEach(function (el) { el.classList.remove('is-active'); });
+      if (point) point.classList.add('is-active');
+      if (point && radarPing) {
+        var dot = point.querySelector('.map-dot');
+        var panelRect = reachMapPanel.getBoundingClientRect();
+        var dotRect = dot.getBoundingClientRect();
+        radarPing.style.setProperty('--px', (dotRect.left + dotRect.width / 2 - panelRect.left) + 'px');
+        radarPing.style.setProperty('--py', (dotRect.top + dotRect.height / 2 - panelRect.top) + 'px');
+        radarPing.classList.add('active');
+      }
+    };
+    var deactivateCity = function () {
+      activeCity = null;
+      reachMapPanel.removeAttribute('data-active');
+      reachMapPanel.querySelectorAll('.map-point.is-active').forEach(function (el) { el.classList.remove('is-active'); });
+      if (radarPing) radarPing.classList.remove('active');
+    };
+    var canHover = window.matchMedia('(hover: hover)').matches;
+    document.querySelectorAll('.reach-card[data-city]').forEach(function (card) {
+      var city = card.getAttribute('data-city');
+      var point = reachMapPanel.querySelector('.map-point[data-city="' + city + '"]');
+      if (canHover) {
+        card.addEventListener('mouseenter', function () { activateCity(city, point); });
+        card.addEventListener('mouseleave', function () { deactivateCity(); });
+      } else {
+        // Touch devices have no real hover: tapping a card toggles its ping instead.
+        card.addEventListener('click', function () {
+          if (activeCity === city) { deactivateCity(); } else { activateCity(city, point); }
+        });
+      }
+    });
+  }
+
+  // Floating CTA appears after the hero, hides again over the footer
   var floatingCta = document.getElementById('floatingCta');
   var hero = document.querySelector('.hero');
+  var siteFooter = document.querySelector('.site-footer');
   if (floatingCta && hero) {
+    var pastHero = false;
+    var overFooter = false;
+    var updateFloatingCta = function () {
+      floatingCta.classList.toggle('visible', pastHero && !overFooter);
+    };
     var ctaObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        floatingCta.classList.toggle('visible', !entry.isIntersecting);
+        pastHero = !entry.isIntersecting;
+        updateFloatingCta();
       });
     }, { threshold: 0.1 });
     ctaObserver.observe(hero);
+
+    if (siteFooter) {
+      var footerObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          overFooter = entry.isIntersecting;
+          updateFloatingCta();
+        });
+      }, { threshold: 0.1 });
+      footerObserver.observe(siteFooter);
+    }
   }
 
   // Scroll reveal
