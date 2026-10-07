@@ -64,11 +64,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Sticky header shrink on scroll
   var header = document.getElementById('siteHeader');
-  var onScroll = function () {
-    header.classList.toggle('scrolled', window.scrollY > 40);
+  var headerTicking = false;
+  var isScrolled = false;
+  var updateHeaderScrolled = function () {
+    // Hysteresis: different enter/exit thresholds so the class doesn't
+    // flap (and re-trigger the max-height/padding transition) when the
+    // scroll position hovers near a single cutoff.
+    if (!isScrolled && window.scrollY > 56) {
+      isScrolled = true;
+    } else if (isScrolled && window.scrollY < 24) {
+      isScrolled = false;
+    }
+    header.classList.toggle('scrolled', isScrolled);
+    headerTicking = false;
   };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('scroll', function () {
+    if (!headerTicking) { requestAnimationFrame(updateHeaderScrolled); headerTicking = true; }
+  }, { passive: true });
+  updateHeaderScrolled();
 
   // Pause the hero background video for users who prefer reduced motion
   var heroVideo = document.querySelector('.hero-video');
