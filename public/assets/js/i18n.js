@@ -55,8 +55,7 @@ window.CONEXT_I18N = {
   'quimicos.lead': { es: 'Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente.', en: 'We support industries across different sectors with tailored solutions and consistent volume.' },
 
   'industrias.eyebrow': { es: 'Industrias', en: 'Industries' },
-  'industrias.title': { es: 'Respaldamos a industrias de distintos sectores', en: 'We support industries across different sectors' },
-  'industrias.body': { es: 'Con soluciones a la medida y volumen consistente, desarrollando las aleaciones y formulaciones específicas que cada operación requiere.', en: 'With tailored solutions and consistent volume, developing the specific alloys and formulations each operation requires.' },
+  'industrias.band': { es: 'Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente, desarrollando las aleaciones específicas que cada operación requiere.', en: 'We support industries across different sectors with tailored solutions and consistent volume, developing the specific alloys each operation requires.' },
 
   'calidad.eyebrow': { es: 'Calidad', en: 'Quality' },
   'calidad.title': { es: 'Nuestra política de calidad', en: 'Our quality policy' },
