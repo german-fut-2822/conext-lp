@@ -137,16 +137,16 @@ section { scroll-margin-top: 110px; }
 .caret { font-size: 10px; margin-left: 2px; transition: transform .2s ease; }
 
 .dropdown {
-  position: absolute; top: 100%; left: -16px; min-width: 160px;
+  position: absolute; top: 100%; left: 50%; min-width: 160px;
   background: var(--blanco); border-top: 3px solid var(--rojo);
   box-shadow: 0 16px 32px rgba(1,1,1,.14); border-radius: 0 0 8px 8px;
   padding: 8px 0; list-style: none; margin: 0;
-  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-8px);
   transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
 }
-.nav-item:hover .dropdown, .nav-item:focus-within .dropdown { opacity: 1; visibility: visible; transform: none; }
+.nav-item:hover .dropdown, .nav-item:focus-within .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%); }
 .nav-item:hover .caret { transform: rotate(180deg); }
-.dropdown li a { display: block; padding: 10px 20px; font-weight: 500; font-size: 14px; }
+.nav-links .dropdown li a { display: block; padding: 10px 24px; font-weight: 500; font-size: 14px; text-align: center; }
 .dropdown li a::after { display: none; }
 .dropdown li a:hover { background: var(--gris-claro); color: var(--rojo); }
 
