@@ -6,6 +6,7 @@ import SectionDivider from '../components/SectionDivider.astro';
 import Nosotros from '../components/Nosotros.astro';
 import Metales from '../components/Metales.astro';
 import Quimicos from '../components/Quimicos.astro';
+import Industrias from '../components/Industrias.astro';
 import Calidad from '../components/Calidad.astro';
 import Maxxima from '../components/Maxxima.astro';
 import Contacto from '../components/Contacto.astro';
@@ -20,10 +21,11 @@ import Footer from '../components/Footer.astro';
     <SectionDivider label="Productos" labelKey="nav.productos" />
     <Metales showEyebrow={false} />
     <Quimicos showEyebrow={false} />
+    <Industrias />
     <SectionDivider label="Calidad" labelKey="calidad.eyebrow" />
     <Calidad />
     <SectionDivider label="Nuestra empresa hermana" labelKey="maxxima.dividerLabel" />
-    <Maxxima showEyebrow={false} />
+    <Maxxima showEyebrow={false} condensed />
     <SectionDivider label="Contacto" labelKey="nav.contacto" />
     <Contacto />
   </main>

@@ -81,8 +81,7 @@ window.CONEXT_I18N = {
   'quimicos.lead': { es: 'Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente.', en: 'We support industries across different sectors with tailored solutions and consistent volume.' },
 
   'industrias.eyebrow': { es: 'Industrias', en: 'Industries' },
-  'industrias.title': { es: 'Respaldamos a industrias de distintos sectores', en: 'We support industries across different sectors' },
-  'industrias.body': { es: 'Con soluciones a la medida y volumen consistente, desarrollando las aleaciones y formulaciones específicas que cada operación requiere.', en: 'With tailored solutions and consistent volume, developing the specific alloys and formulations each operation requires.' },
+  'industrias.band': { es: 'Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente, desarrollando las aleaciones específicas que cada operación requiere.', en: 'We support industries across different sectors with tailored solutions and consistent volume, developing the specific alloys each operation requires.' },
 
   'calidad.eyebrow': { es: 'Calidad', en: 'Quality' },
   'calidad.title': { es: 'Nuestra política de calidad', en: 'Our quality policy' },
@@ -107,6 +106,15 @@ window.CONEXT_I18N = {
   'maxxima.card4.body': { es: 'Procesamos los subproductos de la industria metalúrgica en nuevos recursos, reduciendo el impacto ambiental.', en: 'We process metallurgical industry byproducts into new resources, reducing environmental impact.' },
   'maxxima.cta1': { es: 'Cotizar con Fundición Maxxima', en: 'Get a quote from Fundición Maxxima' },
   'maxxima.cta2': { es: 'Ver división completa en conext.com.mx', en: 'View the full division at conext.com.mx' },
+  'maxxima.home.cta': { es: 'Conoce más de Fundición Maxxima →', en: 'Learn more about Fundición Maxxima →' },
+
+  'maxxima.page.heroEyebrow': { es: 'Empresa hermana', en: 'Sister company' },
+  'maxxima.page.heroTitle': { es: 'Fundición propia para cada aleación que necesitas', en: 'Our own foundry for every alloy you need' },
+  'maxxima.page.heroLead': { es: 'Más de 15 años fundiendo metales no ferrosos bajo especificación, con laboratorio propio y control de calidad por lote.', en: 'More than 15 years smelting non-ferrous metals to spec, with our own lab and batch-by-batch quality control.' },
+
+  'productos.page.heroEyebrow': { es: 'Productos', en: 'Products' },
+  'productos.page.heroTitle': { es: 'Catálogo completo de metales no ferrosos y químicos industriales', en: 'Full catalog of non-ferrous metals and industrial chemicals' },
+  'productos.page.heroLead': { es: 'Comercialización con el respaldo y la consistencia que exigen las operaciones de gran volumen.', en: 'Trading with the backing and consistency that high-volume operations demand.' },
 
   'contacto.title': { es: 'La solución que buscas, a un mensaje de distancia', en: 'The solution you need, one message away' },
   'contacto.lead': { es: 'Cuéntanos qué material o producto necesitas y un especialista de CONEXT te contactará a la brevedad.', en: 'Tell us what material or product you need and a CONEXT specialist will contact you shortly.' },

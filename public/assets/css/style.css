@@ -223,6 +223,30 @@ section { scroll-margin-top: 110px; }
 .page-hero .eyebrow { color: var(--rojo-glow); }
 .page-hero-lead { font-size: 18px; font-weight: 600; color: #e6e9ec; margin: 0; }
 
+/* Industrias — single faded-background band, no per-industry list */
+.industrias-band {
+  position: relative; overflow: hidden; background: var(--negro) center/cover no-repeat;
+  padding: 130px 0; min-height: 440px; display: flex; align-items: center;
+}
+.industrias-band-overlay {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(circle at 88% 20%, rgba(226,35,26,.32), transparent 52%),
+    linear-gradient(105deg, rgba(1,1,1,.93) 0%, rgba(1,1,1,.74) 34%, rgba(1,1,1,.4) 62%, rgba(1,1,1,.12) 100%);
+}
+.industrias-band-inner {
+  position: relative; z-index: 2; max-width: 600px;
+  border-left: 4px solid var(--rojo); padding-left: 28px;
+}
+.industrias-band-inner h2 {
+  color: var(--blanco); font-size: 42px; margin-bottom: 16px;
+  text-shadow: 0 2px 16px rgba(1,1,1,.5);
+}
+.industrias-band-lead {
+  font-size: 19px; font-weight: 500; line-height: 1.55; color: #e9ebed; margin: 0;
+  text-shadow: 0 1px 10px rgba(1,1,1,.4);
+}
+
 /* Section divider — plain wayfinding label between home sections, no numbering */
 .section-divider { background: var(--blanco); position: relative; z-index: 1; }
 .section-divider-inner { display: flex; align-items: center; gap: 24px; padding: 48px 24px; max-width: 760px; }
@@ -240,6 +264,8 @@ section { scroll-margin-top: 110px; }
   transition: color .2s ease, border-color .2s ease;
 }
 .about-more:hover { color: var(--rojo); border-color: var(--rojo-glow); }
+.about-more.light { color: var(--blanco); border-color: var(--rojo-glow); }
+.about-more.light:hover { color: var(--rojo-glow); }
 
 /* Historia — editorial timeline used on the dedicated Nosotros page */
 .historia { padding: 72px 0 56px; background: var(--blanco); }
@@ -670,6 +696,10 @@ section { scroll-margin-top: 110px; }
   h1 { font-size: 30px; } h2 { font-size: 24px; }
   .hero { padding: 90px 0; min-height: 78vh; }
   .page-hero { min-height: 36vh; padding: 48px 0 36px; }
+  .industrias-band { padding: 56px 0; min-height: 0; }
+  .industrias-band-inner { border-left-width: 3px; padding-left: 18px; }
+  .industrias-band-inner h2 { font-size: 28px; }
+  .industrias-band-lead { font-size: 16px; }
   .topbar-inner { flex-direction: column; gap: 6px; padding: 8px 16px; font-size: 12px; }
   .topbar-contact { gap: 8px 14px; flex-wrap: wrap; justify-content: center; }
   .reach-cards, .metal-grid, .chem-grid, .mv-grid, .maxxima-grid, .maxxima-photos, .industria-grid, .linea-grid { grid-template-columns: 1fr; }

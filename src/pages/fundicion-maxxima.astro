@@ -1,13 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import PageHero from '../components/PageHero.astro';
 import Maxxima from '../components/Maxxima.astro';
 import Footer from '../components/Footer.astro';
 ---
 <Layout title="Fundición Maxxima | CONEXT" titleKey="title.maxxima">
   <Header />
   <main>
-    <Maxxima />
+    <PageHero
+      eyebrow="Empresa hermana"
+      eyebrowKey="maxxima.page.heroEyebrow"
+      title="Fundición propia para cada aleación que necesitas"
+      titleKey="maxxima.page.heroTitle"
+      lead="Más de 15 años fundiendo metales no ferrosos bajo especificación, con laboratorio propio y control de calidad por lote."
+      leadKey="maxxima.page.heroLead"
+      image="/assets/img/hero-maxxima.jpg"
+      imageAlt="Horno de fundición en operación en la planta de Fundición Maxxima"
+    />
+    <Maxxima showEyebrow={false} />
   </main>
   <Footer />
 </Layout>
