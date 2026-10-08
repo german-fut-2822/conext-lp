@@ -381,30 +381,6 @@ section { scroll-margin-top: 110px; }
 .reach-card h3 { margin-bottom: 8px; }
 .reach-card p { margin: 0; color: var(--gris-acero); }
 
-/* Industrias — single faded-background band, no per-industry list */
-.industrias-band {
-  position: relative; overflow: hidden; background: var(--negro) center/cover no-repeat;
-  padding: 130px 0; min-height: 440px; display: flex; align-items: center;
-}
-.industrias-band-overlay {
-  position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background:
-    radial-gradient(circle at 88% 20%, rgba(226,35,26,.32), transparent 52%),
-    linear-gradient(105deg, rgba(1,1,1,.93) 0%, rgba(1,1,1,.74) 34%, rgba(1,1,1,.4) 62%, rgba(1,1,1,.12) 100%);
-}
-.industrias-band-inner {
-  position: relative; z-index: 2; max-width: 600px;
-  border-left: 4px solid var(--rojo); padding-left: 28px;
-}
-.industrias-band-inner h2 {
-  color: var(--blanco); font-size: 42px; margin-bottom: 16px;
-  text-shadow: 0 2px 16px rgba(1,1,1,.5);
-}
-.industrias-band-lead {
-  font-size: 19px; font-weight: 500; line-height: 1.55; color: #e9ebed; margin: 0;
-  text-shadow: 0 1px 10px rgba(1,1,1,.4);
-}
-
 /* Industrias — photo cards, duotone pop on hover (no longer used by the band above, kept for reference) */
 .industria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
 .industria-card {
