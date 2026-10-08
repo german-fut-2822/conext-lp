@@ -249,15 +249,15 @@ section { scroll-margin-top: 110px; }
 
 /* Section divider — plain wayfinding label between home sections, no numbering */
 .section-divider { background: var(--blanco); position: relative; z-index: 1; }
-.section-divider-inner { display: flex; align-items: center; gap: 24px; padding: 48px 24px; max-width: 760px; }
+.section-divider-inner { display: flex; align-items: center; gap: 24px; padding: 32px 24px; max-width: 760px; }
 .section-divider-line { flex: 1; height: 2px; background: linear-gradient(90deg, transparent, rgba(226,35,26,.5), transparent); }
 .section-divider-label {
   font-family: var(--font-head); font-weight: 800; font-style: italic; font-size: 32px;
-  letter-spacing: .02em; text-transform: uppercase; color: var(--negro); white-space: nowrap;
+  letter-spacing: .02em; text-transform: uppercase; color: var(--divider-label-color, var(--negro)); white-space: nowrap;
 }
 
 /* Nosotros / about */
-.about { padding: 72px 0 24px; background: var(--blanco); }
+.about { padding: 48px 0 24px; background: var(--blanco); }
 .about-more {
   display: inline-block; margin-top: 28px; font-family: var(--font-head); font-weight: 700;
   color: var(--negro); text-decoration: none; border-bottom: 2px solid var(--rojo); padding-bottom: 2px;
@@ -709,7 +709,7 @@ section { scroll-margin-top: 110px; }
   .footer-grid { grid-template-columns: 1fr; }
   .contact-form { padding: 22px; }
   .container { padding: 0 18px; }
-  .section-divider-inner { padding: 32px 18px; gap: 14px; }
+  .section-divider-inner { padding: 24px 18px; gap: 14px; }
   .section-divider-label { font-size: 20px; white-space: normal; }
 }
 

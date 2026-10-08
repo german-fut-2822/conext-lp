@@ -135,7 +135,7 @@ window.CONEXT_I18N = {
   'contacto.form.recaptchaNote': { es: 'Este sitio está protegido por reCAPTCHA. Aplican la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidad</a> y los <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Términos de Servicio</a> de Google.', en: 'This site is protected by reCAPTCHA. The Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.' },
   'contacto.form.enviar': { es: 'Enviar', en: 'Send' },
 
-  'footer.cities': { es: 'Monterrey, México · Laredo, EUA · Shanghái, China', en: 'Monterrey, Mexico · Laredo, USA · Shanghai, China' },
+  'footer.cities': { es: 'Monterrey, México<br>Laredo, EUA<br>Shanghái, China', en: 'Monterrey, Mexico<br>Laredo, USA<br>Shanghai, China' },
   'footer.tel': { es: 'Tel:', en: 'Phone:' },
   'footer.empresa.title': { es: 'Empresa', en: 'Company' },
   'footer.empresa.calidad': { es: 'Calidad', en: 'Quality' },
