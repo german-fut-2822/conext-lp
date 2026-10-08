@@ -1,0 +1,16 @@
+---
+export interface Props {
+  label: string;
+  labelKey?: string;
+  bg?: string;
+  color?: string;
+}
+const { label, labelKey, bg = 'var(--blanco)', color = 'var(--negro)' } = Astro.props;
+---
+<div class="section-divider" style={`background: ${bg}; --divider-label-color: ${color};`}>
+  <div class="container section-divider-inner">
+    <span class="section-divider-line" aria-hidden="true"></span>
+    <span class="section-divider-label" data-i18n={labelKey}>{label}</span>
+    <span class="section-divider-line" aria-hidden="true"></span>
+  </div>
+</div>

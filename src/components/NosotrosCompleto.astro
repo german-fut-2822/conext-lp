@@ -1,0 +1,67 @@
+---
+import Presencia from './Presencia.astro';
+
+const MV_ICONS = {
+  target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>',
+  eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z"/><circle cx="12" cy="12" r="3"/></svg>',
+};
+
+const TIMELINE = [
+  { key: 'tl1', year: '1996', title: 'Fundación', body: 'CONEXT inicia operaciones en Monterrey comercializando metales no ferrosos.' },
+  { key: 'tl2', year: 'Expansión', title: 'Minerales y químicos', body: 'Se suman la explotación de minerales, los aceros de barrenación y los productos químicos industriales, junto con Fundición Maxxima.' },
+  { key: 'tl3', year: 'Hoy', title: '28+ años después', body: 'Atendemos a clientes de volumen importante en tres países, con aleaciones desarrolladas a la medida de cada operación.' },
+];
+---
+<section class="historia tech-grid scroll-grid" id="nosotros">
+  <div class="container">
+    <span class="eyebrow reveal" data-i18n="nosotros.page.historiaEyebrow">Nuestra historia</span>
+    <h2 class="reveal" data-i18n="nosotros.page.historiaTitle">Cómo llegamos hasta aquí</h2>
+    <p class="section-lead reveal" style="--d:1" data-i18n="nosotros.page.historiaLead">CONEXT nace en 1996 en Monterrey, Nuevo León, comercializando metales no ferrosos. Con el tiempo, el negocio creció hacia la explotación de minerales, los aceros de barrenación y los productos químicos industriales, siempre de la mano de Fundición Maxxima.</p>
+
+    <div class="timeline">
+      {TIMELINE.map((t, i) => (
+        <div class="timeline-item reveal" style={`--d:${i + 1}`}>
+          <span class="timeline-year" data-i18n={`nosotros.page.${t.key}.year`}>{t.year}</span>
+          <h3 data-i18n={`nosotros.page.${t.key}.title`}>{t.title}</h3>
+          <p data-i18n={`nosotros.page.${t.key}.body`}>{t.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="mv-editorial-section tech-grid-dark">
+  <div class="container mv-editorial">
+    <div class="mv-editorial-item reveal" style="--d:1">
+      <span class="mv-editorial-icon" aria-hidden="true" set:html={MV_ICONS.target} />
+      <h3 data-i18n="nosotros.mision.title">Misión</h3>
+      <p data-i18n="nosotros.mision.body">En CONEXT estamos comprometidos con la calidad, entregando a nuestros clientes productos a un precio competitivo y asesoría técnica de acuerdo a sus necesidades.</p>
+    </div>
+    <span class="mv-editorial-divider" aria-hidden="true"></span>
+    <div class="mv-editorial-item reveal" style="--d:2">
+      <span class="mv-editorial-icon" aria-hidden="true" set:html={MV_ICONS.eye} />
+      <h3 data-i18n="nosotros.vision.title">Visión</h3>
+      <p data-i18n="nosotros.vision.body">Mantenernos como líderes y desarrollar nuevos mercados, así como nuevos productos en el ramo, que nuestros actuales y futuros clientes requieran.</p>
+    </div>
+  </div>
+</section>
+
+<section class="lineas tech-grid tight-bottom">
+  <div class="container">
+    <span class="eyebrow reveal" data-i18n="nosotros.extended.eyebrow">A quién servimos</span>
+    <p class="section-lead reveal" style="--d:1" data-i18n="nosotros.extended.lead">Hoy atendemos principalmente a clientes de volumen importante, con aleaciones desarrolladas a la medida de cada operación.</p>
+
+    <div class="linea-grid">
+      <div class="linea-card reveal" style="--d:1">
+        <h3 data-i18n="nosotros.extended.metales.title">Línea de Metales</h3>
+        <p data-i18n="nosotros.extended.metales.body">Mantiene un enfoque corporativo, siendo un respaldo sólido para la industria metalúrgica.</p>
+      </div>
+      <div class="linea-card reveal" style="--d:2">
+        <h3 data-i18n="nosotros.extended.quimicos.title">Línea de Productos Químicos</h3>
+        <p data-i18n="nosotros.extended.quimicos.body">En expansión hacia nuevas industrias y aplicaciones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Presencia reverse tightTop />

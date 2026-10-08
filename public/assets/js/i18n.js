@@ -46,6 +46,32 @@ window.CONEXT_I18N = {
   'nosotros.reach.shanghai.title': { es: 'Shanghái, China', en: 'Shanghai, China' },
   'nosotros.reach.shanghai.body': { es: 'Enlace directo con proveedores y mercados asiáticos.', en: 'A direct link to Asian suppliers and markets.' },
 
+  'nosotros.home.cta': { es: 'Conoce nuestra historia completa y alcance internacional →', en: 'See our full story and international reach →' },
+
+  'nosotros.page.heroEyebrow': { es: 'Nosotros', en: 'About Us' },
+  'nosotros.page.heroTitle': { es: 'Una trayectoria que conecta metales, química y mercados globales', en: 'A track record that connects metals, chemicals and global markets' },
+  'nosotros.page.heroLead': { es: 'Más de 28 años desarrollando soluciones a la medida, desde Monterrey hacia el mundo.', en: 'More than 28 years developing tailored solutions, from Monterrey to the world.' },
+
+  'nosotros.page.historiaEyebrow': { es: 'Nuestra historia', en: 'Our history' },
+  'nosotros.page.historiaTitle': { es: 'Cómo llegamos hasta aquí', en: 'How we got here' },
+  'nosotros.page.historiaLead': { es: 'CONEXT nace en 1996 en Monterrey, Nuevo León, comercializando metales no ferrosos. Con el tiempo, el negocio creció hacia la explotación de minerales, los aceros de barrenación y los productos químicos industriales, siempre de la mano de Fundición Maxxima.', en: 'CONEXT was founded in 1996 in Monterrey, Nuevo León, trading non-ferrous metals. Over time, the business grew into mineral exploitation, drill steel and industrial chemicals, always alongside Fundición Maxxima.' },
+  'nosotros.page.tl1.year': { es: '1996', en: '1996' },
+  'nosotros.page.tl1.title': { es: 'Fundación', en: 'Founding' },
+  'nosotros.page.tl1.body': { es: 'CONEXT inicia operaciones en Monterrey comercializando metales no ferrosos.', en: 'CONEXT begins operations in Monterrey trading non-ferrous metals.' },
+  'nosotros.page.tl2.year': { es: 'Expansión', en: 'Expansion' },
+  'nosotros.page.tl2.title': { es: 'Minerales y químicos', en: 'Minerals and chemicals' },
+  'nosotros.page.tl2.body': { es: 'Se suman la explotación de minerales, los aceros de barrenación y los productos químicos industriales, junto con Fundición Maxxima.', en: 'Mineral exploitation, drill steel and industrial chemicals are added, alongside Fundición Maxxima.' },
+  'nosotros.page.tl3.year': { es: 'Hoy', en: 'Today' },
+  'nosotros.page.tl3.title': { es: '28+ años después', en: '28+ years later' },
+  'nosotros.page.tl3.body': { es: 'Atendemos a clientes de volumen importante en tres países, con aleaciones desarrolladas a la medida de cada operación.', en: 'We serve high-volume clients across three countries, with alloys developed to the exact measure of each operation.' },
+
+  'nosotros.extended.eyebrow': { es: 'A quién servimos', en: 'Who we serve' },
+  'nosotros.extended.lead': { es: 'Hoy atendemos principalmente a clientes de volumen importante, con aleaciones desarrolladas a la medida de cada operación.', en: 'Today we mainly serve high-volume clients, with alloys developed to the exact measure of each operation.' },
+  'nosotros.extended.metales.title': { es: 'Línea de Metales', en: 'Metals line' },
+  'nosotros.extended.metales.body': { es: 'Mantiene un enfoque corporativo, siendo un respaldo sólido para la industria metalúrgica.', en: 'Keeps a corporate focus, serving as a solid backbone for the metallurgical industry.' },
+  'nosotros.extended.quimicos.title': { es: 'Línea de Productos Químicos', en: 'Chemical Products line' },
+  'nosotros.extended.quimicos.body': { es: 'En expansión hacia nuevas industrias y aplicaciones.', en: 'Expanding into new industries and applications.' },
+
   'metales.eyebrow': { es: 'Metales', en: 'Metals' },
   'metales.title': { es: 'Metales No Ferrosos', en: 'Non-Ferrous Metals' },
   'metales.lead': { es: 'Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.', en: 'Trading of non-ferrous metals and specialized parts for the metallurgical industry, with the backing and consistency that high-volume operations demand.' },
@@ -65,6 +91,7 @@ window.CONEXT_I18N = {
   'calidad.certNote': { es: 'Certificado ISO 9001:2015 vigente — descarga el PDF oficial.', en: 'Current ISO 9001:2015 certificate — download the official PDF.' },
 
   'maxxima.eyebrow': { es: 'Empresa hermana', en: 'Sister company' },
+  'maxxima.dividerLabel': { es: 'Nuestra empresa hermana', en: 'Our sister company' },
   'maxxima.body': { es: 'Fundición Maxxima es una empresa mexicana con más de 15 años de experiencia en la fundición de metales no ferrosos y sus aleaciones —entre ellos Zinc, Aluminio, Antimonio y Plomo. Trabajamos bajo las especificaciones de cada cliente, incluyendo esquemas de maquila, y procesamos subproductos generados por la industria metalúrgica para la recuperación y aprovechamiento de sus metales.', en: 'Fundición Maxxima is a Mexican company with more than 15 years of experience smelting non-ferrous metals and their alloys —including Zinc, Aluminum, Antimony and Lead. We work to each customer’s specifications, including tolling arrangements, and process byproducts generated by the metallurgical industry to recover and make use of their metals.' },
   'maxxima.stat1': { es: 'Años de experiencia', en: 'Years of experience' },
   'maxxima.stat2': { es: 'Ton/mes · hornos reverberos', en: 'Tons/month · reverberatory furnaces' },
@@ -79,6 +106,15 @@ window.CONEXT_I18N = {
   'maxxima.card4.body': { es: 'Procesamos los subproductos de la industria metalúrgica en nuevos recursos, reduciendo el impacto ambiental.', en: 'We process metallurgical industry byproducts into new resources, reducing environmental impact.' },
   'maxxima.cta1': { es: 'Cotizar con Fundición Maxxima', en: 'Get a quote from Fundición Maxxima' },
   'maxxima.cta2': { es: 'Ver división completa en conext.com.mx', en: 'View the full division at conext.com.mx' },
+  'maxxima.home.cta': { es: 'Conoce más de Fundición Maxxima →', en: 'Learn more about Fundición Maxxima →' },
+
+  'maxxima.page.heroEyebrow': { es: 'Empresa hermana', en: 'Sister company' },
+  'maxxima.page.heroTitle': { es: 'Fundición propia para cada aleación que necesitas', en: 'Our own foundry for every alloy you need' },
+  'maxxima.page.heroLead': { es: 'Más de 15 años fundiendo metales no ferrosos bajo especificación, con laboratorio propio y control de calidad por lote.', en: 'More than 15 years smelting non-ferrous metals to spec, with our own lab and batch-by-batch quality control.' },
+
+  'productos.page.heroEyebrow': { es: 'Productos', en: 'Products' },
+  'productos.page.heroTitle': { es: 'Catálogo completo de metales no ferrosos y químicos industriales', en: 'Full catalog of non-ferrous metals and industrial chemicals' },
+  'productos.page.heroLead': { es: 'Comercialización con el respaldo y la consistencia que exigen las operaciones de gran volumen.', en: 'Trading with the backing and consistency that high-volume operations demand.' },
 
   'contacto.title': { es: 'La solución que buscas, a un mensaje de distancia', en: 'The solution you need, one message away' },
   'contacto.lead': { es: 'Cuéntanos qué material o producto necesitas y un especialista de CONEXT te contactará a la brevedad.', en: 'Tell us what material or product you need and a CONEXT specialist will contact you shortly.' },
@@ -99,7 +135,7 @@ window.CONEXT_I18N = {
   'contacto.form.recaptchaNote': { es: 'Este sitio está protegido por reCAPTCHA. Aplican la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidad</a> y los <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Términos de Servicio</a> de Google.', en: 'This site is protected by reCAPTCHA. The Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.' },
   'contacto.form.enviar': { es: 'Enviar', en: 'Send' },
 
-  'footer.cities': { es: 'Monterrey, México · Laredo, EUA · Shanghái, China', en: 'Monterrey, Mexico · Laredo, USA · Shanghai, China' },
+  'footer.cities': { es: 'Monterrey, México<br>Laredo, EUA<br>Shanghái, China', en: 'Monterrey, Mexico<br>Laredo, USA<br>Shanghai, China' },
   'footer.tel': { es: 'Tel:', en: 'Phone:' },
   'footer.empresa.title': { es: 'Empresa', en: 'Company' },
   'footer.empresa.calidad': { es: 'Calidad', en: 'Quality' },

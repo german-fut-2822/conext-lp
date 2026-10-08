@@ -1,4 +1,8 @@
 ---
+export interface Props {
+  showEyebrow?: boolean;
+}
+const { showEyebrow = true } = Astro.props;
 const metales = [
   { symbol: 'Sn', nombre: 'Estaño', en: 'Tin', img: '/assets/img/metales/estano.jpg', href: 'https://conext.com.mx/productos/#toggle-id-6', desc: 'Lingote y alambre de soldadura', descEn: 'Ingot and solder wire' },
   { symbol: 'Sb', nombre: 'Antimonio', en: 'Antimony', img: '/assets/img/metales/antimonio.jpg', href: 'https://conext.com.mx/productos/#toggle-id-1', desc: 'Lingote, granalla y polvo', descEn: 'Ingot, shot and powder' },
@@ -13,7 +17,7 @@ const metales = [
 ---
 <section class="products metales-section tech-grid" id="metales">
   <div class="container">
-    <span class="eyebrow reveal" data-i18n="metales.eyebrow">Metales</span>
+    {showEyebrow && <span class="eyebrow reveal" data-i18n="metales.eyebrow">Metales</span>}
     <h2 class="reveal" data-i18n="metales.title">Metales No Ferrosos</h2>
     <p class="section-lead reveal" style="--d:1" data-i18n="metales.lead">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
 
