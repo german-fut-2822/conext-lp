@@ -249,7 +249,7 @@ section { scroll-margin-top: 110px; }
 
 /* Section divider — plain wayfinding label between home sections, no numbering */
 .section-divider { background: var(--blanco); position: relative; z-index: 1; }
-.section-divider-inner { display: flex; align-items: center; gap: 24px; padding: 32px 24px; max-width: 760px; }
+.section-divider-inner { display: flex; align-items: center; gap: 24px; padding: 20px 24px; max-width: 760px; }
 .section-divider-line { flex: 1; height: 2px; background: linear-gradient(90deg, transparent, rgba(226,35,26,.5), transparent); }
 .section-divider-label {
   font-family: var(--font-head); font-weight: 800; font-style: italic; font-size: 32px;
@@ -257,7 +257,7 @@ section { scroll-margin-top: 110px; }
 }
 
 /* Nosotros / about */
-.about { padding: 48px 0 24px; background: var(--blanco); }
+.about { padding: 32px 0 24px; background: var(--blanco); }
 .about-more {
   display: inline-block; margin-top: 28px; font-family: var(--font-head); font-weight: 700;
   color: var(--negro); text-decoration: none; border-bottom: 2px solid var(--rojo); padding-bottom: 2px;
@@ -407,7 +407,7 @@ section { scroll-margin-top: 110px; }
 .industria-card-body p { color: rgba(255,255,255,.85); margin: 0; font-size: 13px; }
 
 /* Products */
-.products { padding: 56px 0 72px; background: var(--gris-claro); }
+.products { padding: 40px 0 72px; background: var(--gris-claro); }
 .products.alt { background: var(--blanco); }
 
 /* Card hint (small "view on site" label shown on photo/illustration cards) */
@@ -509,7 +509,7 @@ section { scroll-margin-top: 110px; }
 .chem-card .card-hint { color: rgba(255,255,255,.75); }
 
 /* Quality */
-.quality { padding: 72px 0; background: var(--gris-claro); }
+.quality { padding: 40px 0 72px; background: var(--gris-claro); }
 .quality-grid { display: grid; grid-template-columns: 1.4fr .6fr; gap: 48px; align-items: center; }
 .quality-list { list-style: none; padding: 0; }
 .quality-list li { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid #e6e9ec; }
@@ -546,7 +546,7 @@ section { scroll-margin-top: 110px; }
 }
 
 /* Maxxima */
-.maxxima { position: relative; overflow: hidden; background: var(--grafito); color: var(--blanco); padding: 72px 0; }
+.maxxima { position: relative; overflow: hidden; background: var(--grafito); color: var(--blanco); padding: 40px 0 72px; }
 .maxxima::before {
   content: ""; position: absolute; inset: -20%; z-index: 0; pointer-events: none;
   background:
@@ -600,7 +600,7 @@ section { scroll-margin-top: 110px; }
 .maxxima-contact .contact-form { max-width: 640px; }
 
 /* Contact */
-.contact { padding: 72px 0; background: var(--negro); }
+.contact { padding: 40px 0 72px; background: var(--negro); }
 .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; }
 .contact-info h2, .contact-info h3 { color: var(--blanco); }
 .contact-info > p { color: #e6e9ec; }
@@ -709,7 +709,7 @@ section { scroll-margin-top: 110px; }
   .footer-grid { grid-template-columns: 1fr; }
   .contact-form { padding: 22px; }
   .container { padding: 0 18px; }
-  .section-divider-inner { padding: 24px 18px; gap: 14px; }
+  .section-divider-inner { padding: 16px 18px; gap: 14px; }
   .section-divider-label { font-size: 20px; white-space: normal; }
 }
 
