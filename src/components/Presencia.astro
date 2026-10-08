@@ -1,11 +1,12 @@
 ---
 export interface Props {
   reverse?: boolean;
-  tight?: boolean;
+  tightTop?: boolean;
+  tightBottom?: boolean;
 }
-const { reverse = false, tight = false } = Astro.props;
+const { reverse = false, tightTop = false, tightBottom = false } = Astro.props;
 ---
-<section class:list={['lineas tech-grid', { 'tight-top': tight }]} id="presencia">
+<section class:list={['lineas tech-grid', { 'tight-top': tightTop, 'tight-bottom': tightBottom }]} id="presencia">
   <div class="container">
     <div class="reach-intro">
       <span class="eyebrow reveal" data-i18n="nosotros.reach.eyebrow">Enfoque y presencia internacional</span>
