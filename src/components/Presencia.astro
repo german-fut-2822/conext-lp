@@ -1,3 +1,9 @@
+---
+export interface Props {
+  reverse?: boolean;
+}
+const { reverse = false } = Astro.props;
+---
 <section class="lineas tech-grid" id="presencia">
   <div class="container">
     <div class="reach-intro">
@@ -5,6 +11,7 @@
       <p class="section-lead reveal" style="--d:1" data-i18n="nosotros.reach.lead">Con presencia en tres países —<strong> México, Estados Unidos y China</strong>— CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, Laredo como puerta estratégica hacia Norteamérica y Shanghái como enlace con Asia.</p>
     </div>
 
+    <div class:list={['reach-stack', { reverse }]}>
     <div class="reach-map-panel reveal" id="reachMapPanel">
       <span class="reach-corner tl" aria-hidden="true"></span>
       <span class="reach-corner tr" aria-hidden="true"></span>
@@ -61,6 +68,7 @@
         <h3 data-i18n="nosotros.reach.shanghai.title">Shanghái, China</h3>
         <p data-i18n="nosotros.reach.shanghai.body">Enlace directo con proveedores y mercados asiáticos.</p>
       </div>
+    </div>
     </div>
   </div>
 </section>
