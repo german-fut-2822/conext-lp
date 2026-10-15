@@ -11,18 +11,36 @@ export interface Props {
 const { showEyebrow = true, home = false } = Astro.props;
 
 type Bullet = { es: string; en: string; fichaId?: string };
-type Categoria = { id: string; nombre: string; en: string; bullets: Bullet[] };
+type Categoria = { id: string; nombre: string; en: string; bullets: Bullet[]; simbolos: string[] };
+
+// Símbolos y números atómicos reales (IUPAC) — se usan como identidad visual de cada
+// categoría/ficha en vez de fotografía, a petición del cliente (2026-10-15): "usar la
+// fórmula o letras del elemento al que se hace referencia... no poner una imagen".
+const ELEMENTOS: Record<string, { num: number; nombre: string; en: string }> = {
+  Sn: { num: 50, nombre: 'Estaño', en: 'Tin' },
+  Sb: { num: 51, nombre: 'Antimonio', en: 'Antimony' },
+  Cu: { num: 29, nombre: 'Cobre', en: 'Copper' },
+  Al: { num: 13, nombre: 'Aluminio', en: 'Aluminum' },
+  Zn: { num: 30, nombre: 'Zinc', en: 'Zinc' },
+  Pb: { num: 82, nombre: 'Plomo', en: 'Lead' },
+  Au: { num: 79, nombre: 'Oro', en: 'Gold' },
+  Ag: { num: 47, nombre: 'Plata', en: 'Silver' },
+  Se: { num: 34, nombre: 'Selenio', en: 'Selenium' },
+  Ga: { num: 31, nombre: 'Galio', en: 'Gallium' },
+  Te: { num: 52, nombre: 'Telurio', en: 'Tellurium' },
+  In: { num: 49, nombre: 'Indio', en: 'Indium' },
+};
 
 const categorias: Categoria[] = [
   {
-    id: 'estano', nombre: 'Estaño', en: 'Tin',
+    id: 'estano', nombre: 'Estaño', en: 'Tin', simbolos: ['Sn'],
     bullets: [
       { es: 'Estaño Grado A en lingote.', en: 'Grade A tin in ingot form.', fichaId: 'estano' },
       { es: 'Estaño de alta pureza (4N) en lingote.', en: 'High-purity (4N) tin in ingot form.', fichaId: 'estano' },
     ],
   },
   {
-    id: 'alambre-estano', nombre: 'Alambre de Soldadura de Estaño', en: 'Tin Solder Wire',
+    id: 'alambre-estano', nombre: 'Alambre de Soldadura de Estaño', en: 'Tin Solder Wire', simbolos: ['Sn'],
     bullets: [
       { es: 'Alambre de soldadura sin plomo con núcleo de fundente.', en: 'Lead-free flux-core solder wire.' },
       { es: 'Alambre de soldadura sin plomo sólido.', en: 'Lead-free solid solder wire.' },
@@ -31,7 +49,7 @@ const categorias: Categoria[] = [
     ],
   },
   {
-    id: 'antimonio', nombre: 'Antimonio', en: 'Antimony',
+    id: 'antimonio', nombre: 'Antimonio', en: 'Antimony', simbolos: ['Sb'],
     bullets: [
       { es: 'Antimonio en lingote 99.65%.', en: '99.65% antimony in ingot form.', fichaId: 'antimonio' },
       { es: 'Antimonio en granalla.', en: 'Antimony shot.', fichaId: 'antimonio' },
@@ -39,7 +57,7 @@ const categorias: Categoria[] = [
     ],
   },
   {
-    id: 'cobre', nombre: 'Cobre', en: 'Copper',
+    id: 'cobre', nombre: 'Cobre', en: 'Copper', simbolos: ['Cu'],
     bullets: [
       { es: 'Soleras de cobre / BUSBAR.', en: 'Copper busbar.' },
       { es: 'Contactos bimetálicos.', en: 'Bimetallic contacts.', fichaId: 'contactos-bimetalicos' },
@@ -47,34 +65,34 @@ const categorias: Categoria[] = [
     ],
   },
   {
-    id: 'aluminio', nombre: 'Aluminio', en: 'Aluminum',
+    id: 'aluminio', nombre: 'Aluminio', en: 'Aluminum', simbolos: ['Al'],
     bullets: [
       { es: 'Granalla de aluminio.', en: 'Aluminum shot.', fichaId: 'aluminio' },
       { es: 'Aluminio P1020.', en: 'P1020 aluminum.', fichaId: 'aluminio' },
     ],
   },
   {
-    id: 'zinc', nombre: 'Zinc', en: 'Zinc',
+    id: 'zinc', nombre: 'Zinc', en: 'Zinc', simbolos: ['Zn'],
     bullets: [
       { es: 'Zinc SHG (Special High Grade).', en: 'Zinc SHG (Special High Grade).', fichaId: 'zinc' },
       { es: 'Zinc HG (High Grade).', en: 'Zinc HG (High Grade).', fichaId: 'zinc' },
     ],
   },
   {
-    id: 'plomo', nombre: 'Plomo', en: 'Lead',
+    id: 'plomo', nombre: 'Plomo', en: 'Lead', simbolos: ['Pb'],
     bullets: [
       { es: 'Plomo afinado', en: 'Refined lead', fichaId: 'plomo' },
     ],
   },
   {
-    id: 'metales-preciosos', nombre: 'Metales Preciosos', en: 'Precious Metals',
+    id: 'metales-preciosos', nombre: 'Metales Preciosos', en: 'Precious Metals', simbolos: ['Au', 'Ag'],
     bullets: [
       { es: 'Oro.', en: 'Gold.', fichaId: 'oro' },
       { es: 'Plata', en: 'Silver', fichaId: 'plata' },
     ],
   },
   {
-    id: 'tierras-raras', nombre: 'Tierras Raras', en: 'Rare Earths',
+    id: 'tierras-raras', nombre: 'Tierras Raras', en: 'Rare Earths', simbolos: ['Se', 'Ga', 'Te', 'In'],
     bullets: [
       { es: 'Selenio.', en: 'Selenium.', fichaId: 'selenio' },
       { es: 'Galio.', en: 'Gallium.' },
@@ -87,6 +105,7 @@ const categorias: Categoria[] = [
 type Spec = { label: string; labelEn: string; val: string; valEn: string };
 type FichaSimple = {
   tipo: 'simple';
+  simbolos: string[];
   nombre: string; nombreEn: string;
   especificacion: string; especificacionEn: string;
   descripcion?: string; descripcionEn?: string;
@@ -102,6 +121,7 @@ type SerieAleacion = {
 };
 type FichaAleacion = {
   tipo: 'aleacion';
+  simbolos: string[];
   nombre: string; nombreEn: string;
   presentacion: string; presentacionEn: string;
   series: SerieAleacion[];
@@ -115,7 +135,7 @@ const CERT: Spec = { label: 'Calidad', labelEn: 'Quality', val: '', valEn: '' };
 
 const fichas: Record<string, Ficha> = {
   estano: {
-    tipo: 'simple',
+    tipo: 'simple', simbolos: ['Sn'],
     nombre: 'Estaño Metálico (Sn)', nombreEn: 'Metallic Tin (Sn)',
     especificacion: 'Estaño (Sn) 98.85% de pureza.', especificacionEn: 'Tin (Sn) 98.85% of purity.',
     descripcion: 'Material muy dúctil que se usa en la fabricación de soldaduras, cojines, aleado con cobre en los bronces de baños electrolíticos de recubrimiento de láminas de fierro y en aleaciones con aluminio, titanio y circonio.',
@@ -131,7 +151,7 @@ const fichas: Record<string, Ficha> = {
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
   antimonio: {
-    tipo: 'simple',
+    tipo: 'simple', simbolos: ['Sb'],
     nombre: 'Antimonio Metálico (Sb)', nombreEn: 'Metallic Antimony (Sb)',
     especificacion: 'Antimonio (Sb) 99.65% de pureza.', especificacionEn: 'Antimony (Sb) 99.65% of purity.',
     descripcion: 'Es un aleante del plomo en la fabricación de soldaduras, cojinetes y en aleaciones con zinc. Es un aleante nodulizador en el hierro dulce y perlítico en hierro gris.',
@@ -147,7 +167,7 @@ const fichas: Record<string, Ficha> = {
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
   zinc: {
-    tipo: 'simple',
+    tipo: 'simple', simbolos: ['Zn'],
     nombre: 'Zinc Metálico (Zn)', nombreEn: 'Metallic Zinc (Zn)',
     especificacion: 'Zinc (Zn) 99.9%.', especificacionEn: 'Zinc (Zn) 99.9%.',
     descripcion: 'Los usos más importantes del zinc los constituyen las aleaciones y el recubrimiento protector de otros metales.',
@@ -163,7 +183,7 @@ const fichas: Record<string, Ficha> = {
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
   plomo: {
-    tipo: 'simple',
+    tipo: 'simple', simbolos: ['Pb'],
     nombre: 'Plomo Metálico (Pb)', nombreEn: 'Metallic Lead (Pb)',
     especificacion: 'Plomo Afinado (Pb) 99.97% de pureza.', especificacionEn: 'Refined Lead (Pb) 99.97% of purity.',
     presentacion: 'Lingote de 22 kg aprox. · Lingote de 800 kg aprox.', presentacionEn: 'Ingot of ~22 kg · Ingot of ~800 kg.',
@@ -171,7 +191,7 @@ const fichas: Record<string, Ficha> = {
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
   oro: {
-    tipo: 'simple',
+    tipo: 'simple', simbolos: ['Au'],
     nombre: 'Oro (Au)', nombreEn: 'Gold (Au)',
     especificacion: 'Oro (Au) 99.9% de pureza.', especificacionEn: 'Gold (Au) 99.9% of purity.',
     descripcion: 'Metal precioso amarillo y brillante, de alta pureza, dúctil y maleable, inerte a los agentes atmosféricos. Excelente conductor del calor y la electricidad.',
@@ -181,7 +201,7 @@ const fichas: Record<string, Ficha> = {
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
   plata: {
-    tipo: 'simple',
+    tipo: 'simple', simbolos: ['Ag'],
     nombre: 'Plata Metálica (Ag)', nombreEn: 'Metallic Silver (Ag)',
     especificacion: 'Plata (Ag) 99.9% de pureza.', especificacionEn: 'Silver (Ag) 99.9% of purity.',
     descripcion: 'En la mayor parte de sus aplicaciones es aleada con uno o más metales; posee la más alta conductividad térmica y eléctrica de todos los metales. Se utiliza en puntos de contacto eléctrico y electrónico, y también en joyería y piezas diversas.',
@@ -197,7 +217,7 @@ const fichas: Record<string, Ficha> = {
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
   selenio: {
-    tipo: 'simple',
+    tipo: 'simple', simbolos: ['Se'],
     nombre: 'Selenio Metálico (Se)', nombreEn: 'Metallic Selenium (Se)',
     especificacion: 'Selenio (Se) 99.9% de pureza.', especificacionEn: 'Selenium (Se) 99.9% of purity.',
     descripcion: 'Se usa principalmente en la electrónica, en rectificadores y celdas electrovoltaicas; también es aditivo del plomo y antimonio para la fabricación de algunos productos. Es agente aleante en aceros dúctiles, aceros inoxidables y en aleaciones de cobre.',
@@ -214,7 +234,7 @@ const fichas: Record<string, Ficha> = {
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
   'contactos-bimetalicos': {
-    tipo: 'simple',
+    tipo: 'simple', simbolos: ['Cu', 'Al'],
     nombre: 'Contactos Bimetálicos', nombreEn: 'Bimetallic Contacts',
     especificacion: 'Cobre–Aluminio.', especificacionEn: 'Copper–Aluminum.',
     descripcion: 'Especialmente usados como interfaz conductiva en los cátodos de aluminio para la recuperación de zinc electrolítico. Dimensionados exactamente a las necesidades del cliente.',
@@ -224,7 +244,7 @@ const fichas: Record<string, Ficha> = {
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
   'placas-bimetalicas': {
-    tipo: 'simple',
+    tipo: 'simple', simbolos: ['Cu', 'Al'],
     nombre: 'Placas Bimetálicas', nombreEn: 'Bimetallic Plates',
     especificacion: 'Acero inoxidable–Acero al carbón · Aluminio–Acero al carbón · Cobre–Aluminio · Cobre–Acero inoxidable.',
     especificacionEn: 'Stainless steel–Carbon steel · Aluminum–Carbon steel · Copper–Aluminum · Copper–Stainless steel.',
@@ -235,7 +255,7 @@ const fichas: Record<string, Ficha> = {
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
   aluminio: {
-    tipo: 'aleacion',
+    tipo: 'aleacion', simbolos: ['Al'],
     nombre: 'Aluminio Metálico (Al)', nombreEn: 'Metallic Aluminum (Al)',
     presentacion: 'Lingote de 12 kg aprox. · Mini jumbo de 200 kg aprox.', presentacionEn: 'Ingot of ~12 kg · Mini jumbo of ~200 kg.',
     series: [
@@ -262,30 +282,33 @@ const fichas: Record<string, Ficha> = {
 ---
 <section class="products tech-grid" id="metales">
   {home ? (
-    <div class="container metal-showcase">
-      <div class="metal-grid">
-        {categorias.map((cat, i) => (
-          <a href={`/productos/metales#${cat.id}`} class="metal-tile reveal" style={`--d:${(i % 3) + 1}`}>
-            <span class="metal-tile-name" data-i18n-es={cat.nombre} data-i18n-en={cat.en}>{cat.nombre}</span>
-            <span class="metal-tile-foot">
-              {(() => {
-                const n = cat.bullets.length;
-                const es = `${n} ${n === 1 ? 'producto' : 'productos'}`;
-                const en = `${n} ${n === 1 ? 'product' : 'products'}`;
-                return <span data-i18n-es={es} data-i18n-en={en}>{es}</span>;
-              })()}
-              <span class="metal-tile-arrow" aria-hidden="true">→</span>
-            </span>
-          </a>
-        ))}
-      </div>
-      <div class="metal-feature reveal" style="--d:2; background-image: url('/assets/img/hero-productos.jpg')">
-        <div class="metal-feature-body">
-          <h2 data-i18n-es="Metales" data-i18n-en="Metals">Metales</h2>
-          <p data-i18n="metales.lead">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
-          <a href="/productos/metales" class="btn-cta" data-i18n-es="Ver más" data-i18n-en="See more">Ver más</a>
-        </div>
-      </div>
+    <div class="container">
+    <h2 class="reveal" data-i18n-es="Productos metálicos" data-i18n-en="Metal products">Productos metálicos</h2>
+    <p class="section-lead reveal" style="--d:1" data-i18n="metales.lead">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
+    <div class="metal-grid">
+      {categorias.map((cat, i) => (
+        <a href={`/productos/metales#${cat.id}`} class="metal-tile reveal" style={`--d:${(i % 3) + 1}`}>
+          <span class:list={['metal-tile-elems', { multi: cat.simbolos.length > 1 }]} aria-hidden="true">
+            {cat.simbolos.map((s) => (
+              <span class="elem-badge">
+                <span class="elem-badge-num">{ELEMENTOS[s].num}</span>
+                <span class="elem-badge-symbol">{s}</span>
+              </span>
+            ))}
+          </span>
+          <span class="metal-tile-name" data-i18n-es={cat.nombre} data-i18n-en={cat.en}>{cat.nombre}</span>
+          <span class="metal-tile-foot">
+            {(() => {
+              const n = cat.bullets.length;
+              const es = `${n} ${n === 1 ? 'producto' : 'productos'}`;
+              const en = `${n} ${n === 1 ? 'product' : 'products'}`;
+              return <span data-i18n-es={es} data-i18n-en={en}>{es}</span>;
+            })()}
+            <span class="metal-tile-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+      ))}
+    </div>
     </div>
   ) : (
   <div class="container">
@@ -327,8 +350,13 @@ const fichas: Record<string, Ficha> = {
 {Object.entries(fichas).map(([id, f]) => (
   <template id={`ficha-${id}`}>
     <h3 id="fichaModalTitle" data-i18n-es={f.nombre} data-i18n-en={f.nombreEn}>{f.nombre}</h3>
-    <div class="ficha-img-pending" aria-hidden="true">
-      <span data-i18n-es="Imagen pendiente" data-i18n-en="Image pending">Imagen pendiente</span>
+    <div class:list={['ficha-elems', { multi: f.simbolos.length > 1 }]} aria-hidden="true">
+      {f.simbolos.map((s) => (
+        <span class="elem-badge lg">
+          <span class="elem-badge-num">{ELEMENTOS[s].num}</span>
+          <span class="elem-badge-symbol">{s}</span>
+        </span>
+      ))}
     </div>
     {f.tipo === 'simple' ? (
       <>

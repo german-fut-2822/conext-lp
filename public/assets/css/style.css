@@ -241,12 +241,12 @@ section { scroll-margin-top: 110px; }
 .section-divider-inner { display: flex; align-items: center; gap: 20px; padding: 56px 24px 20px; max-width: 560px; }
 .section-divider-line { flex: 1; height: 1px; background: currentColor; opacity: .14; color: var(--divider-label-color, var(--negro)); }
 .section-divider-label::before {
-  content: ""; display: inline-block; width: 18px; height: 8px; margin-right: 12px; vertical-align: middle;
+  content: ""; display: inline-block; width: 24px; height: 11px; margin-right: 14px; vertical-align: middle;
   background: var(--rojo); border-radius: 3px; transform: skewX(-28deg) translateY(-1px);
 }
 .section-divider-label {
-  font-family: var(--font-head); font-weight: 700; font-size: 13px;
-  letter-spacing: .28em; text-transform: uppercase; color: var(--divider-label-color, var(--negro)); white-space: nowrap;
+  font-family: var(--font-head); font-weight: 700; font-size: 22px;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--divider-label-color, var(--negro)); white-space: nowrap;
 }
 
 /* Nosotros / about */
@@ -385,9 +385,8 @@ section { scroll-margin-top: 110px; }
   transition: opacity .1s linear;
 }
 
-/* Metales en el home — grid 3x3 de grupos + panel con foto a la altura del grid (nota del Sites) */
-.metal-showcase { display: grid; grid-template-columns: 1.35fr 1fr; gap: 20px; align-items: stretch; }
-.metal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+/* Metales en el home — grid 3x3 de grupos, a todo el ancho (como Químicos) */
+.metal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
 .metal-tile {
   display: flex; flex-direction: column; justify-content: space-between; gap: 18px; min-height: 128px;
   padding: 20px; background: var(--blanco); border: 1px solid #e6e8eb; border-radius: 14px;
@@ -399,17 +398,6 @@ section { scroll-margin-top: 110px; }
 .metal-tile-foot { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--gris-acero); }
 .metal-tile-arrow { color: var(--rojo); font-size: 18px; transition: transform .25s ease; }
 .metal-tile:hover .metal-tile-arrow { transform: translateX(4px); }
-.metal-feature {
-  position: relative; display: flex; align-items: flex-end; min-height: 100%;
-  border-radius: 20px; overflow: hidden; background: var(--grafito) center/cover no-repeat;
-}
-.metal-feature::before {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(1,1,1,.05) 0%, rgba(1,1,1,.45) 45%, rgba(1,1,1,.88) 100%);
-}
-.metal-feature-body { position: relative; z-index: 1; padding: 32px; }
-.metal-feature-body h2 { color: var(--blanco); margin-bottom: 10px; }
-.metal-feature-body p { color: #e6e9ec; margin-bottom: 22px; }
 
 /* Metal category accordion (Metales page) */
 .metal-accordion { display: flex; flex-direction: column; gap: 10px; margin-top: 32px; }
@@ -439,10 +427,28 @@ body.ficha-modal-lock { overflow: hidden; }
 }
 .ficha-modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 28px; line-height: 1; cursor: pointer; color: var(--gris-acero); }
 .ficha-modal-close:hover { color: var(--rojo); }
-.ficha-img-pending {
-  border: 1px dashed #c8cbd0; border-radius: 8px; padding: 24px; text-align: center;
-  color: var(--gris-acero); font-size: 13px; margin-bottom: 20px; background: var(--gris-claro);
+/* Element badges — periodic-table-style symbol tiles used instead of product
+   photography for Metales (client, 2026-10-15): "usar la fórmula o letras del
+   elemento... no poner una imagen". Two sizes: default (grid tiles) and .lg (ficha modal). */
+.elem-badge {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px; border: 2px solid var(--rojo); border-radius: 8px;
+  background: var(--gris-claro);
 }
+.elem-badge-num { position: absolute; top: 4px; left: 6px; font-size: 9px; font-weight: 600; color: var(--gris-acero); }
+.elem-badge-symbol { font-family: var(--font-title); font-weight: 700; font-size: 20px; color: var(--negro); }
+.elem-badge.lg { width: 92px; height: 92px; border-radius: 12px; }
+.elem-badge.lg .elem-badge-num { top: 8px; left: 10px; font-size: 12px; }
+.elem-badge.lg .elem-badge-symbol { font-size: 36px; }
+.metal-tile-elems, .ficha-elems { display: flex; gap: 8px; }
+.metal-tile-elems { margin-bottom: 4px; }
+.metal-tile-elems.multi .elem-badge, .ficha-elems.multi .elem-badge.lg { width: 44px; height: 44px; border-radius: 6px; }
+.metal-tile-elems.multi .elem-badge-symbol { font-size: 15px; }
+.metal-tile-elems.multi .elem-badge-num { font-size: 7px; top: 3px; left: 4px; }
+.ficha-elems { margin-bottom: 20px; }
+.ficha-elems.multi .elem-badge.lg { width: 68px; height: 68px; }
+.ficha-elems.multi .elem-badge.lg .elem-badge-symbol { font-size: 24px; }
+.ficha-elems.multi .elem-badge.lg .elem-badge-num { font-size: 10px; }
 .ficha-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; margin: 0 0 16px; }
 .ficha-specs dt { font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: var(--gris-acero); margin: 0; }
 .ficha-specs dd { margin: 2px 0 0; font-size: 14px; }
@@ -504,13 +510,12 @@ body.ficha-modal-lock { overflow: hidden; }
   --btn-bg: var(--rojo); --btn-radius: 5px; color: var(--blanco); font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: .6px; padding: 6px 22px; white-space: nowrap;
 }
-.cert-card .iso-logo { max-width: 180px; width: 100%; margin: 4px 0 22px; transition: filter .3s ease; }
+.cert-card .iso-logo-mark { max-width: 180px; width: 100%; margin: 4px 0 6px; }
+.cert-card .iso-logo-text {
+  display: block; font-family: var(--font-head); font-weight: 700; font-size: 17px;
+  letter-spacing: .04em; color: var(--rojo); margin-bottom: 22px;
+}
 
-.cert-link { display: inline-block; }
-.cert-link img { max-width: 220px; width: 100%; border-radius: 8px; box-shadow: 0 8px 20px rgba(1,1,1,.12); transition: box-shadow .3s ease; }
-.cert-link:hover img { box-shadow: 0 10px 26px rgba(1,1,1,.18); }
-.cert-link-label { display: block; margin-top: 10px; font-size: 12px; font-weight: 700; color: var(--rojo); }
-.cert-note { font-size: 12px; color: var(--gris-acero); max-width: 240px; margin: 14px auto 0; }
 
 @keyframes auraDrift {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -671,14 +676,11 @@ body.ficha-modal-lock { overflow: hidden; }
   .quality-grid, .contact-grid { grid-template-columns: 1fr; }
   .hero-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; }
   .hero-stat-text span { white-space: normal; }
-  .chem-grid, .mv-grid, .maxxima-grid, .maxxima-photos, .industria-grid { grid-template-columns: repeat(2, 1fr); }
-  .metal-showcase { grid-template-columns: 1fr; }
+  .metal-grid, .chem-grid, .mv-grid, .maxxima-grid, .maxxima-photos, .industria-grid { grid-template-columns: repeat(2, 1fr); }
   .solucion-grid { grid-template-columns: 1fr; gap: 32px; }
-  .metal-feature { min-height: 340px; order: -1; }
   .stat-row { grid-template-columns: repeat(3, 1fr); }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .cert-note { margin: 14px auto 0; }
   .mv-editorial { grid-template-columns: 1fr; }
   .mv-editorial-divider { display: none; }
 }
@@ -705,13 +707,12 @@ body.ficha-modal-lock { overflow: hidden; }
   .metal-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .metal-tile { min-height: 108px; padding: 16px; }
   .metal-tile-name { font-size: 18px; }
-  .metal-feature-body { padding: 24px; }
   .floating-cta { right: 24px; bottom: 16px; padding: 12px 24px; font-size: 13px; }
   .footer-grid { grid-template-columns: 1fr; }
   .contact-form { padding: 22px; }
   .container { padding: 0 18px; }
   .section-divider-inner { padding: 32px 18px 16px; gap: 14px; }
-  .section-divider-label { font-size: 12px; letter-spacing: .2em; white-space: normal; }
+  .section-divider-label { font-size: 18px; letter-spacing: .14em; white-space: normal; }
   .lineas.tight-bottom, .quality, .maxxima.condensed { padding-bottom: 32px; }
 }
 

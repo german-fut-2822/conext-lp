@@ -63,8 +63,6 @@ window.CONEXT_I18N = {
   'calidad.title': { es: 'Nuestra política de calidad', en: 'Our quality policy' },
   'calidad.body': { es: 'En CONEXT estamos comprometidos con la calidad de los metales, químicos industriales y de minería que entregamos a nuestros clientes, a través de:', en: 'At CONEXT we are committed to the quality of the metals, industrial chemicals and mining products we deliver to our customers, through:' },
   'calidad.certRibbon': { es: 'Certificado vigente', en: 'Current certificate' },
-  'calidad.certLink': { es: 'Ver PDF oficial ↗', en: 'View official PDF ↗' },
-  'calidad.certNote': { es: 'Certificado ISO 9001:2015 vigente — descarga el PDF oficial.', en: 'Current ISO 9001:2015 certificate — download the official PDF.' },
 
   'maxxima.eyebrow': { es: 'Empresa hermana', en: 'Sister company' },
   'maxxima.dividerLabel': { es: 'Nuestra empresa hermana', en: 'Our sister company' },
