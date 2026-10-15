@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var openHashCategory = function () {
     if (!location.hash) return;
     var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-    if (target && target.matches('details.metal-category')) {
+    if (target && target.matches('details.metal-tile')) {
       target.open = true;
       target.classList.add('in-view');
       target.scrollIntoView({ block: 'start' });

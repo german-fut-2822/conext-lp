@@ -287,26 +287,37 @@ const fichas: Record<string, Ficha> = {
     <p class="section-lead reveal" style="--d:1" data-i18n="metales.lead">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
     <div class="metal-grid">
       {categorias.map((cat, i) => (
-        <a href={`/productos/metales#${cat.id}`} class="metal-tile reveal" style={`--d:${(i % 3) + 1}`}>
-          <span class:list={['metal-tile-elems', { multi: cat.simbolos.length > 1 }]} aria-hidden="true">
-            {cat.simbolos.map((s) => (
-              <span class="elem-badge">
-                <span class="elem-badge-num">{ELEMENTOS[s].num}</span>
-                <span class="elem-badge-symbol">{s}</span>
-              </span>
+        <details class="metal-tile reveal" style={`--d:${(i % 3) + 1}`}>
+          <summary class="metal-tile-summary">
+            <span class:list={['metal-tile-elems', { multi: cat.simbolos.length > 1 }]} aria-hidden="true">
+              {cat.simbolos.map((s) => (
+                <span class="elem-badge">
+                  <span class="elem-badge-num">{ELEMENTOS[s].num}</span>
+                  <span class="elem-badge-symbol">{s}</span>
+                </span>
+              ))}
+            </span>
+            <span class="metal-tile-name" data-i18n-es={cat.nombre} data-i18n-en={cat.en}>{cat.nombre}</span>
+            <span class="metal-tile-foot">
+              {(() => {
+                const n = cat.bullets.length;
+                const es = `${n} ${n === 1 ? 'producto' : 'productos'}`;
+                const en = `${n} ${n === 1 ? 'product' : 'products'}`;
+                return <span data-i18n-es={es} data-i18n-en={en}>{es}</span>;
+              })()}
+              <span class="metal-tile-caret" aria-hidden="true">▾</span>
+            </span>
+          </summary>
+          <ul class="metal-tile-products">
+            {cat.bullets.map((b) => (
+              <li data-i18n-es={b.es} data-i18n-en={b.en}>{b.es}</li>
             ))}
-          </span>
-          <span class="metal-tile-name" data-i18n-es={cat.nombre} data-i18n-en={cat.en}>{cat.nombre}</span>
-          <span class="metal-tile-foot">
-            {(() => {
-              const n = cat.bullets.length;
-              const es = `${n} ${n === 1 ? 'producto' : 'productos'}`;
-              const en = `${n} ${n === 1 ? 'product' : 'products'}`;
-              return <span data-i18n-es={es} data-i18n-en={en}>{es}</span>;
-            })()}
-            <span class="metal-tile-arrow" aria-hidden="true">→</span>
-          </span>
-        </a>
+          </ul>
+          <a href={`/productos/metales#${cat.id}`} class="metal-tile-more">
+            <span data-i18n-es="Ver más" data-i18n-en="View more">Ver más</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </details>
       ))}
     </div>
     </div>
@@ -316,14 +327,30 @@ const fichas: Record<string, Ficha> = {
     <h2 class="reveal" data-i18n="metales.title">Metales No Ferrosos</h2>
     <p class="section-lead reveal" style="--d:1" data-i18n="metales.lead">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
 
-    <div class="metal-accordion">
-      {categorias.map((cat) => (
-        <details class="metal-category reveal" id={cat.id}>
-          <summary>
-            <span data-i18n-es={cat.nombre} data-i18n-en={cat.en}>{cat.nombre}</span>
-            <span class="caret" aria-hidden="true">▾</span>
+    <div class="metal-grid">
+      {categorias.map((cat, i) => (
+        <details class="metal-tile reveal" id={cat.id} style={`--d:${(i % 3) + 1}`}>
+          <summary class="metal-tile-summary">
+            <span class:list={['metal-tile-elems', { multi: cat.simbolos.length > 1 }]} aria-hidden="true">
+              {cat.simbolos.map((s) => (
+                <span class="elem-badge">
+                  <span class="elem-badge-num">{ELEMENTOS[s].num}</span>
+                  <span class="elem-badge-symbol">{s}</span>
+                </span>
+              ))}
+            </span>
+            <span class="metal-tile-name" data-i18n-es={cat.nombre} data-i18n-en={cat.en}>{cat.nombre}</span>
+            <span class="metal-tile-foot">
+              {(() => {
+                const n = cat.bullets.length;
+                const es = `${n} ${n === 1 ? 'producto' : 'productos'}`;
+                const en = `${n} ${n === 1 ? 'product' : 'products'}`;
+                return <span data-i18n-es={es} data-i18n-en={en}>{es}</span>;
+              })()}
+              <span class="metal-tile-caret" aria-hidden="true">▾</span>
+            </span>
           </summary>
-          <ul class="metal-bullets">
+          <ul class="metal-tile-products">
             {cat.bullets.map((b) => (
               b.fichaId ? (
                 <li><button type="button" class="ficha-trigger" data-ficha={b.fichaId} data-i18n-es={b.es} data-i18n-en={b.en}>{b.es}</button></li>
