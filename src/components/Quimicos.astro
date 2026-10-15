@@ -1,40 +1,58 @@
 ---
-// NOTA: el catálogo real de "Productos Químicos" en conext.com.mx (Tartrato de
-// Antimonio, Desmoldante, Nitrato de Sodio) es de química para fundición, no
-// coincide con el contenido de aditivos/cosmética del Sites de referencia.
-// Mientras eso se confirma con Selene/Gustavo, estas tarjetas enlazan a la
-// página general de Productos en vez de una pestaña específica incorrecta.
+// Contenido verbatim del Google Sites (Inicio y Productos/Químicos). El catálogo
+// real de "Productos Químicos" en conext.com.mx (química de fundición: Tartrato
+// de Antimonio, Desmoldante, Nitrato de Sodio, Arena de Zirconio) no coincide con
+// estos productos aprobados por Selene — confirmado 2026-10-14. German decidió no
+// pedir fichas nuevas por ahora: cada producto es desplegable, pero sin modal.
+// Ver memoria del proyecto "project-sites-governs-content-and-order".
 export interface Props {
   showEyebrow?: boolean;
+  showIntro?: boolean;
 }
-const { showEyebrow = true } = Astro.props;
-const quimicos = [
+const { showEyebrow = true, showIntro = true } = Astro.props;
+
+type Item = { es: string; en: string };
+type Categoria = { id: string; nombre: string; nombreEn: string; icon: string; items: Item[] };
+
+const categorias: Categoria[] = [
   {
-    nombre: 'Aditivos alimentarios y nutracéuticos',
-    nombreEn: 'Food additives & nutraceuticals',
-    items: ['NMN', 'NR (Ribósido de nicotinamida)', 'Taurina', 'Monohidrato de creatina', 'Glucosamina y condroitina'],
-    itemsEn: ['NMN', 'NR (Nicotinamide Riboside)', 'Taurine', 'Creatine monohydrate', 'Glucosamine & chondroitin'],
-    img: '/assets/img/quimicos/aditivos-alimentarios.jpg',
-    icon: 'capsule',
+    id: 'aditivos', icon: 'capsule',
+    nombre: 'Aditivos alimentarios y nutracéuticos', nombreEn: 'Food additives & nutraceuticals',
+    items: [
+      { es: 'NMN (Mononucleótido de nicotinamida).', en: 'NMN (Nicotinamide Mononucleotide).' },
+      { es: 'NR (Ribósido de nicotinamida).', en: 'NR (Nicotinamide Riboside).' },
+      { es: 'Taurina.', en: 'Taurine.' },
+      { es: 'Monohidrato de creatina.', en: 'Creatine monohydrate.' },
+      { es: 'Glucosamina y condroitina.', en: 'Glucosamine and chondroitin.' },
+      { es: 'Vitamina E.', en: 'Vitamin E.' },
+      { es: 'Biotina.', en: 'Biotin.' },
+      { es: 'Ácido fólico.', en: 'Folic acid.' },
+      { es: 'Sucralosa, fruta del monje y stevia.', en: 'Sucralose, monk fruit and stevia.' },
+    ],
   },
   {
-    nombre: 'Extractos naturales',
-    nombreEn: 'Natural extracts',
-    items: ['Extracto de té verde / EGCG', 'Extracto de ginseng', 'Ginkgo biloba', 'Extracto de hongos / Reishi'],
-    itemsEn: ['Green tea extract / EGCG', 'Ginseng extract', 'Ginkgo biloba', 'Mushroom extract / Reishi'],
-    img: '/assets/img/quimicos/extractos-naturales.jpg',
-    icon: 'leaf',
+    id: 'extractos', icon: 'leaf',
+    nombre: 'Extractos naturales', nombreEn: 'Natural extracts',
+    items: [
+      { es: 'Extracto de té verde / EGCG.', en: 'Green tea extract / EGCG.' },
+      { es: 'Extracto de ginseng.', en: 'Ginseng extract.' },
+      { es: 'Ginkgo biloba.', en: 'Ginkgo biloba.' },
+      { es: 'Extracto de stevia.', en: 'Stevia extract.' },
+      { es: 'Extracto de hongos / Reishi.', en: 'Mushroom extract / Reishi.' },
+    ],
   },
   {
-    nombre: 'Cosméticos y cuidado personal',
-    nombreEn: 'Cosmetics & personal care',
-    items: ['Ácido hialurónico', 'Ácido kójico', 'Alfa arbutina', 'Colágeno'],
-    itemsEn: ['Hyaluronic acid', 'Kojic acid', 'Alpha arbutin', 'Collagen'],
-    img: '/assets/img/quimicos/cosmeticos.jpg',
-    icon: 'droplet',
+    id: 'cosmeticos', icon: 'droplet',
+    nombre: 'Cosméticos y cuidado personal', nombreEn: 'Cosmetics & personal care',
+    items: [
+      { es: 'Ácido hialurónico.', en: 'Hyaluronic acid.' },
+      { es: 'Ácido kójico.', en: 'Kojic acid.' },
+      { es: 'Alfa arbutina.', en: 'Alpha arbutin.' },
+      { es: 'Colágeno.', en: 'Collagen.' },
+      { es: 'Ácido ascórbico etílico y derivados de vitamina C.', en: 'Ethyl ascorbic acid and vitamin C derivatives.' },
+    ],
   },
 ];
-const PRODUCTOS_URL = 'https://conext.com.mx/productos/';
 
 const icons: Record<string, string> = {
   capsule: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.93 19.07a5 5 0 0 1 0-7.07l7.07-7.07a5 5 0 1 1 7.07 7.07l-7.07 7.07a5 5 0 0 1-7.07 0Z"/><path d="M9.46 7.46 16.54 14.54"/></svg>',
@@ -42,24 +60,34 @@ const icons: Record<string, string> = {
   droplet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/></svg>',
 };
 ---
-<section class="products alt tech-grid" id="quimicos">
+<section class="products alt" id="quimicos">
   <div class="container">
     {showEyebrow && <span class="eyebrow reveal" data-i18n="quimicos.eyebrow">Químicos</span>}
-    <h2 class="reveal" data-i18n="quimicos.title">Soluciones químicas para distintas industrias</h2>
-    <p class="section-lead reveal" style="--d:1" data-i18n="quimicos.lead">Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente.</p>
+    {showIntro && (
+      <>
+        <h2 class="reveal" data-i18n="quimicos.title">Soluciones químicas para distintas industrias</h2>
+        <p class="section-lead reveal" style="--d:1" data-i18n="quimicos.lead">Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente.</p>
+      </>
+    )}
 
     <div class="chem-grid">
-      {quimicos.map((q, i) => (
-        <a href={PRODUCTOS_URL} target="_blank" rel="noopener" class="chem-card reveal" style={`--d:${i + 1}; background-image: url('${q.img}')`} aria-label={`Ver ${q.nombre} en conext.com.mx`}>
-          <span class="chem-card-icon" set:html={icons[q.icon]} />
+      {categorias.map((cat, i) => (
+        <div class="chem-card reveal" style={`--d:${i + 1}`}>
+          <span class="chem-card-icon" set:html={icons[cat.icon]} />
           <div class="chem-card-body">
-            <h3 data-i18n-es={q.nombre} data-i18n-en={q.nombreEn}>{q.nombre}</h3>
+            <h3 data-i18n-es={cat.nombre} data-i18n-en={cat.nombreEn}>{cat.nombre}</h3>
             <ul>
-              {q.items.slice(0, 3).map((it, j) => <li data-i18n-es={it} data-i18n-en={q.itemsEn[j]}>{it}</li>)}
+              {cat.items.map((it) => (
+                <li>
+                  <details class="chem-item">
+                    <summary data-i18n-es={it.es} data-i18n-en={it.en}>{it.es}</summary>
+                    <p class="chem-item-pending" data-i18n-es="Ficha técnica — próximamente." data-i18n-en="Technical data sheet — coming soon.">Ficha técnica — próximamente.</p>
+                  </details>
+                </li>
+              ))}
             </ul>
           </div>
-          <span class="card-hint">↗ conext.com.mx</span>
-        </a>
+        </div>
       ))}
     </div>
   </div>

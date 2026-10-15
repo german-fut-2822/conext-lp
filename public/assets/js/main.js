@@ -7,15 +7,21 @@ document.addEventListener('DOMContentLoaded', function () {
   var langToggle = document.getElementById('langToggle');
   var originalTitle = document.title;
 
-  var applyLang = function (lang) {
-    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+  // Applies the current language to data-i18n / data-i18n-es-en elements within
+  // a given root (document, or a subtree injected later e.g. a ficha modal).
+  var applyLangWithin = function (root, lang) {
+    root.querySelectorAll('[data-i18n]').forEach(function (el) {
       var entry = dict[el.getAttribute('data-i18n')];
       if (entry && entry[lang] != null) el.innerHTML = entry[lang];
     });
-    document.querySelectorAll('[data-i18n-es]').forEach(function (el) {
+    root.querySelectorAll('[data-i18n-es]').forEach(function (el) {
       var value = lang === 'en' ? el.getAttribute('data-i18n-en') : el.getAttribute('data-i18n-es');
       if (value != null) el.innerHTML = value;
     });
+  };
+
+  var applyLang = function (lang) {
+    applyLangWithin(document, lang);
     var titleEntry = dict[document.body.getAttribute('data-i18n-title')];
     if (titleEntry) document.title = lang === 'en' && titleEntry.en ? titleEntry.en : originalTitle;
     document.documentElement.lang = lang === 'en' ? 'en' : 'es-MX';
@@ -46,11 +52,13 @@ document.addEventListener('DOMContentLoaded', function () {
     navToggle.setAttribute('aria-expanded', isOpen);
   });
 
-  // Dropdown: hover on desktop (CSS), tap-to-open on mobile/touch
+  // Dropdown: hover on desktop (CSS), tap-to-open on mobile/touch. The toggle
+  // has no page of its own (Productos is a dropdown label, not a route), so
+  // it never navigates on any viewport.
   document.querySelectorAll('[data-dropdown-toggle]').forEach(function (link) {
     link.addEventListener('click', function (e) {
+      e.preventDefault();
       if (window.matchMedia('(max-width: 900px)').matches) {
-        e.preventDefault();
         link.closest('.nav-item').classList.toggle('open');
       }
     });
@@ -228,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Active nav link highlighting (by current page path)
   var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
   document.querySelectorAll('.nav-links > .nav-item > a').forEach(function (link) {
+    if (link.hasAttribute('data-dropdown-toggle')) return; // label only, no page of its own
     var linkPath = link.getAttribute('href').split('#')[0].replace(/\/$/, '') || '/';
     if (linkPath === currentPath) link.classList.add('active');
   });
@@ -290,4 +299,46 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
   });
+
+  // Product spec-sheet ("ficha") modal — used on /productos/metales. Each
+  // trigger clones its matching <template id="ficha-{id}"> into the shared
+  // modal body, then re-applies the current language to the injected markup
+  // (applyLangWithin only runs once on load, so dynamically inserted content
+  // needs a manual pass).
+  var fichaModal = document.getElementById('fichaModal');
+  if (fichaModal) {
+    var fichaModalBody = document.getElementById('fichaModalBody');
+    var lastFocused = null;
+
+    var openFichaModal = function (id) {
+      var tpl = document.getElementById('ficha-' + id);
+      if (!tpl) return;
+      fichaModalBody.innerHTML = '';
+      fichaModalBody.appendChild(tpl.content.cloneNode(true));
+      var currentLang = document.documentElement.lang === 'en' ? 'en' : 'es';
+      applyLangWithin(fichaModalBody, currentLang);
+      lastFocused = document.activeElement;
+      fichaModal.setAttribute('aria-hidden', 'false');
+      fichaModal.classList.add('open');
+      document.body.classList.add('ficha-modal-lock');
+      fichaModal.querySelector('.ficha-modal-close').focus();
+    };
+
+    var closeFichaModal = function () {
+      fichaModal.setAttribute('aria-hidden', 'true');
+      fichaModal.classList.remove('open');
+      document.body.classList.remove('ficha-modal-lock');
+      if (lastFocused) lastFocused.focus();
+    };
+
+    document.querySelectorAll('.ficha-trigger').forEach(function (btn) {
+      btn.addEventListener('click', function () { openFichaModal(btn.getAttribute('data-ficha')); });
+    });
+    fichaModal.querySelectorAll('[data-ficha-close]').forEach(function (el) {
+      el.addEventListener('click', closeFichaModal);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && fichaModal.classList.contains('open')) closeFichaModal();
+    });
+  }
 });

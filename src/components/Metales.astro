@@ -1,37 +1,353 @@
 ---
+// Contenido verbatim del Google Sites (Inicio y Productos/Metales). Las fichas
+// técnicas (datos reales: especificación, presentación, características físicas
+// y mecánicas) vienen de conext.com.mx/productos/ — solo se incluyen fichas para
+// los productos que SÍ tienen datos reales ahí; el resto se muestra como texto
+// simple, sin inventar specs. Ver memoria del proyecto "project-sites-governs-content-and-order".
 export interface Props {
   showEyebrow?: boolean;
 }
 const { showEyebrow = true } = Astro.props;
-const metales = [
-  { symbol: 'Sn', nombre: 'Estaño', en: 'Tin', img: '/assets/img/metales/estano.jpg', href: 'https://conext.com.mx/productos/#toggle-id-6', desc: 'Lingote y alambre de soldadura', descEn: 'Ingot and solder wire' },
-  { symbol: 'Sb', nombre: 'Antimonio', en: 'Antimony', img: '/assets/img/metales/antimonio.jpg', href: 'https://conext.com.mx/productos/#toggle-id-1', desc: 'Lingote, granalla y polvo', descEn: 'Ingot, shot and powder' },
-  { symbol: 'Pb', nombre: 'Plomo', en: 'Lead', img: '/assets/img/metales/plomo.jpg', href: 'https://conext.com.mx/productos/#toggle-id-11', desc: 'Plomo afinado', descEn: 'Refined lead' },
-  { symbol: 'Zn', nombre: 'Zinc', en: 'Zinc', img: '/assets/img/metales/zinc.jpg', href: 'https://conext.com.mx/productos/#toggle-id-15', desc: 'SHG y High Grade', descEn: 'SHG and High Grade' },
-  { symbol: 'Al', nombre: 'Aluminio', en: 'Aluminum', img: '/assets/img/metales/aluminio.jpg', href: 'https://conext.com.mx/productos/#toggle-id-17', desc: 'Granalla y P1020', descEn: 'Shot and P1020' },
-  { symbol: 'Ag', nombre: 'Plata', en: 'Silver', img: '/assets/img/metales/plata.jpg', href: 'https://conext.com.mx/productos/#toggle-id-9', desc: 'Plata metálica', descEn: 'Metallic silver' },
-  { symbol: 'Au', nombre: 'Oro', en: 'Gold', img: '/assets/img/metales/oro.jpg', href: 'https://conext.com.mx/productos/#toggle-id-10', desc: 'Oro metálico', descEn: 'Metallic gold' },
-  { symbol: 'Cu', nombre: 'Cobre', en: 'Copper', img: '/assets/img/metales/cobre.jpg', href: 'https://conext.com.mx/wp-content/uploads/2015/09/cobre.pdf', desc: 'Cobre OF — ficha PDF', descEn: 'OF copper — PDF spec sheet' },
-  { symbol: 'Se', nombre: 'Selenio', en: 'Selenium', img: '/assets/img/metales/selenio.jpg', href: 'https://conext.com.mx/productos/#toggle-id-12', desc: 'Selenio metálico', descEn: 'Metallic selenium' },
+
+type Bullet = { es: string; en: string; fichaId?: string };
+type Categoria = { id: string; nombre: string; en: string; bullets: Bullet[] };
+
+const categorias: Categoria[] = [
+  {
+    id: 'estano', nombre: 'Estaño', en: 'Tin',
+    bullets: [
+      { es: 'Estaño Grado A en lingote.', en: 'Grade A tin in ingot form.', fichaId: 'estano' },
+      { es: 'Estaño de alta pureza (4N) en lingote.', en: 'High-purity (4N) tin in ingot form.', fichaId: 'estano' },
+    ],
+  },
+  {
+    id: 'alambre-estano', nombre: 'Alambre de Soldadura de Estaño', en: 'Tin Solder Wire',
+    bullets: [
+      { es: 'Alambre de soldadura sin plomo con núcleo de fundente.', en: 'Lead-free flux-core solder wire.' },
+      { es: 'Alambre de soldadura sin plomo sólido.', en: 'Lead-free solid solder wire.' },
+      { es: 'Alambre de soldadura con plomo con núcleo de fundente.', en: 'Leaded flux-core solder wire.' },
+      { es: 'Alambre de soldadura con plomo sólido.', en: 'Leaded solid solder wire.' },
+    ],
+  },
+  {
+    id: 'antimonio', nombre: 'Antimonio', en: 'Antimony',
+    bullets: [
+      { es: 'Antimonio en lingote 99.65%.', en: '99.65% antimony in ingot form.', fichaId: 'antimonio' },
+      { es: 'Antimonio en granalla.', en: 'Antimony shot.', fichaId: 'antimonio' },
+      { es: 'Antimonio en polvo.', en: 'Antimony powder.', fichaId: 'antimonio' },
+    ],
+  },
+  {
+    id: 'cobre', nombre: 'Cobre', en: 'Copper',
+    bullets: [
+      { es: 'Soleras de cobre / BUSBAR.', en: 'Copper busbar.' },
+      { es: 'Contactos bimetálicos.', en: 'Bimetallic contacts.', fichaId: 'contactos-bimetalicos' },
+      { es: 'Placas bimetálicas.', en: 'Bimetallic plates.', fichaId: 'placas-bimetalicas' },
+    ],
+  },
+  {
+    id: 'aluminio', nombre: 'Aluminio', en: 'Aluminum',
+    bullets: [
+      { es: 'Granalla de aluminio.', en: 'Aluminum shot.', fichaId: 'aluminio' },
+      { es: 'Aluminio P1020.', en: 'P1020 aluminum.', fichaId: 'aluminio' },
+    ],
+  },
+  {
+    id: 'zinc', nombre: 'Zinc', en: 'Zinc',
+    bullets: [
+      { es: 'Zinc SHG (Special High Grade).', en: 'Zinc SHG (Special High Grade).', fichaId: 'zinc' },
+      { es: 'Zinc HG (High Grade).', en: 'Zinc HG (High Grade).', fichaId: 'zinc' },
+    ],
+  },
+  {
+    id: 'plomo', nombre: 'Plomo', en: 'Lead',
+    bullets: [
+      { es: 'Plomo afinado', en: 'Refined lead', fichaId: 'plomo' },
+    ],
+  },
+  {
+    id: 'metales-preciosos', nombre: 'Metales Preciosos', en: 'Precious Metals',
+    bullets: [
+      { es: 'Oro.', en: 'Gold.', fichaId: 'oro' },
+      { es: 'Plata', en: 'Silver', fichaId: 'plata' },
+    ],
+  },
+  {
+    id: 'tierras-raras', nombre: 'Tierras Raras', en: 'Rare Earths',
+    bullets: [
+      { es: 'Selenio.', en: 'Selenium.', fichaId: 'selenio' },
+      { es: 'Galio.', en: 'Gallium.' },
+      { es: 'Telurio.', en: 'Tellurium.' },
+      { es: 'Indio.', en: 'Indium.' },
+    ],
+  },
 ];
+
+type Spec = { label: string; labelEn: string; val: string; valEn: string };
+type FichaSimple = {
+  tipo: 'simple';
+  nombre: string; nombreEn: string;
+  especificacion: string; especificacionEn: string;
+  descripcion?: string; descripcionEn?: string;
+  presentacion: string; presentacionEn: string;
+  caracteristicas?: Spec[];
+  empaque: string; empaqueEn: string;
+  calidad: string; calidadEn: string;
+};
+type SerieAleacion = {
+  grado: string;
+  comp: { el: string; val: string }[];
+  uso: string; usoEn: string;
+};
+type FichaAleacion = {
+  tipo: 'aleacion';
+  nombre: string; nombreEn: string;
+  presentacion: string; presentacionEn: string;
+  series: SerieAleacion[];
+  caracteristicas: Spec[];
+  empaque: string; empaqueEn: string;
+  calidad: string; calidadEn: string;
+};
+type Ficha = FichaSimple | FichaAleacion;
+
+const CERT: Spec = { label: 'Calidad', labelEn: 'Quality', val: '', valEn: '' };
+
+const fichas: Record<string, Ficha> = {
+  estano: {
+    tipo: 'simple',
+    nombre: 'Estaño Metálico (Sn)', nombreEn: 'Metallic Tin (Sn)',
+    especificacion: 'Estaño (Sn) 98.85% de pureza.', especificacionEn: 'Tin (Sn) 98.85% of purity.',
+    descripcion: 'Material muy dúctil que se usa en la fabricación de soldaduras, cojines, aleado con cobre en los bronces de baños electrolíticos de recubrimiento de láminas de fierro y en aleaciones con aluminio, titanio y circonio.',
+    descripcionEn: 'Very ductile material used in the manufacture of welds and cushions, alloyed with copper in bronzes for electrolytic coating baths of iron sheets, and in alloys with aluminum, titanium and zirconium.',
+    presentacion: 'Lingote de 37 kg aprox. · Lingote de 15 kg aprox. · Lingotillo de 2.5 kg aprox. · Barra de 0.5 kg aprox.',
+    presentacionEn: 'Ingot of ~37 kg · Ingot of ~15 kg · Small ingot of ~2.5 kg · Bar of ~0.5 kg.',
+    caracteristicas: [
+      { label: 'Densidad', labelEn: 'Density', val: '7.29 kg/Dm³', valEn: '7.29 kg/Dm³' },
+      { label: 'Punto de Fusión', labelEn: 'Fusion Point', val: '232°C', valEn: '232°C' },
+      { label: 'Tipo de metal', labelEn: 'Metal Type', val: 'Dúctil y maleable', valEn: 'Ductile and malleable' },
+    ],
+    empaque: 'Atados según necesidades del cliente.', empaqueEn: 'Tied according to client needs.',
+    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+  antimonio: {
+    tipo: 'simple',
+    nombre: 'Antimonio Metálico (Sb)', nombreEn: 'Metallic Antimony (Sb)',
+    especificacion: 'Antimonio (Sb) 99.65% de pureza.', especificacionEn: 'Antimony (Sb) 99.65% of purity.',
+    descripcion: 'Es un aleante del plomo en la fabricación de soldaduras, cojinetes y en aleaciones con zinc. Es un aleante nodulizador en el hierro dulce y perlítico en hierro gris.',
+    descripcionEn: 'It is a lead alloying element used in the manufacture of welds, bearings and alloys with zinc. It is a nodulizing agent in ductile and pearlitic gray iron.',
+    presentacion: 'Lingotes de 22 kg aprox. · Granalla (Shot).', presentacionEn: 'Ingots of ~22 kg · Shot.',
+    caracteristicas: [
+      { label: 'Densidad', labelEn: 'Density', val: '6.88 kg/Dm³', valEn: '6.88 kg/Dm³' },
+      { label: 'Punto de Fusión', labelEn: 'Fusion Point', val: '631°C', valEn: '631°C' },
+      { label: 'Punto de Ebullición', labelEn: 'Boiling Point', val: '1587°C', valEn: '1587°C' },
+      { label: 'Peso Atómico', labelEn: 'Atomic Weight', val: '121.75', valEn: '121.75' },
+    ],
+    empaque: 'Cajas de madera o atados de 1 ton.', empaqueEn: 'Wood boxes or tied sets of 1 ton.',
+    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+  zinc: {
+    tipo: 'simple',
+    nombre: 'Zinc Metálico (Zn)', nombreEn: 'Metallic Zinc (Zn)',
+    especificacion: 'Zinc (Zn) 99.9%.', especificacionEn: 'Zinc (Zn) 99.9%.',
+    descripcion: 'Los usos más importantes del zinc los constituyen las aleaciones y el recubrimiento protector de otros metales.',
+    descripcionEn: 'The most important uses of zinc are alloying and the protective coating of other metals.',
+    presentacion: 'Media esfera · Lingote de 25 kg aprox.', presentacionEn: 'Half-sphere · Ingot of ~25 kg.',
+    caracteristicas: [
+      { label: 'Densidad', labelEn: 'Density', val: '7.14 g/ml', valEn: '7.14 g/ml' },
+      { label: 'Punto de Ebullición', labelEn: 'Boiling Point', val: '906°C', valEn: '906°C' },
+      { label: 'Punto de Fusión', labelEn: 'Fusion Point', val: '419.5°C', valEn: '419.5°C' },
+      { label: 'Peso Atómico', labelEn: 'Atomic Weight', val: '65.37', valEn: '65.37' },
+    ],
+    empaque: 'Cajas de madera de 25 kg aprox. · Atados de 1 ton aprox.', empaqueEn: 'Wood boxes of ~25 kg · Tied sets of ~1 ton.',
+    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+  plomo: {
+    tipo: 'simple',
+    nombre: 'Plomo Metálico (Pb)', nombreEn: 'Metallic Lead (Pb)',
+    especificacion: 'Plomo Afinado (Pb) 99.97% de pureza.', especificacionEn: 'Refined Lead (Pb) 99.97% of purity.',
+    presentacion: 'Lingote de 22 kg aprox. · Lingote de 800 kg aprox.', presentacionEn: 'Ingot of ~22 kg · Ingot of ~800 kg.',
+    empaque: 'Atados de 1 ton.', empaqueEn: 'Tied sets of 1 ton.',
+    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+  oro: {
+    tipo: 'simple',
+    nombre: 'Oro (Au)', nombreEn: 'Gold (Au)',
+    especificacion: 'Oro (Au) 99.9% de pureza.', especificacionEn: 'Gold (Au) 99.9% of purity.',
+    descripcion: 'Metal precioso amarillo y brillante, de alta pureza, dúctil y maleable, inerte a los agentes atmosféricos. Excelente conductor del calor y la electricidad.',
+    descripcionEn: 'A highly pure, bright, yellow precious metal — ductile and malleable, inert to atmospheric agents. An excellent conductor of heat and electricity.',
+    presentacion: 'Lingote de 12.5 kg · Lámina de 100 g.', presentacionEn: '400 ozt ingot · 3 ozt sheet.',
+    empaque: 'Según las necesidades del cliente.', empaqueEn: 'According to client needs.',
+    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+  plata: {
+    tipo: 'simple',
+    nombre: 'Plata Metálica (Ag)', nombreEn: 'Metallic Silver (Ag)',
+    especificacion: 'Plata (Ag) 99.9% de pureza.', especificacionEn: 'Silver (Ag) 99.9% of purity.',
+    descripcion: 'En la mayor parte de sus aplicaciones es aleada con uno o más metales; posee la más alta conductividad térmica y eléctrica de todos los metales. Se utiliza en puntos de contacto eléctrico y electrónico, y también en joyería y piezas diversas.',
+    descripcionEn: 'In most of its applications it is alloyed with one or more metals; it has the highest thermal and electrical conductivity of all metals. It is used in electrical and electronic contact points, as well as in jewelry and various parts.',
+    presentacion: 'Granalla.', presentacionEn: 'Shot.',
+    caracteristicas: [
+      { label: 'Densidad', labelEn: 'Density', val: '10.5 g/ml', valEn: '10.5 g/ml' },
+      { label: 'Punto de Ebullición', labelEn: 'Boiling Point', val: '2210°C', valEn: '2210°C' },
+      { label: 'Punto de Fusión', labelEn: 'Fusion Point', val: '960.8°C', valEn: '960.8°C' },
+      { label: 'Peso Atómico', labelEn: 'Atomic Weight', val: '107.87', valEn: '107.87' },
+    ],
+    empaque: 'Según las necesidades del cliente.', empaqueEn: 'According to client needs.',
+    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+  selenio: {
+    tipo: 'simple',
+    nombre: 'Selenio Metálico (Se)', nombreEn: 'Metallic Selenium (Se)',
+    especificacion: 'Selenio (Se) 99.9% de pureza.', especificacionEn: 'Selenium (Se) 99.9% of purity.',
+    descripcion: 'Se usa principalmente en la electrónica, en rectificadores y celdas electrovoltaicas; también es aditivo del plomo y antimonio para la fabricación de algunos productos. Es agente aleante en aceros dúctiles, aceros inoxidables y en aleaciones de cobre.',
+    descripcionEn: 'Used mainly in electronics, in rectifiers and electrovoltaic cells; also an additive to lead and antimony in the manufacture of some products. It is an alloying agent in ductile steels, stainless steels and copper alloys.',
+    presentacion: 'Granalla.', presentacionEn: 'Shot.',
+    caracteristicas: [
+      { label: 'Densidad relativa (agua=1)', labelEn: 'Relative Density (water=1)', val: '4.8', valEn: '4.8' },
+      { label: 'Punto de Ebullición', labelEn: 'Boiling Point', val: '685°C', valEn: '685°C' },
+      { label: 'Punto de Fusión', labelEn: 'Fusion Point', val: '217°C', valEn: '217°C' },
+      { label: 'Solubilidad al agua', labelEn: 'Water Solubility', val: 'Ninguna', valEn: 'None' },
+      { label: 'Peso Atómico', labelEn: 'Atomic Weight', val: '78.96', valEn: '78.96' },
+    ],
+    empaque: 'Tinas plásticas o metálicas de 25 kg aprox.', empaqueEn: 'Plastic or metal pails of ~25 kg.',
+    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+  'contactos-bimetalicos': {
+    tipo: 'simple',
+    nombre: 'Contactos Bimetálicos', nombreEn: 'Bimetallic Contacts',
+    especificacion: 'Cobre–Aluminio.', especificacionEn: 'Copper–Aluminum.',
+    descripcion: 'Especialmente usados como interfaz conductiva en los cátodos de aluminio para la recuperación de zinc electrolítico. Dimensionados exactamente a las necesidades del cliente.',
+    descripcionEn: 'Especially used as a conductive interface on aluminum cathodes for electrolytic zinc recovery. Sized exactly to customer needs.',
+    presentacion: 'Bajo especificación y dimensiones del cliente.', presentacionEn: 'To customer specification and dimensions.',
+    empaque: 'Según las necesidades del cliente.', empaqueEn: 'According to client needs.',
+    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+  'placas-bimetalicas': {
+    tipo: 'simple',
+    nombre: 'Placas Bimetálicas', nombreEn: 'Bimetallic Plates',
+    especificacion: 'Acero inoxidable–Acero al carbón · Aluminio–Acero al carbón · Cobre–Aluminio · Cobre–Acero inoxidable.',
+    especificacionEn: 'Stainless steel–Carbon steel · Aluminum–Carbon steel · Copper–Aluminum · Copper–Stainless steel.',
+    descripcion: 'Ampliamente utilizadas en la industria petroquímica y química, producción electrolítica de zinc y aluminio, fabricación de barcos, industria aeroespacial, producción de cloruro de sodio al vacío, sistemas de producción de energía e industria del cloro. Ventajas: ahorro en el uso de metales caros, combinación razonable del metal base con el metal compuesto, y flexibilidad para determinar el espesor de los dos metales según las necesidades del cliente.',
+    descripcionEn: 'Widely used in the petrochemical and chemical industry, electrolytic production of zinc and aluminum, shipbuilding, aerospace, vacuum sodium chloride production, energy production systems and the chlorine industry. Advantages: savings on expensive metals, a reasonable match between base and composite metal, and flexibility to set each metal’s thickness to customer needs.',
+    presentacion: 'Bajo especificación del cliente.', presentacionEn: 'To customer specification.',
+    empaque: 'Según las necesidades del cliente.', empaqueEn: 'According to client needs.',
+    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+  aluminio: {
+    tipo: 'aleacion',
+    nombre: 'Aluminio Metálico (Al)', nombreEn: 'Metallic Aluminum (Al)',
+    presentacion: 'Lingote de 12 kg aprox. · Mini jumbo de 200 kg aprox.', presentacionEn: 'Ingot of ~12 kg · Mini jumbo of ~200 kg.',
+    series: [
+      { grado: 'Al-360', comp: [{el:'Si',val:'9.0-10.0'},{el:'Fe',val:'1.3 Max'},{el:'Cu',val:'0.6'},{el:'Mn',val:'0.35'},{el:'Mg',val:'0.4-0.6'},{el:'Cr',val:'—'},{el:'Ni',val:'0.50'},{el:'Zn',val:'0.50'},{el:'Sn',val:'0.15'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
+      { grado: 'Al-356', comp: [{el:'Si',val:'6.5-7.5'},{el:'Fe',val:'0.6 (i)'},{el:'Cu',val:'0.25'},{el:'Mn',val:'0.35 (i)'},{el:'Mg',val:'0.20-0.45'},{el:'Cr',val:'—'},{el:'Ni',val:'—'},{el:'Zn',val:'0.35'},{el:'Sn',val:'—'},{el:'Ti',val:'0.25'}], uso: 'Se utiliza en el vaciado en arena y molde permanente.', usoEn: 'Used in sand casting and permanent mold casting.' },
+      { grado: 'Al-319', comp: [{el:'Si',val:'5.5-6.5'},{el:'Fe',val:'1.0 max'},{el:'Cu',val:'3.0-4.0'},{el:'Mn',val:'0.50'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.35'},{el:'Zn',val:'1.0'},{el:'Sn',val:'—'},{el:'Ti',val:'0.25'}], uso: 'Se utiliza en el vaciado en arena y molde permanente.', usoEn: 'Used in sand casting and permanent mold casting.' },
+      { grado: 'Al-383', comp: [{el:'Si',val:'9.5-11.5'},{el:'Fe',val:'1.3 max'},{el:'Cu',val:'2.0-3.0'},{el:'Mn',val:'0.50'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.30'},{el:'Zn',val:'3.0'},{el:'Sn',val:'0.15'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
+      { grado: 'Al-380.1', comp: [{el:'Si',val:'7.5-9.5'},{el:'Fe',val:'2.0 max'},{el:'Cu',val:'3.0-4.0'},{el:'Mn',val:'0.50'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.50'},{el:'Zn',val:'3.0'},{el:'Sn',val:'0.35'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
+      { grado: 'Al-413', comp: [{el:'Si',val:'11.0-13.0'},{el:'Fe',val:'2.0 max'},{el:'Cu',val:'1.0'},{el:'Mn',val:'0.35'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.50'},{el:'Zn',val:'0.50'},{el:'Sn',val:'0.15'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
+      { grado: 'Al-6063', comp: [{el:'Si',val:'0.4062'},{el:'Fe',val:'0.2065'},{el:'Cu',val:'<0.0010'},{el:'Mn',val:'<0.0100'},{el:'Mg',val:'0.4620'},{el:'Cr',val:'<0.0010'},{el:'Ni',val:'0.0055'},{el:'Zn',val:'<0.0100'},{el:'Sn',val:'<0.0010'},{el:'Ti',val:'0.0081'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
+    ],
+    caracteristicas: [
+      { label: 'Densidad', labelEn: 'Density', val: '2.70 g/ml', valEn: '2.70 g/ml' },
+      { label: 'Punto de Fusión', labelEn: 'Fusion Point', val: '660°C', valEn: '660°C' },
+      { label: 'Punto de Ebullición', labelEn: 'Boiling Point', val: '2450°C', valEn: '2450°C' },
+      { label: 'Peso Atómico', labelEn: 'Atomic Weight', val: '26.9815', valEn: '26.9815' },
+      { label: 'Dureza Brinell', labelEn: 'Brinell Hardness', val: '24 HB', valEn: '24 HB' },
+    ],
+    empaque: 'Lingote de 12 kg: en atados de 1 ton. Shot en costales de 30 kg en supersacos de 1 ton.',
+    empaqueEn: 'Ingot of 12 kg: tied sets of 1 ton. Shot in 30 kg bags within 1 ton super sacks.',
+    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+};
 ---
-<section class="products metales-section tech-grid" id="metales">
+<section class="products tech-grid" id="metales">
   <div class="container">
     {showEyebrow && <span class="eyebrow reveal" data-i18n="metales.eyebrow">Metales</span>}
     <h2 class="reveal" data-i18n="metales.title">Metales No Ferrosos</h2>
     <p class="section-lead reveal" style="--d:1" data-i18n="metales.lead">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
 
-    <div class="metal-grid">
-      {metales.map((m, i) => (
-        <a href={m.href} target="_blank" rel="noopener" class="metal-card reveal" style={`--d:${(i % 3) + 1}; background-image: url('${m.img}')`} aria-label={`Ver ficha de ${m.nombre} en conext.com.mx`}>
-          <span class="metal-card-tag">{m.symbol}</span>
-          <div class="metal-card-info">
-            <h3 data-i18n={`metales.${m.symbol}.nombre`} data-i18n-es={m.nombre} data-i18n-en={m.en}>{m.nombre}</h3>
-            <p data-i18n={`metales.${m.symbol}.desc`} data-i18n-es={m.desc} data-i18n-en={m.descEn}>{m.desc}</p>
-          </div>
-          <span class="card-hint">↗ conext.com.mx</span>
-        </a>
+    <div class="metal-accordion">
+      {categorias.map((cat) => (
+        <details class="metal-category reveal">
+          <summary>
+            <span data-i18n-es={cat.nombre} data-i18n-en={cat.en}>{cat.nombre}</span>
+            <span class="caret" aria-hidden="true">▾</span>
+          </summary>
+          <ul class="metal-bullets">
+            {cat.bullets.map((b) => (
+              b.fichaId ? (
+                <li><button type="button" class="ficha-trigger" data-ficha={b.fichaId} data-i18n-es={b.es} data-i18n-en={b.en}>{b.es}</button></li>
+              ) : (
+                <li><span data-i18n-es={b.es} data-i18n-en={b.en}>{b.es}</span></li>
+              )
+            ))}
+          </ul>
+        </details>
       ))}
     </div>
   </div>
 </section>
+
+<div class="ficha-modal" id="fichaModal" aria-hidden="true">
+  <div class="ficha-modal-backdrop" data-ficha-close></div>
+  <div class="ficha-modal-panel" role="dialog" aria-modal="true" aria-labelledby="fichaModalTitle">
+    <button type="button" class="ficha-modal-close" data-ficha-close aria-label="Cerrar">&times;</button>
+    <div class="ficha-modal-body" id="fichaModalBody"></div>
+  </div>
+</div>
+
+{Object.entries(fichas).map(([id, f]) => (
+  <template id={`ficha-${id}`}>
+    <h3 id="fichaModalTitle" data-i18n-es={f.nombre} data-i18n-en={f.nombreEn}>{f.nombre}</h3>
+    <div class="ficha-img-pending" aria-hidden="true">
+      <span data-i18n-es="Imagen pendiente" data-i18n-en="Image pending">Imagen pendiente</span>
+    </div>
+    {f.tipo === 'simple' ? (
+      <>
+        <dl class="ficha-specs">
+          <div><dt data-i18n-es="Especificación" data-i18n-en="Specification">Especificación</dt><dd data-i18n-es={f.especificacion} data-i18n-en={f.especificacionEn}>{f.especificacion}</dd></div>
+          <div><dt data-i18n-es="Presentación" data-i18n-en="Presentation">Presentación</dt><dd data-i18n-es={f.presentacion} data-i18n-en={f.presentacionEn}>{f.presentacion}</dd></div>
+          <div><dt data-i18n-es="Empaque" data-i18n-en="Packing">Empaque</dt><dd data-i18n-es={f.empaque} data-i18n-en={f.empaqueEn}>{f.empaque}</dd></div>
+          <div><dt data-i18n-es="Calidad" data-i18n-en="Quality">Calidad</dt><dd data-i18n-es={f.calidad} data-i18n-en={f.calidadEn}>{f.calidad}</dd></div>
+        </dl>
+        {f.descripcion && <p class="ficha-desc" data-i18n-es={f.descripcion} data-i18n-en={f.descripcionEn}>{f.descripcion}</p>}
+        {f.caracteristicas && (
+          <>
+            <h4 data-i18n-es="Características Físicas y Mecánicas" data-i18n-en="Physical and Mechanical Characteristics">Características Físicas y Mecánicas</h4>
+            <ul class="ficha-caracteristicas">
+              {f.caracteristicas.map((c) => (
+                <li><span data-i18n-es={c.label} data-i18n-en={c.labelEn}>{c.label}</span>: <strong data-i18n-es={c.val} data-i18n-en={c.valEn}>{c.val}</strong></li>
+              ))}
+            </ul>
+          </>
+        )}
+      </>
+    ) : (
+      <>
+        <dl class="ficha-specs">
+          <div><dt data-i18n-es="Presentación" data-i18n-en="Presentation">Presentación</dt><dd data-i18n-es={f.presentacion} data-i18n-en={f.presentacionEn}>{f.presentacion}</dd></div>
+          <div><dt data-i18n-es="Empaque" data-i18n-en="Packing">Empaque</dt><dd data-i18n-es={f.empaque} data-i18n-en={f.empaqueEn}>{f.empaque}</dd></div>
+          <div><dt data-i18n-es="Calidad" data-i18n-en="Quality">Calidad</dt><dd data-i18n-es={f.calidad} data-i18n-en={f.calidadEn}>{f.calidad}</dd></div>
+        </dl>
+        <h4 data-i18n-es="Características Físicas y Mecánicas" data-i18n-en="Physical and Mechanical Characteristics">Características Físicas y Mecánicas</h4>
+        <ul class="ficha-caracteristicas">
+          {f.caracteristicas.map((c) => (
+            <li><span data-i18n-es={c.label} data-i18n-en={c.labelEn}>{c.label}</span>: <strong data-i18n-es={c.val} data-i18n-en={c.valEn}>{c.val}</strong></li>
+          ))}
+        </ul>
+        <h4 data-i18n-es="Series de aleación" data-i18n-en="Alloy series">Series de aleación</h4>
+        <div class="ficha-series-grid">
+          {f.series.map((s) => (
+            <div class="ficha-serie">
+              <strong>{s.grado}</strong>
+              <table class="ficha-comp-table">
+                <thead><tr>{s.comp.map((c) => <th>{c.el}</th>)}</tr></thead>
+                <tbody><tr>{s.comp.map((c) => <td>{c.val}</td>)}</tr></tbody>
+              </table>
+              <p data-i18n-es={s.uso} data-i18n-en={s.usoEn}>{s.uso}</p>
+            </div>
+          ))}
+        </div>
+      </>
+    )}
+  </template>
+))}

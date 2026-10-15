@@ -10,7 +10,7 @@ const { reverse = false, tightTop = false, tightBottom = false } = Astro.props;
   <div class="container">
     <div class="reach-intro">
       <span class="eyebrow reveal" data-i18n="nosotros.reach.eyebrow">Enfoque y presencia internacional</span>
-      <p class="section-lead reveal" style="--d:1" data-i18n="nosotros.reach.lead">Con presencia en tres países —<strong> México, Estados Unidos y China</strong>— CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, Laredo como puerta estratégica hacia Norteamérica y Shanghái como enlace con Asia.</p>
+      <p class="section-lead reveal" style="--d:1" data-i18n="nosotros.reach.lead">Con presencia en tres países: México, Estados Unidos y China. CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, Estados Unidos y Asia como puerta estratégica.</p>
     </div>
 
     <div class:list={['reach-stack', { reverse }]}>
@@ -59,16 +59,13 @@ const { reverse = false, tightTop = false, tightBottom = false } = Astro.props;
 
     <div class="reach-cards">
       <div class="reach-card reveal" style="--d:1" data-city="monterrey">
-        <h3>Monterrey, México</h3>
-        <p data-i18n="nosotros.reach.mty">Base de operaciones y centro logístico principal.</p>
+        <h3 data-i18n="nosotros.reach.mty.title">Monterrey, México</h3>
       </div>
       <div class="reach-card reveal" style="--d:2" data-city="laredo">
         <h3 data-i18n="nosotros.reach.laredo.title">Laredo, Estados Unidos</h3>
-        <p data-i18n="nosotros.reach.laredo.body">Puerta estratégica hacia el mercado norteamericano, de la mano de nuestro socio comercial Express Service in Products and Metals, Inc.</p>
       </div>
       <div class="reach-card reveal" style="--d:3" data-city="shanghai">
         <h3 data-i18n="nosotros.reach.shanghai.title">Shanghái, China</h3>
-        <p data-i18n="nosotros.reach.shanghai.body">Enlace directo con proveedores y mercados asiáticos.</p>
       </div>
     </div>
     </div>

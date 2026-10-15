@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import Quimicos from '../../components/Quimicos.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Layout title="Productos Químicos | CONEXT" titleKey="title.quimicos">
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Químicos"
+      eyebrowKey="quimicos.eyebrow"
+      title="Productos Químicos"
+      titleKey="quimicos.page.title"
+      lead="Ingredientes de alta pureza para nutracéutica, alimentos funcionales y cosmética."
+      leadKey="quimicos.page.heroLead"
+      image="/assets/img/hero-productos.jpg"
+      imageAlt="Contenedores de productos químicos industriales listos para distribución"
+    />
+    <p class="container section-lead quimicos-page-intro" data-i18n="quimicos.page.intro">Proveemos ingredientes funcionales, extractos naturales y activos cosméticos con especificación técnica definida pureza, presentación y pedido mínimo para las industrias de suplementos, alimentos funcionales y cuidado personal.</p>
+    <Quimicos showEyebrow={false} showIntro={false} />
+  </main>
+  <Footer />
+</Layout>

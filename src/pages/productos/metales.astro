@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import Metales from '../../components/Metales.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Layout title="Metales No Ferrosos | CONEXT" titleKey="title.metales">
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Metales"
+      eyebrowKey="metales.eyebrow"
+      title="Metales"
+      titleKey="metales.page.title"
+      lead="Metales no ferrosos, metales preciosos y tierras raras con especificación certificada."
+      leadKey="metales.page.heroLead"
+      image="/assets/img/hero-productos.jpg"
+      imageAlt="Lingotes de metal no ferroso listos para distribución"
+    />
+    <Metales showEyebrow={false} />
+  </main>
+  <Footer />
+</Layout>

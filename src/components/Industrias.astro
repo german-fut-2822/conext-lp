@@ -1,11 +1,6 @@
 ---
-export interface Props {
-  image?: string;
-}
-const { image = '/assets/img/industrias-band.jpg' } = Astro.props;
 ---
-<section class="industrias-band" style={`background-image: url('${image}')`} id="industrias">
-  <div class="industrias-band-overlay" aria-hidden="true"></div>
+<section class="industrias-band" id="industrias">
   <div class="container industrias-band-inner">
     <h2 class="reveal" data-i18n="industrias.eyebrow">Industrias</h2>
     <p class="industrias-band-lead reveal" style="--d:1" data-i18n="industrias.band">Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente, desarrollando las aleaciones específicas que cada operación requiere.</p>
