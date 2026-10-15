@@ -42,9 +42,6 @@ window.CONEXT_I18N = {
   'nosotros.vision.body': { es: 'Mantenernos como líderes y desarrollar nuevos mercados, así como nuevos productos en el ramo, que nuestros actuales y futuros clientes requieran, a fin de satisfacer sus necesidades en cuanto a calidad, costo y servicio.', en: 'To remain industry leaders and develop new markets, as well as new products, that our current and future customers require, in order to meet their needs in terms of quality, cost and service.' },
   'nosotros.reach.eyebrow': { es: 'Enfoque y presencia internacional', en: 'International focus and presence' },
   'nosotros.reach.lead': { es: 'Con presencia en tres países: México, Estados Unidos y China. CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, Estados Unidos y Asia como puerta estratégica.', en: 'With a presence in three countries: Mexico, the United States and China. CONEXT connects markets and streamlines the flow of materials: Monterrey as our operations base, the United States and Asia as a strategic gateway.' },
-  'nosotros.reach.mty.title': { es: 'Monterrey, México', en: 'Monterrey, Mexico' },
-  'nosotros.reach.laredo.title': { es: 'Laredo, Estados Unidos', en: 'Laredo, United States' },
-  'nosotros.reach.shanghai.title': { es: 'Shanghái, China', en: 'Shanghai, China' },
 
   'nosotros.home.cta': { es: 'Conoce nuestra historia completa y alcance internacional →', en: 'See our full story and international reach →' },
 

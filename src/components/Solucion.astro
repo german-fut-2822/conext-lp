@@ -1,64 +1,15 @@
 ---
-// Sección del Sites justo después del hero: mapa mundi a la izquierda y
-// "La solución exacta…" a la derecha. El mapa (nota del Sites: mapamundi con
-// líneas que conectan Monterrey con EUA, Asia y Europa) se genera al compilar
-// desde world-atlas, así que llega como SVG estático sin JS en el navegador.
-import { geoNaturalEarth1, geoPath } from 'd3-geo';
-import { merge } from 'topojson-client';
-import world from 'world-atlas/countries-110m.json';
-
-const W = 800;
-const H = 420;
-
-// Todo el mundo menos la Antártida, fusionado en una sola silueta (sin fronteras)
-const geoms = (world as any).objects.countries.geometries.filter((g: any) => g.id !== '010');
-const land = merge(world as any, geoms);
-
-const projection = geoNaturalEarth1().fitExtent([[8, 8], [W - 8, H - 8]], land);
-const landPath = geoPath(projection).digits(1)(land);
-
-const pt = (lonLat: [number, number]) => projection(lonLat)!.map((n) => +n.toFixed(1)) as [number, number];
-
-const origen = { label: 'Monterrey', xy: pt([-100.31, 25.67]) };
-const destinos = [
-  { label: 'EUA', labelEn: 'USA', xy: pt([-88, 39]), dx: 14, dy: -12 },
-  { label: 'Europa', labelEn: 'Europe', xy: pt([10, 50]), dx: 14, dy: -12 },
-  { label: 'Asia', labelEn: 'Asia', xy: pt([121.47, 31.23]), dx: -14, dy: -14, anchor: 'end' },
-];
-
-// Arco curvo hacia arriba entre Monterrey y cada destino
-const arc = ([x1, y1]: [number, number], [x2, y2]: [number, number]) => {
-  const dist = Math.hypot(x2 - x1, y2 - y1);
-  const cx = (x1 + x2) / 2;
-  const cy = Math.min(y1, y2) - dist * 0.28;
-  return `M${x1},${y1} Q${cx.toFixed(1)},${cy.toFixed(1)} ${x2},${y2}`;
-};
-const rutas = destinos.map((d, i) => ({ ...d, d: arc(origen.xy, d.xy), delay: `${i * 0.8}s` }));
+// Sección del Sites justo después del hero: espacio de imagen a la izquierda
+// y "La solución exacta…" a la derecha. El mapa mundi que iba aquí se movió
+// a Presencia.astro (German, 2026-10-15) — este slot queda pendiente de la
+// imagen real hasta que el cliente la entregue.
 ---
 <section class="solucion" id="solucion">
   <div class="container solucion-grid">
     <div class="solucion-map reveal">
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Mapa mundi: CONEXT conecta Monterrey con Estados Unidos, Europa y Asia">
-        <path d={landPath} class="solucion-land" />
-
-        {rutas.map((r) => (
-          <>
-            <path d={r.d} class="solucion-route" />
-            <circle r="6" class="map-spark" style={`offset-path: path('${r.d}'); animation-delay: ${r.delay}`} />
-          </>
-        ))}
-
-        {destinos.map((d, i) => (
-          <g>
-            <circle cx={d.xy[0]} cy={d.xy[1]} r="8" class="map-pulse solucion-pulse" style={`--pd:${i * 0.6}s`} />
-            <circle cx={d.xy[0]} cy={d.xy[1]} r="8" class="solucion-dot" />
-            <text x={d.xy[0] + d.dx} y={d.xy[1] + d.dy} text-anchor={d.anchor ?? 'start'} class="solucion-label" data-i18n-es={d.label} data-i18n-en={d.labelEn}>{d.label}</text>
-          </g>
-        ))}
-
-        <circle cx={origen.xy[0]} cy={origen.xy[1]} r="10" class="solucion-origin" />
-        <text x={origen.xy[0] - 12} y={origen.xy[1] + 34} class="solucion-label is-origin" text-anchor="middle">{origen.label}</text>
-      </svg>
+      <div class="solucion-img-pending" aria-hidden="true">
+        <span data-i18n-es="Imagen pendiente" data-i18n-en="Image pending">Imagen pendiente</span>
+      </div>
     </div>
     <div class="solucion-copy reveal" style="--d:1">
       <h2 data-i18n="hero.title">La solución exacta que tu operación necesita</h2>

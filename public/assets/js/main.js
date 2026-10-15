@@ -118,47 +118,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Reach cards <-> world map: hovering (desktop) or tapping (touch) a card highlights
-  // its point and pings a radar ring from it
-  var reachMapPanel = document.getElementById('reachMapPanel');
-  var radarPing = document.getElementById('radarPing');
-  if (reachMapPanel) {
-    var activeCity = null;
-    var activateCity = function (city, point) {
-      activeCity = city;
-      reachMapPanel.setAttribute('data-active', city);
-      reachMapPanel.querySelectorAll('.map-point.is-active').forEach(function (el) { el.classList.remove('is-active'); });
-      if (point) point.classList.add('is-active');
-      if (point && radarPing) {
-        var dot = point.querySelector('.map-dot');
-        var panelRect = reachMapPanel.getBoundingClientRect();
-        var dotRect = dot.getBoundingClientRect();
-        radarPing.style.setProperty('--px', (dotRect.left + dotRect.width / 2 - panelRect.left) + 'px');
-        radarPing.style.setProperty('--py', (dotRect.top + dotRect.height / 2 - panelRect.top) + 'px');
-        radarPing.classList.add('active');
-      }
-    };
-    var deactivateCity = function () {
-      activeCity = null;
-      reachMapPanel.removeAttribute('data-active');
-      reachMapPanel.querySelectorAll('.map-point.is-active').forEach(function (el) { el.classList.remove('is-active'); });
-      if (radarPing) radarPing.classList.remove('active');
-    };
-    var canHover = window.matchMedia('(hover: hover)').matches;
-    document.querySelectorAll('.reach-card[data-city]').forEach(function (card) {
-      var city = card.getAttribute('data-city');
-      var point = reachMapPanel.querySelector('.map-point[data-city="' + city + '"]');
-      if (canHover) {
-        card.addEventListener('mouseenter', function () { activateCity(city, point); });
-        card.addEventListener('mouseleave', function () { deactivateCity(); });
-      } else {
-        // Touch devices have no real hover: tapping a card toggles its ping instead.
-        card.addEventListener('click', function () {
-          if (activeCity === city) { deactivateCity(); } else { activateCity(city, point); }
-        });
-      }
-    });
-  }
 
   // Floating CTA appears after the hero, hides again over the footer
   var floatingCta = document.getElementById('floatingCta');
