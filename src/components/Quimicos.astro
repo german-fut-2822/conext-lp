@@ -8,8 +8,9 @@
 export interface Props {
   showEyebrow?: boolean;
   showIntro?: boolean;
+  home?: boolean;
 }
-const { showEyebrow = true, showIntro = true } = Astro.props;
+const { showEyebrow = true, showIntro = true, home = false } = Astro.props;
 
 type Item = { es: string; en: string };
 type Categoria = { id: string; nombre: string; nombreEn: string; icon: string; items: Item[] };
@@ -63,7 +64,13 @@ const icons: Record<string, string> = {
 <section class="products alt" id="quimicos">
   <div class="container">
     {showEyebrow && <span class="eyebrow reveal" data-i18n="quimicos.eyebrow">Químicos</span>}
-    {showIntro && (
+    {showIntro && home && (
+      <>
+        <h2 class="reveal" data-i18n-es="Productos químicos" data-i18n-en="Chemical products">Productos químicos</h2>
+        <p class="section-lead reveal" style="--d:1" data-i18n-es="Soluciones químicas para distintas industrias, con atención personalizada para ayudarte a identificar el producto correcto para tu aplicación." data-i18n-en="Chemical solutions for different industries, with personalized support to help you identify the right product for your application.">Soluciones químicas para distintas industrias, con atención personalizada para ayudarte a identificar el producto correcto para tu aplicación.</p>
+      </>
+    )}
+    {showIntro && !home && (
       <>
         <h2 class="reveal" data-i18n="quimicos.title">Soluciones químicas para distintas industrias</h2>
         <p class="section-lead reveal" style="--d:1" data-i18n="quimicos.lead">Respaldamos a industrias de distintos sectores con soluciones a la medida y volumen consistente.</p>

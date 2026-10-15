@@ -1,9 +1,4 @@
 ---
-const ICONS = {
-  globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.4 2.6 3.8 5.8 3.8 9s-1.4 6.4-3.8 9c-2.4-2.6-3.8-5.8-3.8-9s1.4-6.4 3.8-9Z"/></svg>',
-  flame: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></svg>',
-};
-
 const EMBERS = Array.from({ length: 14 }, (_, i) => ({
   left: (5 + (i * 7.1) % 92).toFixed(1),
   dx: (((i * 37) % 60) - 30).toFixed(0),
@@ -24,37 +19,44 @@ const EMBERS = Array.from({ length: 14 }, (_, i) => ({
 
   <div class="container hero-grid">
     <div class="hero-copy">
-      <h1 class="reveal in-view" data-i18n="hero.title">La solución exacta que tu operación necesita</h1>
-      <p class="hero-lead reveal in-view" data-i18n="hero.lead">Proveedor líder de metales no ferrosos y piezas especializadas para la industria metalúrgica.</p>
-      <p class="reveal in-view" data-i18n="hero.body">Somos una empresa mexicana con más de <strong>28 años</strong> comprometidos con la más alta calidad y el desarrollo de soluciones a la medida de cada cliente.</p>
+      <h1 class="reveal in-view" data-i18n-es="Proveedor líder de metales no ferrosos y piezas especializadas para la industria metalúrgica" data-i18n-en="Leading supplier of non-ferrous metals and specialized parts for the metallurgical industry">Proveedor líder de metales no ferrosos y piezas especializadas para la industria metalúrgica</h1>
       <div class="hero-actions">
         <a href="/contacto" class="btn-cta" data-i18n="hero.cta1">Solicita tu cotización</a>
         <a href="/productos" class="btn-ghost light" data-i18n="hero.cta2">Ver catálogo de productos</a>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="container hero-highlights">
-    <a href="/nosotros#nosotros" class="hero-chip reveal" style="--d:1">
-      <span class="hero-chip-icon" aria-hidden="true" set:html={ICONS.globe} />
-      <div>
-        <strong>México · EUA · China</strong>
-        <span data-i18n="hero.chip1">Presencia y alcance internacional</span>
-      </div>
-    </a>
-    <a href="/#calidad" class="hero-chip reveal" style="--d:2">
-      <img src="/assets/img/iso-logo-badge.png" alt="ISO 9001:2015" class="hero-chip-badge" loading="lazy">
-      <div>
-        <strong>ISO 9001:2015</strong>
+<section class="hero-stats" aria-label="CONEXT en cifras">
+  <div class="container hero-stats-grid">
+    <div class="hero-stat reveal" style="--d:1">
+      <span class="hero-stat-num" data-count="28">28</span>
+      <span class="hero-stat-text">
+        <em>+</em>
+        <span data-i18n="nosotros.stat1">Años de experiencia</span>
+      </span>
+    </div>
+    <div class="hero-stat reveal" style="--d:2">
+      <span class="hero-stat-num" data-count="3">3</span>
+      <span class="hero-stat-text">
+        <em>México · EUA · China</em>
+        <span data-i18n="nosotros.stat3">Países con presencia</span>
+      </span>
+    </div>
+    <div class="hero-stat reveal" style="--d:3">
+      <span class="hero-stat-num"><sup>ISO</sup>9001</span>
+      <span class="hero-stat-text">
+        <em>2015</em>
         <span data-i18n="hero.chip2">Calidad certificada en cada lote</span>
-      </div>
-    </a>
-    <a href="/fundicion-maxxima" class="hero-chip hero-chip-dark reveal" style="--d:3">
-      <span class="hero-chip-icon" aria-hidden="true" set:html={ICONS.flame} />
-      <div>
-        <strong data-i18n="hero.chip3strong">Fundición Maxxima</strong>
-        <span data-i18n="hero.chip3">Nuestra empresa hermana</span>
-      </div>
-    </a>
+      </span>
+    </div>
+    <div class="hero-stat reveal" style="--d:4">
+      <span class="hero-stat-num" data-count="1998">1998</span>
+      <span class="hero-stat-text">
+        <em>Monterrey, N.L.</em>
+        <span data-i18n="nosotros.stat2">Año de fundación</span>
+      </span>
+    </div>
   </div>
 </section>

@@ -3,14 +3,24 @@ export interface Props {
   reverse?: boolean;
   tightTop?: boolean;
   tightBottom?: boolean;
+  home?: boolean;
 }
-const { reverse = false, tightTop = false, tightBottom = false } = Astro.props;
+const { reverse = false, tightTop = false, tightBottom = false, home = false } = Astro.props;
 ---
 <section class:list={['lineas tech-grid', { 'tight-top': tightTop, 'tight-bottom': tightBottom }]} id="presencia">
   <div class="container">
     <div class="reach-intro">
-      <span class="eyebrow reveal" data-i18n="nosotros.reach.eyebrow">Enfoque y presencia internacional</span>
-      <p class="section-lead reveal" style="--d:1" data-i18n="nosotros.reach.lead">Con presencia en tres países: México, Estados Unidos y China. CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, Estados Unidos y Asia como puerta estratégica.</p>
+      {home ? (
+        <>
+          <h2 class="reveal" data-i18n-es="Presencia y alcance internacional" data-i18n-en="International presence and reach">Presencia y alcance internacional</h2>
+          <p class="section-lead reveal" style="--d:1" data-i18n-es="CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, con puertas estratégicas hacia Estados Unidos y Asia." data-i18n-en="CONEXT connects markets and streamlines the flow of materials: Monterrey as our operations base, with strategic gateways to the United States and Asia.">CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, con puertas estratégicas hacia Estados Unidos y Asia.</p>
+        </>
+      ) : (
+        <>
+          <span class="eyebrow reveal" data-i18n="nosotros.reach.eyebrow">Enfoque y presencia internacional</span>
+          <p class="section-lead reveal" style="--d:1" data-i18n="nosotros.reach.lead">Con presencia en tres países: México, Estados Unidos y China. CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, Estados Unidos y Asia como puerta estratégica.</p>
+        </>
+      )}
     </div>
 
     <div class:list={['reach-stack', { reverse }]}>
@@ -26,7 +36,7 @@ const { reverse = false, tightTop = false, tightBottom = false } = Astro.props;
 
         <!-- Siluetas reales (Natural Earth, simplificadas) — Asia Oriental a la izquierda y
              Norteamérica a la derecha, para que la ruta viaje rumbo al occidente (EUA → China vía el Pacífico) -->
-        <g fill="#3a3e44">
+        <g fill="#d5d9de">
           <g transform="translate(310,0)">
           <path d="M297.1,259.5L295.3,260.5L291.9,259.5L288.5,257.3L289.3,256L291.7,255.6L293.1,255.8L297.1,256.3L300.2,257.7L301.2,259.3ZM320,257.7L317.5,257.4L314.8,258.5L311.6,256.6L312.1,254.7L317.6,255.6L320,255.8L320,257.7ZM320,249.5L317.8,249L319.1,247.3L320,247.4L320,249.5ZM280.6,230.4L282.9,232.6L288.5,231.9L290.6,233.3L295.6,237L299.3,239.7L301.3,239.6L304.8,240.8L304.4,242.5L308.8,242.7L313.2,245.1L312.5,246.5L308.6,247.3L304.6,247.6L300.5,247.1L292,247.7L296,244.4L293.6,242.8L289.7,242.4L287.7,240.7L286.3,237.3L282.9,237.6L277.4,236L275.6,234.7L267.9,233.8L265.8,232.7L268,231.2L262.2,230.9L257.9,233.9L255.5,234L254.6,235.5L251.7,236.1L249.2,235.6L252.3,233.7L253.6,231.6L256.3,230.3L259.3,229.1L263.8,228.5L265.2,227.9L270.3,228.3L275,228.4ZM293.3,224.5L291.9,224.8L290.4,221.4L288.1,219.7L289.4,215.9L291.2,216.1L293.3,221.1ZM291.6,207.8L285.1,208.7L284.7,206.5L287.5,206L291.4,206.2ZM296.5,207.7L295.5,211.9L294.4,211.2L294.5,208.1L291.8,205.7L291.8,205ZM0,66L1.6,66.4L7.2,67L9.2,69.1L12.1,71.9L18,74.4L20.5,77.6L20.5,77.6L17.5,78.5L7.8,75.8L6,73.7L0.7,71.6L0,70.5L0,66ZM198.1,0L194.2,4.1L191.9,8.8L191.6,15.7L200.3,16.7L202.9,22.2L205.7,26.7L214,25.6L225.1,28.1L231,30.4L235.2,33.2L242.7,34.8L248.9,37.3L258.7,37.7L265.2,38.2L264.2,43.4L266.1,49.3L270.4,56L279.2,61.6L283.8,59.7L287,53.6L283.9,44.2L279.7,41.1L289.2,38.3L295.9,34.1L299.2,30L298.7,26.1L294.7,21L287.5,16.5L294.5,10.3L291.9,4.9L290.8,0L320,0L320,121.2L316,122.6L320,122.1L320,124L320,124L318.2,124.4L314.4,124.4L314.6,123.7L312.8,125.3L314.5,125.6L313.2,129.9L308.9,134.4L308.5,132.9L307.2,132.6L305.2,131.1L306.4,134.3L307.9,135.4L308,137.6L306.1,139.9L302.8,144.6L302.2,144.4L304.1,140.4L301,138.1L300.3,133.2L299.2,135.7L300.5,139.5L296.7,138.6L300.6,140.5L300.9,146.1L302.6,146.5L303.2,148.6L304,154.5L300.3,158.9L294.1,160.7L290.2,164.2L287.3,164.6L284.2,166.7L283.4,168.7L276.9,172.6L273.5,175.4L270.7,178.9L269.8,183.1L270.9,187.3L272.9,192.3L275.5,196.5L275.5,199.1L278.4,206L278.2,210L277.9,212.3L276.4,215.9L274.7,216.7L271.7,216L270.8,213.3L268.5,212L265.4,206.9L262.6,202.3L261.7,200L262.9,196.1L261.3,192.8L256.7,187.8L254.4,186.9L248.4,189.6L247.3,189.3L244.4,186.6L240.7,185.1L234,185.8L228.7,185.2L224.2,185.6L221.7,186.4L222.8,188.1L222.7,190.5L224,191.7L222.9,192.5L220.6,191.6L218.4,192.7L214.1,192.5L209.7,189.4L204.5,190.1L200.2,188.8L196.5,189.2L191.5,190.6L186.1,195L180.2,197.5L177,200.4L175.6,203L175.6,207.1L175.9,210L177,212L177,212L177,212L174.7,217.2L173.6,221.5L173.2,229.4L172.6,232.3L173.7,235.5L175.5,238.4L176.7,243L180.6,247.5L182,250.8L184.3,253.8L190.6,255.3L193.1,257.8L198.3,256.2L202.8,255.6L207.3,254.5L211,253.5L214.8,251.1L216.2,247.6L216.7,242.6L217.7,240.9L221.7,239.3L228,237.9L233.2,238.2L236.8,237.7L238.3,238.9L238.1,241.8L234.9,245.3L233.5,248.9L234.6,249.9L233.7,252.5L232.2,257.1L230.7,255.6L229.4,255.7L229.5,256.6L230.6,256.6L230.5,258.2L229.5,260.8L230,261.7L229.4,263.8L229.8,264.4L229.1,267.4L227.9,269L226.9,269.2L225.7,271.2L227.6,272.3L228.1,271.4L229.9,272.2L230.5,272.4L231.8,271.4L233.5,271.3L234,271.8L235,271.5L237.7,272L240.5,271.8L242.4,271.2L243.1,270.5L245,270.8L246.4,271.2L247.9,271.1L249.1,270.6L251.8,271.4L252.8,271.5L254.6,272.6L256.3,274L258.4,274.9L260,276.5L259.5,277.1L259.2,278.4L259.6,280L207.1,280L207.1,280L206.1,279.2L199.4,272.8L196.3,270.9L191.5,269.4L188.2,269.8L183.4,272L180.4,272.6L176.2,271L171.8,269.9L166.2,267.2L161.8,266.4L155.1,263.6L150.1,260.8L148.6,259.2L145.3,258.8L139.2,256.9L136.8,254.2L130.4,250.9L127.4,247.1L126,244.2L128,243.7L127.4,242L128.7,240.4L128.7,238.4L126.8,235.7L126.2,233.3L124.2,230.4L119,224.5L113,219.8L110.1,216.1L105.1,213.7L104,212.2L104.9,208.6L101.8,207.2L98.3,204.3L96.9,200.2L93.7,199.7L90.2,196.6L87.4,193.7L87.2,191.8L84,187.3L81.9,182.8L82,180.5L77.7,178.2L75.7,178.4L72.3,176.8L71.4,179.2L72.3,182.1L72.9,186.5L75,189L79.4,193L80.3,194.4L81.2,194.9L82,196.9L83.1,196.8L84.3,200.6L86.1,202.2L87.3,204.3L91.1,207.3L93,212.8L94.8,215.4L96.4,218.2L96.8,221.3L99.6,221.5L102,224.2L104.2,226.8L104,227.9L101.5,230.1L100.5,230.1L98.9,226.5L95,223.1L90.7,220.2L87.7,218.7L87.9,214.4L87,211.1L84.2,209.3L80.1,206.6L79.3,207.4L77.8,205.9L74.2,204.4L70.7,201L71.1,200.5L73.5,200.9L75.7,198.7L76,196L71.4,191.7L67.9,190.1L65.7,186.4L63.5,182.5L60.8,177.8L58.4,172.4L57.4,169.4L53.5,166L50.7,165.3L50.1,163.6L46.8,163.3L44.6,161.7L39.1,161.1L37.6,160.1L36.9,156.9L31.1,150.9L26.2,142.7L26.4,141.3L23.8,139.3L19.2,134.4L18.4,129.5L15.2,126.3L16.5,121.4L16.3,116.3L14.4,111.7L16.7,106.1L18.2,95.4L17.1,87.4L15.2,82.3L13.5,79.6L14.2,78.4L22.8,80.4L26,86L27.4,84.5L26.5,79.6L24.5,74.7L23.7,74.7L12.2,68.9L7.9,66.3L0,64.5L0,0Z"/>
           </g>
@@ -34,7 +44,7 @@ const { reverse = false, tightTop = false, tightBottom = false } = Astro.props;
           </g>
 
         <use href="#lineMxChn" class="map-line" stroke="#9aa0a6" stroke-width="2"/>
-        <circle class="map-spark" r="4" fill="#e2231a" style={`offset-path: path('M468,213 L488,197 L210,156 Z')`}></circle>
+        <circle class="map-spark" r="4" fill="#a81010" style={`offset-path: path('M468,213 L488,197 L210,156 Z')`}></circle>
 
         <g class="map-point" data-city="monterrey">
           <circle class="map-dot" cx="468" cy="213" r="9" fill="#010101" stroke="#ffffff" stroke-width="1.5"/>
@@ -43,14 +53,14 @@ const { reverse = false, tightTop = false, tightBottom = false } = Astro.props;
         </g>
 
         <g class="map-point" data-city="laredo">
-          <circle class="map-dot" cx="488" cy="197" r="6" fill="#e2231a"/>
-          <circle class="map-pulse" style="--pd:.6s" cx="488" cy="197" r="6" fill="none" stroke="#e2231a"/>
+          <circle class="map-dot" cx="488" cy="197" r="6" fill="#a81010"/>
+          <circle class="map-pulse" style="--pd:.6s" cx="488" cy="197" r="6" fill="none" stroke="#a81010"/>
           <text class="map-label" x="500" y="193">Laredo</text>
         </g>
 
         <g class="map-point" data-city="shanghai">
-          <circle class="map-dot" cx="210" cy="156" r="6" fill="#e2231a"/>
-          <circle class="map-pulse" style="--pd:1.2s" cx="210" cy="156" r="6" fill="none" stroke="#e2231a"/>
+          <circle class="map-dot" cx="210" cy="156" r="6" fill="#a81010"/>
+          <circle class="map-pulse" style="--pd:1.2s" cx="210" cy="156" r="6" fill="none" stroke="#a81010"/>
           <text class="map-label" x="210" y="139">Shanghái</text>
         </g>
       </svg>

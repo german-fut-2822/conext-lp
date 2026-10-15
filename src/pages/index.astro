@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Solucion from '../components/Solucion.astro';
 import SectionDivider from '../components/SectionDivider.astro';
-import Nosotros from '../components/Nosotros.astro';
 import Presencia from '../components/Presencia.astro';
 import Metales from '../components/Metales.astro';
 import Quimicos from '../components/Quimicos.astro';
@@ -17,19 +17,18 @@ import Footer from '../components/Footer.astro';
   <Header />
   <main>
     <Hero />
-    <SectionDivider label="Nosotros" labelKey="nosotros.eyebrow" />
-    <Nosotros />
-    <Presencia tightBottom />
+    <Solucion />
+    <Presencia home tightBottom />
     <SectionDivider label="Productos" labelKey="nav.productos" bg="var(--gris-claro)" />
-    <Metales showEyebrow={false} />
-    <Quimicos showEyebrow={false} />
+    <Metales showEyebrow={false} home />
     <Industrias />
+    <Quimicos showEyebrow={false} home />
     <SectionDivider label="Calidad" labelKey="calidad.eyebrow" bg="var(--gris-claro)" />
     <Calidad />
     <SectionDivider label="Nuestra empresa hermana" labelKey="maxxima.dividerLabel" bg="var(--grafito)" color="var(--blanco)" />
     <Maxxima showEyebrow={false} condensed />
     <SectionDivider label="Contacto" labelKey="nav.contacto" bg="var(--negro)" color="var(--blanco)" />
-    <Contacto />
+    <Contacto home />
   </main>
   <Footer />
 </Layout>

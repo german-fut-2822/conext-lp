@@ -6,8 +6,9 @@
 // simple, sin inventar specs. Ver memoria del proyecto "project-sites-governs-content-and-order".
 export interface Props {
   showEyebrow?: boolean;
+  home?: boolean;
 }
-const { showEyebrow = true } = Astro.props;
+const { showEyebrow = true, home = false } = Astro.props;
 
 type Bullet = { es: string; en: string; fichaId?: string };
 type Categoria = { id: string; nombre: string; en: string; bullets: Bullet[] };
@@ -260,6 +261,33 @@ const fichas: Record<string, Ficha> = {
 };
 ---
 <section class="products tech-grid" id="metales">
+  {home ? (
+    <div class="container metal-showcase">
+      <div class="metal-grid">
+        {categorias.map((cat, i) => (
+          <a href={`/productos/metales#${cat.id}`} class="metal-tile reveal" style={`--d:${(i % 3) + 1}`}>
+            <span class="metal-tile-name" data-i18n-es={cat.nombre} data-i18n-en={cat.en}>{cat.nombre}</span>
+            <span class="metal-tile-foot">
+              {(() => {
+                const n = cat.bullets.length;
+                const es = `${n} ${n === 1 ? 'producto' : 'productos'}`;
+                const en = `${n} ${n === 1 ? 'product' : 'products'}`;
+                return <span data-i18n-es={es} data-i18n-en={en}>{es}</span>;
+              })()}
+              <span class="metal-tile-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        ))}
+      </div>
+      <div class="metal-feature reveal" style="--d:2; background-image: url('/assets/img/hero-productos.jpg')">
+        <div class="metal-feature-body">
+          <h2 data-i18n-es="Metales" data-i18n-en="Metals">Metales</h2>
+          <p data-i18n="metales.lead">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
+          <a href="/productos/metales" class="btn-cta" data-i18n-es="Ver más" data-i18n-en="See more">Ver más</a>
+        </div>
+      </div>
+    </div>
+  ) : (
   <div class="container">
     {showEyebrow && <span class="eyebrow reveal" data-i18n="metales.eyebrow">Metales</span>}
     <h2 class="reveal" data-i18n="metales.title">Metales No Ferrosos</h2>
@@ -267,7 +295,7 @@ const fichas: Record<string, Ficha> = {
 
     <div class="metal-accordion">
       {categorias.map((cat) => (
-        <details class="metal-category reveal">
+        <details class="metal-category reveal" id={cat.id}>
           <summary>
             <span data-i18n-es={cat.nombre} data-i18n-en={cat.en}>{cat.nombre}</span>
             <span class="caret" aria-hidden="true">▾</span>
@@ -285,6 +313,7 @@ const fichas: Record<string, Ficha> = {
       ))}
     </div>
   </div>
+  )}
 </section>
 
 <div class="ficha-modal" id="fichaModal" aria-hidden="true">

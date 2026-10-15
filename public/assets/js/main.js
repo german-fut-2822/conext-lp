@@ -205,8 +205,21 @@ document.addEventListener('DOMContentLoaded', function () {
     revealEls.forEach(function (el) { revealObserver.observe(el); });
   }
 
+  // Abre el grupo de metales al llegar desde el grid del home (/productos/metales#cobre)
+  var openHashCategory = function () {
+    if (!location.hash) return;
+    var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target && target.matches('details.metal-category')) {
+      target.open = true;
+      target.classList.add('in-view');
+      target.scrollIntoView({ block: 'start' });
+    }
+  };
+  openHashCategory();
+  window.addEventListener('hashchange', openHashCategory);
+
   // Animated counters
-  var counters = document.querySelectorAll('.stat-number[data-count]');
+  var counters = document.querySelectorAll('[data-count]');
   var animateCounter = function (el) {
     var target = parseInt(el.getAttribute('data-count'), 10);
     var suffix = el.getAttribute('data-suffix') || '';
