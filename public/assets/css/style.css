@@ -545,6 +545,12 @@ body.ficha-modal-lock { overflow: hidden; }
 }
 .maxxima > .container { position: relative; z-index: 1; }
 .maxxima-intro { max-width: 720px; }
+.maxxima-top-grid { display: grid; grid-template-columns: 1fr 260px; gap: 48px; align-items: center; }
+.maxxima-top-grid .maxxima-intro { max-width: none; }
+.maxxima-top-photo img {
+  display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+  border-radius: 20px; border: 3px solid var(--rojo);
+}
 .maxxima-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
 .maxxima-photos img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; filter: grayscale(.7) saturate(1.1); transition: filter .4s ease; }
 .maxxima-photos img:hover { filter: grayscale(0) saturate(1.15); }
@@ -570,13 +576,6 @@ body.ficha-modal-lock { overflow: hidden; }
 .maxxima-actions { display: flex; gap: 28px; flex-wrap: wrap; }
 .maxxima-home-cta { margin-top: 12px; }
 .maxxima-logo { display: block; height: 56px; width: auto; margin-bottom: 20px; }
-.maxxima-wordmark { display: inline-flex; align-items: center; gap: 12px; height: 56px; margin-bottom: 20px; }
-.maxxima-wordmark-badge { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 2px solid var(--rojo); flex-shrink: 0; }
-.maxxima-wordmark-text {
-  font-family: var(--font-title); font-weight: 400; font-size: 24px; line-height: 1;
-  letter-spacing: .5px; text-transform: uppercase; color: var(--blanco);
-}
-.maxxima-wordmark-text strong { font-weight: 700; color: var(--rojo); margin-left: 6px; }
 .btn-cta.accent-on-dark { background: var(--rojo); }
 
 /* Form section background */
@@ -720,6 +719,8 @@ body.ficha-modal-lock { overflow: hidden; }
   .topbar-contact { gap: 8px 14px; flex-wrap: wrap; justify-content: center; }
   .chem-grid, .mv-grid, .maxxima-grid, .maxxima-photos, .industria-grid { grid-template-columns: 1fr; }
   .maxxima-photos img { height: 220px; }
+  .maxxima-top-grid { grid-template-columns: 1fr; gap: 24px; }
+  .maxxima-top-photo { max-width: 220px; margin: 0 auto; }
   .stat-row { grid-template-columns: 1fr; }
   .metal-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .metal-tile { min-height: 108px; }
