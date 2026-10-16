@@ -195,10 +195,7 @@ section { scroll-margin-top: 110px; }
 .solucion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 .solucion-map { background: var(--blanco); border-radius: 20px; padding: 20px; }
 .solucion-map svg { display: block; width: 100%; height: auto; overflow: visible; }
-.solucion-img-pending {
-  min-height: 320px; display: flex; align-items: center; justify-content: center;
-  border: 1px dashed #c8cbd0; border-radius: 8px; color: var(--gris-acero); font-size: 14px;
-}
+.solucion-img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; }
 .solucion-land { fill: #dde1e5; }
 .solucion-route { fill: none; stroke: var(--rojo); stroke-width: 2.5; stroke-dasharray: 7 7; opacity: .75; animation: dashFlow 1.6s linear infinite; }
 .solucion-dot { fill: var(--rojo); }
