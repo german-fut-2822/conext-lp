@@ -5,8 +5,9 @@ export interface Props {
 }
 const { showEyebrow = true, condensed = false } = Astro.props;
 
-// Logo de Maxxima (nota del Sites). Aún no lo tenemos: se muestra en cuanto se
-// coloque el archivo en public/assets/img/maxxima/ con alguno de estos nombres.
+// Logo de Maxxima (nota del Sites). Aún no lo tenemos: en cuanto se coloque el
+// archivo en public/assets/img/maxxima/ con alguno de estos nombres, reemplaza
+// automáticamente al wordmark de texto que se usa mientras tanto (German, 2026-10-16).
 import fs from 'node:fs';
 import path from 'node:path';
 const LOGO = ['logo-maxxima.svg', 'logo-maxxima.png', 'logo-maxxima.webp']
@@ -21,7 +22,14 @@ const STAT_ICONS = {
   <div class="container">
     <div class="maxxima-intro">
       {showEyebrow && <span class="eyebrow reveal" data-i18n="maxxima.eyebrow">Empresa hermana</span>}
-      {LOGO && <img src={`/assets/img/maxxima/${LOGO}`} alt="Fundición Maxxima" class="maxxima-logo reveal" />}
+      {LOGO ? (
+        <img src={`/assets/img/maxxima/${LOGO}`} alt="Fundición Maxxima" class="maxxima-logo reveal" />
+      ) : (
+        <div class="maxxima-wordmark reveal" role="img" aria-label="Fundición Maxxima">
+          <img src="/assets/img/maxxima/wordmark-badge.jpg" alt="" aria-hidden="true" class="maxxima-wordmark-badge" />
+          <span class="maxxima-wordmark-text">Fundición<strong>Maxxima</strong></span>
+        </div>
+      )}
       <h2 class="reveal">Fundición Maxxima</h2>
       {condensed ? (
         <p class="reveal" style="--d:1" data-i18n-es="Fundición Maxxima es nuestra empresa hermana, especializada en fundición y elaboración de aleaciones. Comparte con CONEXT el mismo compromiso de calidad y respaldo comercial." data-i18n-en="Fundición Maxxima is our sister company, specialized in smelting and alloy production. It shares CONEXT’s same commitment to quality and commercial backing.">Fundición Maxxima es nuestra empresa hermana, especializada en fundición y elaboración de aleaciones. Comparte con CONEXT el mismo compromiso de calidad y respaldo comercial.</p>

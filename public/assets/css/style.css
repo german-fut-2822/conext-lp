@@ -524,6 +524,7 @@ body.ficha-modal-lock { overflow: hidden; }
   display: block; font-family: var(--font-head); font-weight: 700; font-size: 17px;
   letter-spacing: .04em; color: var(--rojo); margin-bottom: 22px;
 }
+.cert-card .iso-badge-img { max-width: 120px; width: 100%; margin: 6px 0 20px; }
 
 
 @keyframes auraDrift {
@@ -569,6 +570,13 @@ body.ficha-modal-lock { overflow: hidden; }
 .maxxima-actions { display: flex; gap: 28px; flex-wrap: wrap; }
 .maxxima-home-cta { margin-top: 12px; }
 .maxxima-logo { display: block; height: 56px; width: auto; margin-bottom: 20px; }
+.maxxima-wordmark { display: inline-flex; align-items: center; gap: 12px; height: 56px; margin-bottom: 20px; }
+.maxxima-wordmark-badge { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 2px solid var(--rojo); flex-shrink: 0; }
+.maxxima-wordmark-text {
+  font-family: var(--font-title); font-weight: 400; font-size: 24px; line-height: 1;
+  letter-spacing: .5px; text-transform: uppercase; color: var(--blanco);
+}
+.maxxima-wordmark-text strong { font-weight: 700; color: var(--rojo); margin-left: 6px; }
 .btn-cta.accent-on-dark { background: var(--rojo); }
 
 /* Form section background */
