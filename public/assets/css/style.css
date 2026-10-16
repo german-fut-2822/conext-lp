@@ -387,8 +387,10 @@ section { scroll-margin-top: 110px; }
 .metal-tile {
   min-height: 128px; padding: 0; background: var(--blanco);
   border: 1px solid #e6e8eb; border-radius: 14px; color: var(--negro); overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
 .metal-tile:hover, .metal-tile[open] { border-color: #cfd3d8; }
+.metal-tile:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(1,1,1,.07); border-color: var(--rojo); }
 .metal-tile-summary {
   display: flex; flex-direction: column; gap: 0; cursor: pointer; list-style: none;
 }
@@ -437,9 +439,13 @@ body.ficha-modal-lock { overflow: hidden; }
   position: relative; display: inline-flex; align-items: center; justify-content: center;
   width: 52px; height: 52px; border: 2px solid var(--rojo); border-radius: 8px;
   background: var(--gris-claro);
+  transition: background-color .25s ease;
 }
-.elem-badge-num { position: absolute; top: 4px; left: 6px; font-size: 9px; font-weight: 600; color: var(--gris-acero); }
-.elem-badge-symbol { font-family: var(--font-title); font-weight: 700; font-size: 20px; color: var(--negro); }
+.elem-badge-num { position: absolute; top: 4px; left: 6px; font-size: 9px; font-weight: 600; color: var(--gris-acero); transition: color .25s ease; }
+.elem-badge-symbol { font-family: var(--font-title); font-weight: 700; font-size: 20px; color: var(--negro); transition: color .25s ease; }
+.metal-tile:hover .elem-badge { background: var(--rojo); }
+.metal-tile:hover .elem-badge-symbol { color: var(--blanco); }
+.metal-tile:hover .elem-badge-num { color: var(--blanco); }
 .elem-badge.lg { width: 92px; height: 92px; border-radius: 12px; }
 .elem-badge.lg .elem-badge-num { top: 8px; left: 10px; font-size: 12px; }
 .elem-badge.lg .elem-badge-symbol { font-size: 36px; }
@@ -483,8 +489,7 @@ body.ficha-modal-lock { overflow: hidden; }
 .chem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(1,1,1,.07); border-color: var(--rojo); }
 .chem-card-icon { width: 32px; height: 32px; margin-bottom: 16px; color: var(--rojo); }
 .chem-card-icon svg { width: 100%; height: 100%; }
-.chem-card-body h3 { color: var(--negro); font-size: 20px; margin-bottom: 6px; transition: color .25s ease; }
-.chem-card:hover .chem-card-body h3 { color: var(--rojo); }
+.chem-card-body h3 { color: var(--negro); font-size: 20px; margin-bottom: 6px; }
 .chem-card-body ul { list-style: none; padding: 0; margin: 0; }
 .chem-item { border-top: 1px solid #eef0f2; }
 .chem-item summary { padding: 10px 0; font-size: 14px; color: var(--gris-acero); cursor: pointer; list-style: none; }
