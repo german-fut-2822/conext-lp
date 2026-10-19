@@ -211,8 +211,8 @@ main .legal-content h2::before, main .products-hub-card h2::before { display: no
 /* Solución — espacio de imagen + "La solución exacta…" (sección del Sites tras el hero) */
 .solucion { background: var(--gris-claro); overflow: hidden; }
 /* Imagen a sangre a la izquierda con corte diagonal en su lado derecho; texto a la derecha */
-.solucion-split { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: 560px; }
-.solucion-media { position: relative; clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%); }
+.solucion-split { display: grid; grid-template-columns: 1fr 1fr; align-items: center; min-height: 560px; }
+.solucion-media { position: relative; aspect-ratio: var(--media-ratio, 16 / 9); clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%); }
 .solucion-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .solucion-split .solucion-copy { align-self: center; padding: 112px var(--gutter) 112px 56px; }
 /* Presencia: espejo de Solución — texto a la izquierda, foto a la derecha con la diagonal en su lado izquierdo */
