@@ -4,9 +4,10 @@ export interface Props {
 }
 const { home = false } = Astro.props;
 ---
-<section class="contact form-bg" id="contacto">
-  <div class="container contact-grid form-bg-content">
+<section class="contact" id="contacto">
+  <div class="container contact-grid">
     <div class="contact-info reveal">
+      {home && <span class="eyebrow" data-i18n="nav.contacto">Contacto</span>}
       {home
         ? <h2 data-i18n-es="Contáctanos ahora" data-i18n-en="Contact us now">Contáctanos ahora</h2>
         : <h2 data-i18n="contacto.title">La solución que buscas, a un mensaje de distancia</h2>}

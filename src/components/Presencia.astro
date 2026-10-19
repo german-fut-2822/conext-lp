@@ -1,51 +1,17 @@
 ---
-// El mapa mundi vive aquí (se movió desde Solucion.astro, German 2026-10-15):
-// la sección "La solución exacta…" todavía no tiene imagen aprobada, así que
-// ese slot queda como espacio reservado y el mapa (Monterrey -> EUA/Europa/Asia)
-// ilustra mejor el contenido de Presencia y alcance internacional.
-import { geoNaturalEarth1, geoPath } from 'd3-geo';
-import { merge } from 'topojson-client';
-import world from 'world-atlas/countries-110m.json';
-
+// Presencia y alcance internacional (home). El mapa SVG generado con d3/world-atlas
+// se reemplazó por la imagen mapa_mundi_3d.webp, con el mismo corte diagonal que
+// la foto de "La solución exacta…" pero en espejo (foto a la derecha).
 export interface Props {
-  reverse?: boolean;
   tightTop?: boolean;
   tightBottom?: boolean;
   home?: boolean;
 }
-const { reverse = false, tightTop = false, tightBottom = false, home = false } = Astro.props;
-
-const W = 800;
-const H = 420;
-
-// Todo el mundo menos la Antártida, fusionado en una sola silueta (sin fronteras)
-const geoms = (world as any).objects.countries.geometries.filter((g: any) => g.id !== '010');
-const land = merge(world as any, geoms);
-
-const projection = geoNaturalEarth1().fitExtent([[8, 8], [W - 8, H - 8]], land);
-const landPath = geoPath(projection).digits(1)(land);
-
-const pt = (lonLat: [number, number]) => projection(lonLat)!.map((n) => +n.toFixed(1)) as [number, number];
-
-const origen = { label: 'Monterrey', xy: pt([-100.31, 25.67]) };
-const destinos = [
-  { label: 'EUA', labelEn: 'USA', xy: pt([-88, 39]), dx: 14, dy: -12 },
-  { label: 'Europa', labelEn: 'Europe', xy: pt([10, 50]), dx: 14, dy: -12 },
-  { label: 'Asia', labelEn: 'Asia', xy: pt([121.47, 31.23]), dx: -14, dy: -14, anchor: 'end' },
-];
-
-// Arco curvo hacia arriba entre Monterrey y cada destino
-const arc = ([x1, y1]: [number, number], [x2, y2]: [number, number]) => {
-  const dist = Math.hypot(x2 - x1, y2 - y1);
-  const cx = (x1 + x2) / 2;
-  const cy = Math.min(y1, y2) - dist * 0.28;
-  return `M${x1},${y1} Q${cx.toFixed(1)},${cy.toFixed(1)} ${x2},${y2}`;
-};
-const rutas = destinos.map((d, i) => ({ ...d, d: arc(origen.xy, d.xy), delay: `${i * 0.8}s` }));
+const { tightTop = false, tightBottom = false, home = false } = Astro.props;
 ---
-<section class:list={['lineas tech-grid', { 'tight-top': tightTop, 'tight-bottom': tightBottom }]} id="presencia">
-  <div class:list={['container solucion-grid reach-row', { reverse }]}>
-    <div class="reach-intro">
+<section class:list={['presencia', { 'tight-top': tightTop, 'tight-bottom': tightBottom }]} id="presencia">
+  <div class="solucion-split is-reverse">
+    <div class="solucion-copy reach-intro">
       {home ? (
         <>
           <h2 class="reveal" data-i18n-es="Presencia y alcance internacional" data-i18n-en="International presence and reach">Presencia y alcance internacional</h2>
@@ -59,28 +25,12 @@ const rutas = destinos.map((d, i) => ({ ...d, d: arc(origen.xy, d.xy), delay: `$
       )}
     </div>
 
-    <div class="solucion-map reveal">
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Mapa mundi: CONEXT conecta Monterrey con Estados Unidos, Europa y Asia">
-        <path d={landPath} class="solucion-land" />
-
-        {rutas.map((r) => (
-          <>
-            <path d={r.d} class="solucion-route" />
-            <circle r="6" class="map-spark" style={`offset-path: path('${r.d}'); animation-delay: ${r.delay}`} />
-          </>
-        ))}
-
-        {destinos.map((d, i) => (
-          <g>
-            <circle cx={d.xy[0]} cy={d.xy[1]} r="8" class="map-pulse solucion-pulse" style={`--pd:${i * 0.6}s`} />
-            <circle cx={d.xy[0]} cy={d.xy[1]} r="8" class="solucion-dot" />
-            <text x={d.xy[0] + d.dx} y={d.xy[1] + d.dy} text-anchor={d.anchor ?? 'start'} class="solucion-label" data-i18n-es={d.label} data-i18n-en={d.labelEn}>{d.label}</text>
-          </g>
-        ))}
-
-        <circle cx={origen.xy[0]} cy={origen.xy[1]} r="10" class="solucion-origin" />
-        <text x={origen.xy[0] - 12} y={origen.xy[1] + 34} class="solucion-label is-origin" text-anchor="middle">{origen.label}</text>
-      </svg>
+    <div class="solucion-media reveal" style="--d:1">
+      <img
+        src="/assets/img/mapa_mundi_3d.webp"
+        alt="Mapa mundi en relieve con puntos iluminados en Norteamérica, Europa y Asia"
+        loading="lazy"
+      />
     </div>
   </div>
 </section>

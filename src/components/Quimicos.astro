@@ -3,7 +3,8 @@
 // real de "Productos Químicos" en conext.com.mx (química de fundición: Tartrato
 // de Antimonio, Desmoldante, Nitrato de Sodio, Arena de Zirconio) no coincide con
 // estos productos aprobados por Selene — confirmado 2026-10-14. German decidió no
-// pedir fichas nuevas por ahora: cada producto es desplegable, pero sin modal.
+// pedir fichas nuevas por ahora. Las tarjetas usan el mismo diseño que las de
+// Metales (foto + insignia + lista desplegable), con fotos en quimicos/*.webp.
 // Ver memoria del proyecto "project-sites-governs-content-and-order".
 export interface Props {
   showEyebrow?: boolean;
@@ -77,24 +78,40 @@ const icons: Record<string, string> = {
       </>
     )}
 
-    <div class="chem-grid">
+    <div class="metal-grid chem-tiles">
       {categorias.map((cat, i) => (
-        <div class="chem-card reveal" style={`--d:${i + 1}`}>
-          <span class="chem-card-icon" set:html={icons[cat.icon]} />
-          <div class="chem-card-body">
-            <h3 data-i18n-es={cat.nombre} data-i18n-en={cat.nombreEn}>{cat.nombre}</h3>
-            <ul>
-              {cat.items.map((it) => (
-                <li>
-                  <details class="chem-item">
-                    <summary data-i18n-es={it.es} data-i18n-en={it.en}>{it.es}</summary>
-                    <p class="chem-item-pending" data-i18n-es="Ficha técnica — próximamente." data-i18n-en="Technical data sheet — coming soon.">Ficha técnica — próximamente.</p>
-                  </details>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <details class="metal-tile reveal" style={`--d:${i + 1}`}>
+          <summary class="metal-tile-summary">
+            <div class="metal-tile-photo" style={`background-image:url(/assets/img/quimicos/${cat.id}.webp)`}>
+              <span class="metal-tile-elems" aria-hidden="true">
+                <span class="elem-badge chem-badge" set:html={icons[cat.icon]} />
+              </span>
+            </div>
+            <div class="metal-tile-info">
+              <span class="metal-tile-name" data-i18n-es={cat.nombre} data-i18n-en={cat.nombreEn}>{cat.nombre}</span>
+              <span class="metal-tile-foot">
+                {(() => {
+                  const n = cat.items.length;
+                  const es = `${n} ${n === 1 ? 'producto' : 'productos'}`;
+                  const en = `${n} ${n === 1 ? 'product' : 'products'}`;
+                  return <span data-i18n-es={es} data-i18n-en={en}>{es}</span>;
+                })()}
+                <span class="metal-tile-caret" aria-hidden="true">▾</span>
+              </span>
+            </div>
+          </summary>
+          <ul class="metal-tile-products">
+            {cat.items.map((it) => (
+              <li data-i18n-es={it.es} data-i18n-en={it.en}>{it.es}</li>
+            ))}
+          </ul>
+          {home && (
+            <a href="/productos/quimicos" class="metal-tile-more">
+              <span data-i18n-es="Ver más" data-i18n-en="View more">Ver más</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          )}
+        </details>
       ))}
     </div>
   </div>

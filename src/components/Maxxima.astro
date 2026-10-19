@@ -7,8 +7,7 @@ const { showEyebrow = true, condensed = false } = Astro.props;
 
 // Logo de Maxxima (nota del Sites). Aún no lo tenemos: se muestra en cuanto se
 // coloque el archivo en public/assets/img/maxxima/ con alguno de estos nombres.
-// Mientras tanto, la foto de colada a la derecha (.maxxima-top-photo) rellena
-// el espacio para que no se vea vacío (German, 2026-10-16).
+// En el home, la foto Fundicion-Maxxima.jpg va de fondo de la sección (.maxxima.condensed).
 import fs from 'node:fs';
 import path from 'node:path';
 const LOGO = ['logo-maxxima.svg', 'logo-maxxima.png', 'logo-maxxima.webp']
@@ -21,10 +20,11 @@ const STAT_ICONS = {
 ---
 <section class:list={['maxxima tech-grid tech-grid-dark', { condensed }]} id="maxxima">
   <div class="container">
-    <div class:list={['maxxima-top', { 'maxxima-top-grid': condensed }]}>
+    <div class="maxxima-top">
       <div class="maxxima-intro">
         {showEyebrow && <span class="eyebrow reveal" data-i18n="maxxima.eyebrow">Empresa hermana</span>}
         {LOGO && <img src={`/assets/img/maxxima/${LOGO}`} alt="Fundición Maxxima" class="maxxima-logo reveal" />}
+        {condensed && <span class="eyebrow reveal" data-i18n="maxxima.dividerLabel">Nuestra empresa hermana</span>}
         <h2 class="reveal">Fundición Maxxima</h2>
         {condensed ? (
           <p class="reveal" style="--d:1" data-i18n-es="Fundición Maxxima es nuestra empresa hermana, especializada en fundición y elaboración de aleaciones. Comparte con CONEXT el mismo compromiso de calidad y respaldo comercial." data-i18n-en="Fundición Maxxima is our sister company, specialized in smelting and alloy production. It shares CONEXT’s same commitment to quality and commercial backing.">Fundición Maxxima es nuestra empresa hermana, especializada en fundición y elaboración de aleaciones. Comparte con CONEXT el mismo compromiso de calidad y respaldo comercial.</p>
@@ -36,9 +36,7 @@ const STAT_ICONS = {
         )}
       </div>
       {condensed && (
-        <div class="maxxima-top-photo reveal" style="--d:1">
-          <img src="/assets/img/maxxima/colada.jpg" alt="Colada de metal fundido en Fundición Maxxima" loading="lazy" />
-        </div>
+        <img src="/assets/img/logo_fondoMaxxima.webp" alt="Logotipo de Fundición Maxxima" class="maxxima-side-logo reveal" style="--d:2" loading="lazy" />
       )}
     </div>
 
