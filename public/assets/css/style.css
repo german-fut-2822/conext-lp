@@ -633,6 +633,8 @@ body.ficha-modal-lock { overflow: hidden; }
 .quality-grid { display: grid; grid-template-columns: auto 1fr; gap: 64px; align-items: center; }
 /* Logo ISO solo, grande, a la izquierda del texto (sin tarjeta) */
 .quality-iso { display: block; width: 280px; max-width: 100%; height: auto; mix-blend-mode: multiply; } /* el PNG trae fondo blanco; multiply lo funde con el gris */
+.quality-certificate { display: flex; flex-direction: column; align-items: center; width: 280px; max-width: 100%; }
+.quality-certificate-link { margin-top: 18px; padding: 10px 30px; font-size: 14px; white-space: nowrap; }
 .quality.tech-grid > .container { z-index: auto; } /* sin capa propia, para que el multiply llegue al gris de la sección */
 .quality-list { list-style: none; padding: 0; }
 .quality-list li { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid #e2e5e8; }
@@ -858,6 +860,7 @@ body.ficha-modal-lock { overflow: hidden; }
   .quality-grid, .contact-grid { grid-template-columns: 1fr; }
   .quality-grid { gap: 32px; }
   .quality-iso { width: 200px; }
+  .quality-certificate { width: 100%; align-items: flex-start; }
   .hero-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; }
   .hero-stat-text span { white-space: normal; }
   .metal-grid, .chem-grid, .mv-grid, .maxxima-grid, .maxxima-photos, .industria-grid { grid-template-columns: repeat(2, 1fr); }
