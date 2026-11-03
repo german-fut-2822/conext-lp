@@ -1,7 +1,5 @@
 ---
-// Presencia y alcance internacional (home). El mapa SVG generado con d3/world-atlas
-// se reemplazó por la imagen mapa_mundi_3d.webp, con el mismo corte diagonal que
-// la foto de "La solución exacta…" pero en espejo (foto a la derecha).
+// Presencia y alcance internacional en Inicio y Nosotros.
 export interface Props {
   tightTop?: boolean;
   tightBottom?: boolean;
@@ -10,27 +8,18 @@ export interface Props {
 const { tightTop = false, tightBottom = false, home = false } = Astro.props;
 ---
 <section class:list={['presencia', { 'tight-top': tightTop, 'tight-bottom': tightBottom }]} id="presencia">
-  <div class="solucion-split is-reverse">
-    <div class="solucion-copy reach-intro">
+  <div class="container presencia-content">
+    <div class="presencia-heading">
       {home ? (
-        <>
-          <h2 class="reveal" data-i18n-es="Presencia y alcance internacional" data-i18n-en="International presence and reach">Presencia y alcance internacional</h2>
-          <p class="section-lead reveal" style="--d:1" data-i18n-es="CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, con puertas estratégicas hacia Estados Unidos y Asia." data-i18n-en="CONEXT connects markets and streamlines the flow of materials: Monterrey as our operations base, with strategic gateways to the United States and Asia.">CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, con puertas estratégicas hacia Estados Unidos y Asia.</p>
-        </>
+        <h2 class="reveal" data-i18n-es="Presencia y alcance internacional" data-i18n-en="International presence and reach">Presencia y alcance internacional</h2>
       ) : (
-        <>
-          <span class="eyebrow reveal" data-i18n="nosotros.reach.eyebrow">Enfoque y presencia internacional</span>
-          <p class="section-lead reveal" style="--d:1" data-i18n="nosotros.reach.lead">Con presencia en tres países: México, Estados Unidos y China. CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, Estados Unidos y Asia como puerta estratégica.</p>
-        </>
+        <span class="eyebrow reveal" data-i18n="nosotros.reach.eyebrow">Enfoque y presencia internacional</span>
       )}
     </div>
-
-    <div class="solucion-media reveal" style="--d:1; --media-ratio: 1356 / 768">
-      <img
-        src="/assets/img/mapa_mundi_3d.webp"
-        alt="Mapa mundi en relieve con puntos iluminados en Norteamérica, Europa y Asia"
-        loading="lazy"
-      />
-    </div>
+    {home ? (
+      <p class="section-lead reveal" style="--d:1" data-i18n-es="CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, con puertas estratégicas hacia Estados Unidos y Asia." data-i18n-en="CONEXT connects markets and streamlines the flow of materials: Monterrey as our operations base, with strategic gateways to the United States and Asia.">CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, con puertas estratégicas hacia Estados Unidos y Asia.</p>
+    ) : (
+      <p class="section-lead reveal" style="--d:1" data-i18n="nosotros.reach.lead">Con presencia en tres países: México, Estados Unidos y China. CONEXT conecta mercados y facilita el flujo de materiales: Monterrey como base de operaciones, Estados Unidos y Asia como puerta estratégica.</p>
+    )}
   </div>
 </section>
