@@ -338,15 +338,18 @@ const fichas: Record<string, Ficha> = {
       {categorias.map((cat, i) => (
         <details class="metal-tile reveal" id={cat.id} style={`--d:${(i % 3) + 1}`}>
           <summary class="metal-tile-summary">
-            <div class="metal-tile-photo" style={`background-image:url(/assets/img/metales/${cat.id}.jpg)`}>
-              <span class:list={['metal-tile-elems', { multi: cat.simbolos.length > 1 }]} aria-hidden="true">
-                {cat.simbolos.map((s) => (
-                  <span class="elem-badge">
-                    <span class="elem-badge-num">{ELEMENTOS[s].num}</span>
-                    <span class="elem-badge-symbol">{s}</span>
-                  </span>
-                ))}
-              </span>
+            <div class:list={['home-metal-elements', `count-${cat.simbolos.length}`]} aria-hidden="true">
+              {cat.simbolos.map((s) => (
+                <span class="home-element-panel">
+                  <span class="home-element-number">{ELEMENTOS[s].num}</span>
+                  <span class="home-element-symbol">{s}</span>
+                  <span
+                    class="home-element-name"
+                    data-i18n-es={ELEMENTOS[s].nombre}
+                    data-i18n-en={ELEMENTOS[s].en}
+                  >{ELEMENTOS[s].nombre}</span>
+                </span>
+              ))}
             </div>
             <div class="metal-tile-info">
               <span class="metal-tile-name" data-i18n-es={cat.nombre} data-i18n-en={cat.en}>{cat.nombre}</span>
