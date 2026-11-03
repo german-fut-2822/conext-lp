@@ -330,10 +330,6 @@ const fichas: Record<string, Ficha> = {
     </div>
   ) : (
   <div class="container">
-    {showEyebrow && <span class="eyebrow reveal" data-i18n="metales.eyebrow">Metales</span>}
-    <h2 class="reveal" data-i18n="metales.title">Metales No Ferrosos</h2>
-    <p class="section-lead reveal" style="--d:1" data-i18n="metales.lead">Comercialización de metales no ferrosos y piezas especializadas para la industria metalúrgica, con el respaldo y la consistencia que exigen las operaciones de gran volumen.</p>
-
     <div class="metal-grid">
       {categorias.map((cat, i) => (
         <details class="metal-tile reveal" id={cat.id} style={`--d:${(i % 3) + 1}`}>
