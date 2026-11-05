@@ -89,10 +89,10 @@ window.CONEXT_I18N = {
   'productos.page.heroEyebrow': { es: 'Productos', en: 'Products' },
   'productos.page.heroTitle': { es: 'Catálogo completo de metales no ferrosos y químicos industriales', en: 'Full catalog of non-ferrous metals and industrial chemicals' },
   'productos.page.heroLead': { es: 'Comercialización con el respaldo y la consistencia que exigen las operaciones de gran volumen.', en: 'Trading with the backing and consistency that high-volume operations demand.' },
-  'metales.page.title': { en: 'Metals' },
+  'metales.page.title': { es: 'Metales', en: 'Metals' },
   'metales.page.heroLead': { es: 'Metales no ferrosos, metales preciosos y tierras raras con especificación certificada.', en: 'Non-ferrous metals, precious metals and rare earths with certified specification.' },
   'quimicos.page.heroLead': { es: 'Ingredientes de alta pureza para nutracéutica, alimentos funcionales y cosmética.', en: 'High-purity ingredients for nutraceuticals, functional foods and cosmetics.' },
-  'quimicos.page.title': { en: 'Chemical Products' },
+  'quimicos.page.title': { es: 'Productos Químicos', en: 'Chemical Products' },
   'quimicos.page.intro': { es: 'Proveemos ingredientes funcionales, extractos naturales y activos cosméticos con especificación técnica definida pureza, presentación y pedido mínimo para las industrias de suplementos, alimentos funcionales y cuidado personal.', en: 'We provide functional ingredients, natural extracts and cosmetic actives with a technical specification defining purity, presentation and minimum order for the supplements, functional foods and personal care industries.' },
 
   'contacto.title': { es: 'La solución que buscas, a un mensaje de distancia', en: 'The solution you need, one message away' },
