@@ -35,8 +35,8 @@ const categorias: Categoria[] = [
   {
     id: 'estano', nombre: 'Estaño', en: 'Tin', simbolos: ['Sn'],
     bullets: [
-      { es: 'Estaño Grado A en lingote.', en: 'Grade A tin in ingot form.', fichaId: 'estano' },
-      { es: 'Estaño de alta pureza (4N) en lingote.', en: 'High-purity (4N) tin in ingot form.', fichaId: 'estano' },
+      { es: 'Estaño Grado A en lingote.', en: 'Grade A tin in ingot form.', fichaId: 'estano-grado-a' },
+      { es: 'Estaño de alta pureza (4N) en lingote.', en: 'High-purity (4N) tin in ingot form.', fichaId: 'estano-4n' },
     ],
   },
   {
@@ -51,15 +51,15 @@ const categorias: Categoria[] = [
   {
     id: 'antimonio', nombre: 'Antimonio', en: 'Antimony', simbolos: ['Sb'],
     bullets: [
-      { es: 'Antimonio en lingote 99.65%.', en: '99.65% antimony in ingot form.', fichaId: 'antimonio' },
-      { es: 'Antimonio en granalla.', en: 'Antimony shot.', fichaId: 'antimonio' },
-      { es: 'Antimonio en polvo.', en: 'Antimony powder.', fichaId: 'antimonio' },
+      { es: 'Antimonio en lingote.', en: 'Antimony in ingot form.', fichaId: 'antimonio-lingote' },
+      { es: 'Antimonio en granalla.', en: 'Antimony shot.', fichaId: 'antimonio-granalla' },
+      { es: 'Antimonio en polvo.', en: 'Antimony powder.', fichaId: 'antimonio-polvo' },
     ],
   },
   {
     id: 'cobre', nombre: 'Cobre', en: 'Copper', simbolos: ['Cu'],
     bullets: [
-      { es: 'Soleras de cobre / BUSBAR.', en: 'Copper busbar.' },
+      { es: 'Soleras de cobre / BUSBAR.', en: 'Copper busbar.', fichaId: 'soleras-cobre' },
       { es: 'Contactos bimetálicos.', en: 'Bimetallic contacts.', fichaId: 'contactos-bimetalicos' },
       { es: 'Placas bimetálicas.', en: 'Bimetallic plates.', fichaId: 'placas-bimetalicas' },
     ],
@@ -69,6 +69,7 @@ const categorias: Categoria[] = [
     bullets: [
       { es: 'Granalla de aluminio.', en: 'Aluminum shot.', fichaId: 'aluminio' },
       { es: 'Aluminio P1020.', en: 'P1020 aluminum.', fichaId: 'aluminio' },
+      { es: 'Hojas de aluminio 1070/H19.', en: 'Aluminum plate 1070/H19.', fichaId: 'hojas-aluminio' },
     ],
   },
   {
@@ -129,28 +130,52 @@ type FichaAleacion = {
   empaque: string; empaqueEn: string;
   calidad: string; calidadEn: string;
 };
-type Ficha = FichaSimple | FichaAleacion;
+type FichaCertificado = {
+  tipo: 'certificado';
+  simbolos: string[];
+  nombre: string; nombreEn: string;
+  columnas: { es: string; en: string }[];
+  filas: { es: string; en: string; valores: string[]; valoresEn?: string[] }[];
+};
+type Ficha = FichaSimple | FichaAleacion | FichaCertificado;
 
 const CERT: Spec = { label: 'Calidad', labelEn: 'Quality', val: '', valEn: '' };
 
 const fichas: Record<string, Ficha> = {
-  estano: {
-    tipo: 'simple', simbolos: ['Sn'],
-    nombre: 'Estaño Metálico (Sn)', nombreEn: 'Metallic Tin (Sn)',
-    especificacion: 'Estaño (Sn) 98.85% de pureza.', especificacionEn: 'Tin (Sn) 98.85% of purity.',
-    descripcion: 'Material muy dúctil que se usa en la fabricación de soldaduras, cojines, aleado con cobre en los bronces de baños electrolíticos de recubrimiento de láminas de fierro y en aleaciones con aluminio, titanio y circonio.',
-    descripcionEn: 'Very ductile material used in the manufacture of welds and cushions, alloyed with copper in bronzes for electrolytic coating baths of iron sheets, and in alloys with aluminum, titanium and zirconium.',
-    presentacion: 'Lingote de 37 kg aprox. · Lingote de 15 kg aprox. · Lingotillo de 2.5 kg aprox. · Barra de 0.5 kg aprox.',
-    presentacionEn: 'Ingot of ~37 kg · Ingot of ~15 kg · Small ingot of ~2.5 kg · Bar of ~0.5 kg.',
-    caracteristicas: [
-      { label: 'Densidad', labelEn: 'Density', val: '7.29 kg/Dm³', valEn: '7.29 kg/Dm³' },
-      { label: 'Punto de Fusión', labelEn: 'Fusion Point', val: '232°C', valEn: '232°C' },
-      { label: 'Tipo de metal', labelEn: 'Metal Type', val: 'Dúctil y maleable', valEn: 'Ductile and malleable' },
-    ],
-    empaque: 'Atados según necesidades del cliente.', empaqueEn: 'Tied according to client needs.',
-    calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  'estano-grado-a': {
+    tipo: 'certificado', simbolos: ['Sn'], nombre: 'Estaño Grado A', nombreEn: 'Tin Grade A',
+    columnas: [{ es: 'Elemento', en: 'Element' }, { es: 'Contenido (%)', en: 'Content (%)' }],
+    filas: [
+      ['Sn','Sn','99.9476'], ['Sb','Sb','0.0165'], ['Cu','Cu','0.0013'], ['Pb','Pb','0.0175'],
+      ['Fe','Fe','0.0035'], ['Bi','Bi','0.0068'], ['As','As','0.0006'], ['Zn','Zn','0.0002'],
+      ['Al','Al','0.0004'], ['Cd','Cd','0.0002'], ['S','S','0.0004'], ['Ni','Ni','0.0003'],
+      ['Co','Co','0.0004'], ['Ag','Ag','0.0003'],
+    ].map(([es, en, valor]) => ({ es, en, valores: [valor] })),
   },
-  antimonio: {
+  'estano-4n': {
+    tipo: 'certificado', simbolos: ['Sn'], nombre: 'Estaño 4N', nombreEn: 'Tin 4N',
+    columnas: [{ es: 'Elemento', en: 'Element' }, { es: 'Contenido (%)', en: 'Content (%)' }],
+    filas: [
+      ['Sn','Sn','99.9977'], ['Pb','Pb','0.0008'], ['As','As','0.00003'], ['Bi','Bi','0.00004'],
+      ['Cu','Cu','0.0004'], ['Fe','Fe','0.0006'], ['Ni','Ni','0.0001'], ['Co','Co','<0.000005'],
+      ['Ag','Ag','<0.00001'], ['Sb','Sb','0.0002'], ['Zn','Zn','<0.00001'], ['Cd','Cd','<0.000005'],
+      ['Al','Al','<0.00003'],
+    ].map(([es, en, valor]) => ({ es, en, valores: [valor] })),
+  },
+  'antimonio-lingote': {
+    tipo: 'certificado', simbolos: ['Sb'], nombre: 'Antimonio Metálico en Lingote', nombreEn: 'Antimony Metal Ingot',
+    columnas: [{ es: 'Elemento', en: 'Element' }, { es: 'Contenido (%)', en: 'Content (%)' }],
+    filas: [
+      ['Sb','Sb','99.83'], ['As','As','0.028'], ['Pb','Pb','0.11'], ['Bi','Bi','0.0095'],
+      ['Cd','Cd','0.0012'], ['Cu','Cu','0.0066'], ['Fe','Fe','0.0093'], ['Se','Se','0.0041'],
+    ].map(([es, en, valor]) => ({ es, en, valores: [valor] })),
+  },
+  'antimonio-polvo': {
+    tipo: 'certificado', simbolos: ['Sb'], nombre: 'Antimonio Metálico en Polvo', nombreEn: 'Antimony Metal Powder',
+    columnas: [{ es: 'Elemento', en: 'Element' }, { es: 'Contenido (%)', en: 'Content (%)' }],
+    filas: [{ es: 'Sb', en: 'Sb', valores: ['≥99.65'] }],
+  },
+  'antimonio-granalla': {
     tipo: 'simple', simbolos: ['Sb'],
     nombre: 'Antimonio Metálico (Sb)', nombreEn: 'Metallic Antimony (Sb)',
     especificacion: 'Antimonio (Sb) 99.65% de pureza.', especificacionEn: 'Antimony (Sb) 99.65% of purity.',
@@ -165,6 +190,31 @@ const fichas: Record<string, Ficha> = {
     ],
     empaque: 'Cajas de madera o atados de 1 ton.', empaqueEn: 'Wood boxes or tied sets of 1 ton.',
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
+  },
+  'soleras-cobre': {
+    tipo: 'certificado', simbolos: ['Cu'], nombre: 'Soleras de Cobre CW009A', nombreEn: 'Copper Busbar CW009A',
+    columnas: [{ es: 'Propiedad', en: 'Property' }, { es: 'Dato real', en: 'Actual data' }, { es: 'Rango estándar', en: 'Standard range' }],
+    filas: [
+      ['Contenido de cobre (%)','Copper content (%)','≥ 99.99','≥99.99'],
+      ['Conductividad (IACS %)','Conductivity (IACS %)','100.2','≥100.0'],
+      ['Resistencia a la tensión (N/mm²)','Tensile strength (N/mm²)','269','230–345'],
+      ['Elongación (%)','Elongation (%)','35.0','≥15'], ['Dureza (HV)','Hardness (HV)','90','68–95'],
+    ].map(([es, en, real, estandar]) => ({ es, en, valores: [real, estandar] })),
+  },
+  'hojas-aluminio': {
+    tipo: 'certificado', simbolos: ['Al'], nombre: 'Hojas de Aluminio 1070/H19', nombreEn: 'Aluminum Plate 1070/H19',
+    columnas: [{ es: 'Elemento', en: 'Element' }, { es: 'Estándar', en: 'Standard' }, { es: 'Valores reportados (5 lotes)', en: 'Reported values (5 lots)' }],
+    filas: [
+      ['Si','Si','0.20','0.072–0.076'], ['Fe','Fe','0.25','0.188–0.222'], ['Cu','Cu','0.04','0.000–0.001'],
+      ['Mn','Mn','0.03','0.001'], ['Mg','Mg','0.03','0.000–0.001'], ['Cr','Cr','-','0.001'],
+      ['Zn','Zn','0.04','0.006'], ['Ti','Ti','0.03','0.008–0.011'], ['Otros','Other','0.15','0.05'],
+      ['Al','Al','Resto','Resto'],
+    ].map(([es, en, estandar, valores]) => ({
+      es,
+      en,
+      valores: [estandar, valores],
+      valoresEn: es === 'Al' ? ['Remainder', 'Remainder'] : undefined,
+    })),
   },
   zinc: {
     tipo: 'simple', simbolos: ['Zn'],
@@ -395,7 +445,21 @@ const fichas: Record<string, Ficha> = {
         </span>
       ))}
     </div>
-    {f.tipo === 'simple' ? (
+    {f.tipo === 'certificado' ? (
+      <>
+        <div class="ficha-table-wrap">
+          <table class="ficha-cert-table">
+            <thead><tr>{f.columnas.map((c) => <th data-i18n-es={c.es} data-i18n-en={c.en}>{c.es}</th>)}</tr></thead>
+            <tbody>{f.filas.map((fila) => (
+              <tr>
+                <th data-i18n-es={fila.es} data-i18n-en={fila.en}>{fila.es}</th>
+                {fila.valores.map((valor, i) => <td data-i18n-es={valor} data-i18n-en={fila.valoresEn?.[i] ?? valor}>{valor}</td>)}
+              </tr>
+            ))}</tbody>
+          </table>
+        </div>
+      </>
+    ) : f.tipo === 'simple' ? (
       <>
         <dl class="ficha-specs">
           <div><dt data-i18n-es="Especificación" data-i18n-en="Specification">Especificación</dt><dd data-i18n-es={f.especificacion} data-i18n-en={f.especificacionEn}>{f.especificacion}</dd></div>

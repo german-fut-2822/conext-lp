@@ -600,6 +600,12 @@ body.ficha-modal-lock { overflow: hidden; }
 .ficha-specs dt { font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: var(--gris-acero); margin: 0; }
 .ficha-specs dd { margin: 2px 0 0; font-size: 14px; }
 .ficha-desc { font-size: 14px; color: var(--texto); }
+.ficha-table-wrap { width: 100%; overflow-x: auto; }
+.ficha-cert-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ficha-cert-table th, .ficha-cert-table td { border-bottom: 1px solid #e2e4e7; padding: 8px 10px; text-align: left; vertical-align: top; }
+.ficha-cert-table thead th { background: var(--gris-claro); color: var(--gris-acero); font-size: 11px; text-transform: uppercase; letter-spacing: .4px; }
+.ficha-cert-table tbody th { font-weight: 500; }
+.ficha-cert-table tbody td { font-weight: 600; white-space: nowrap; }
 .ficha-modal-body h4 { font-size: 14px; text-transform: uppercase; letter-spacing: .5px; margin: 20px 0 10px; }
 .ficha-caracteristicas { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 14px; }
 .ficha-series-grid { display: flex; flex-direction: column; gap: 16px; }

@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Product spec-sheet ("ficha") modal — used on /productos/metales. Each
+  // Product spec-sheet ("ficha") modal — used on both product pages. Each
   // trigger clones its matching <template id="ficha-{id}"> into the shared
   // modal body, then re-applies the current language to the injected markup
   // (applyLangWithin only runs once on load, so dynamically inserted content
