@@ -614,6 +614,9 @@ body.ficha-modal-lock { overflow: hidden; }
 .ficha-comp-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; }
 .ficha-comp-table th, .ficha-comp-table td { border: 1px solid #e2e4e7; padding: 4px 6px; text-align: center; }
 .ficha-comp-table th { background: var(--gris-claro); font-weight: 600; }
+.ficha-pdf-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; font-size: 13px; font-weight: 600; color: var(--rojo); text-decoration: none; }
+.ficha-pdf-link:hover { color: var(--rojo-oscuro); text-decoration: underline; }
+.ficha-pdf-link svg { width: 15px; height: 15px; flex-shrink: 0; }
 @media (max-width: 600px) {
   .ficha-specs, .ficha-caracteristicas { grid-template-columns: 1fr; }
   .ficha-modal-panel { margin: 0; max-height: 100vh; height: 100%; border-radius: 0; }

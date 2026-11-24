@@ -37,11 +37,6 @@ const categorias: Categoria[] = [
     bullets: [
       { es: 'Estaño Grado A en lingote.', en: 'Grade A tin in ingot form.', fichaId: 'estano-grado-a' },
       { es: 'Estaño de alta pureza (4N) en lingote.', en: 'High-purity (4N) tin in ingot form.', fichaId: 'estano-4n' },
-    ],
-  },
-  {
-    id: 'alambre-estano', nombre: 'Alambre de Soldadura de Estaño', en: 'Tin Solder Wire', simbolos: ['Sn'],
-    bullets: [
       { es: 'Alambre de soldadura sin plomo con núcleo de fundente.', en: 'Lead-free flux-core solder wire.' },
       { es: 'Alambre de soldadura sin plomo sólido.', en: 'Lead-free solid solder wire.' },
       { es: 'Alambre de soldadura con plomo con núcleo de fundente.', en: 'Leaded flux-core solder wire.' },
@@ -86,9 +81,14 @@ const categorias: Categoria[] = [
     ],
   },
   {
-    id: 'metales-preciosos', nombre: 'Metales Preciosos', en: 'Precious Metals', simbolos: ['Au', 'Ag'],
+    id: 'oro', nombre: 'Oro', en: 'Gold', simbolos: ['Au'],
     bullets: [
       { es: 'Oro.', en: 'Gold.', fichaId: 'oro' },
+    ],
+  },
+  {
+    id: 'plata', nombre: 'Plata', en: 'Silver', simbolos: ['Ag'],
+    bullets: [
       { es: 'Plata', en: 'Silver', fichaId: 'plata' },
     ],
   },
@@ -329,6 +329,11 @@ const fichas: Record<string, Ficha> = {
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
 };
+
+// Solo estos productos tienen ficha técnica en PDF disponible (COA proporcionado
+// por el cliente, 2026-11-24). El resto de las fichas no muestra enlace de
+// descarga hasta que haya un PDF real que enlazar — no inventar el archivo.
+const FICHAS_CON_PDF = new Set(['estano-grado-a', 'estano-4n', 'antimonio-lingote', 'antimonio-polvo', 'soleras-cobre', 'hojas-aluminio']);
 ---
 <section class="products tech-grid" id="metales">
   {home ? (
@@ -458,6 +463,19 @@ const fichas: Record<string, Ficha> = {
             ))}</tbody>
           </table>
         </div>
+        {FICHAS_CON_PDF.has(id) && (
+          <a
+            class="ficha-pdf-link"
+            href={`/assets/docs/fichas/${id}-es.pdf`}
+            data-i18n-href-es={`/assets/docs/fichas/${id}-es.pdf`}
+            data-i18n-href-en={`/assets/docs/fichas/${id}-en.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            <span data-i18n-es="Descargar ficha técnica (PDF)" data-i18n-en="Download technical datasheet (PDF)">Descargar ficha técnica (PDF)</span>
+          </a>
+        )}
       </>
     ) : f.tipo === 'simple' ? (
       <>

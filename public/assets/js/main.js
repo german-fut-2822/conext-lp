@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
       var value = lang === 'en' ? el.getAttribute('data-i18n-en') : el.getAttribute('data-i18n-es');
       if (value != null) el.innerHTML = value;
     });
+    root.querySelectorAll('[data-i18n-href-es]').forEach(function (el) {
+      var href = lang === 'en' ? el.getAttribute('data-i18n-href-en') : el.getAttribute('data-i18n-href-es');
+      if (href != null) el.setAttribute('href', href);
+    });
   };
 
   var applyLang = function (lang) {

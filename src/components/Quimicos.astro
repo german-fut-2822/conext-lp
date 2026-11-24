@@ -271,6 +271,17 @@ const fichas: Record<string, FichaQuimico> = {
             ))}</tbody>
           </table>
         </div>
+        <a
+          class="ficha-pdf-link"
+          href={`/assets/docs/fichas/${id}-es.pdf`}
+          data-i18n-href-es={`/assets/docs/fichas/${id}-es.pdf`}
+          data-i18n-href-en={`/assets/docs/fichas/${id}-en.pdf`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <span data-i18n-es="Descargar ficha técnica (PDF)" data-i18n-en="Download technical datasheet (PDF)">Descargar ficha técnica (PDF)</span>
+        </a>
       </template>
     ))}
   </>
