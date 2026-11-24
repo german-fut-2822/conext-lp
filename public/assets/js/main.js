@@ -18,6 +18,24 @@ document.addEventListener('DOMContentLoaded', function () {
       var value = lang === 'en' ? el.getAttribute('data-i18n-en') : el.getAttribute('data-i18n-es');
       if (value != null) el.innerHTML = value;
     });
+    root.querySelectorAll('[data-i18n-href-es]').forEach(function (el) {
+      var href = lang === 'en' ? el.getAttribute('data-i18n-href-en') : el.getAttribute('data-i18n-href-es');
+      if (href != null) el.setAttribute('href', href);
+    });
+    root.querySelectorAll('[data-i18n-aria-label-es]').forEach(function (el) {
+      var label = lang === 'en' ? el.getAttribute('data-i18n-aria-label-en') : el.getAttribute('data-i18n-aria-label-es');
+      if (label != null) el.setAttribute('aria-label', label);
+    });
+    root.querySelectorAll('[data-i18n-alt-es]').forEach(function (el) {
+      var alt = lang === 'en' ? el.getAttribute('data-i18n-alt-en') : el.getAttribute('data-i18n-alt-es');
+      if (alt != null) el.setAttribute('alt', alt);
+    });
+  };
+
+  var translatedText = function (key, fallback) {
+    var lang = document.documentElement.lang === 'en' ? 'en' : 'es';
+    var entry = dict[key];
+    return entry && entry[lang] != null ? entry[lang] : fallback;
   };
 
   var applyLang = function (lang) {
@@ -226,13 +244,13 @@ document.addEventListener('DOMContentLoaded', function () {
       if (form.empresa_web.value) return; // honeypot tripped, fail silently
 
       if (!form.checkValidity()) {
-        feedback.textContent = 'Por favor completa los campos requeridos.';
+        feedback.textContent = translatedText('contacto.form.required', 'Por favor completa los campos requeridos.');
         feedback.className = 'form-feedback err';
         return;
       }
 
       if (form.querySelector('.g-recaptcha') && (!window.grecaptcha || !window.grecaptcha.getResponse())) {
-        feedback.textContent = 'Por favor completa el reCAPTCHA.';
+        feedback.textContent = translatedText('contacto.form.recaptcha', 'Por favor completa el reCAPTCHA.');
         feedback.className = 'form-feedback err';
         return;
       }
@@ -242,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var params = new URLSearchParams(formData);
 
       submitBtn.disabled = true;
-      feedback.textContent = 'Enviando...';
+      feedback.textContent = translatedText('contacto.form.sending', 'Enviando...');
       feedback.className = 'form-feedback';
 
       fetch(CONTACT_ENDPOINT, {
@@ -254,18 +272,22 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function (result) {
           submitBtn.disabled = false;
           if (result.estatus) {
-            feedback.textContent = result.message || 'Gracias, recibimos tu mensaje.';
+            feedback.textContent = document.documentElement.lang === 'en'
+              ? translatedText('contacto.form.success', 'Thank you, we received your message.')
+              : (result.message || translatedText('contacto.form.success', 'Gracias, recibimos tu mensaje.'));
             feedback.className = 'form-feedback ok';
             form.reset();
           } else {
-            feedback.textContent = result.message || 'No se pudo enviar tu mensaje, intenta de nuevo.';
+            feedback.textContent = document.documentElement.lang === 'en'
+              ? translatedText('contacto.form.error', 'Your message could not be sent. Please try again.')
+              : (result.message || translatedText('contacto.form.error', 'No se pudo enviar tu mensaje, intenta de nuevo.'));
             feedback.className = 'form-feedback err';
           }
           if (window.grecaptcha && form.querySelector('.g-recaptcha')) window.grecaptcha.reset();
         })
         .catch(function () {
           submitBtn.disabled = false;
-          feedback.textContent = 'Hubo un problema de conexión. Escríbenos directo a ventas@conext.com.mx.';
+          feedback.textContent = translatedText('contacto.form.networkError', 'Hubo un problema de conexión. Escríbenos directo a ventas@conext.com.mx.');
           feedback.className = 'form-feedback err';
           if (window.grecaptcha && form.querySelector('.g-recaptcha')) window.grecaptcha.reset();
         });

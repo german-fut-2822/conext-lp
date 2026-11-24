@@ -228,19 +228,13 @@ const fichas: Record<string, FichaQuimico> = {
           </summary>
           <ul class="metal-tile-products">
             {cat.items.map((it) => (
-              !home && it.fichaId ? (
+              it.fichaId ? (
                 <li><button type="button" class="ficha-trigger" data-ficha={it.fichaId} data-i18n-es={it.es} data-i18n-en={it.en}>{it.es}</button></li>
               ) : (
                 <li><span data-i18n-es={it.es} data-i18n-en={it.en}>{it.es}</span></li>
               )
             ))}
           </ul>
-          {home && (
-            <a href="/productos/quimicos" class="metal-tile-more">
-              <span data-i18n-es="Ver más" data-i18n-en="View more">Ver más</span>
-              <span aria-hidden="true">→</span>
-            </a>
-          )}
         </details>
       ))}
     </div>
@@ -248,17 +242,17 @@ const fichas: Record<string, FichaQuimico> = {
 </section>
 
 {!home && (
-  <>
-    <div class="ficha-modal" id="fichaModal" aria-hidden="true">
-      <div class="ficha-modal-backdrop" data-ficha-close></div>
-      <div class="ficha-modal-panel" role="dialog" aria-modal="true" aria-labelledby="fichaModalTitle">
-        <button type="button" class="ficha-modal-close" data-ficha-close aria-label="Cerrar">&times;</button>
-        <div class="ficha-modal-body" id="fichaModalBody"></div>
-      </div>
+  <div class="ficha-modal" id="fichaModal" aria-hidden="true">
+    <div class="ficha-modal-backdrop" data-ficha-close></div>
+    <div class="ficha-modal-panel" role="dialog" aria-modal="true" aria-labelledby="fichaModalTitle">
+      <button type="button" class="ficha-modal-close" data-ficha-close aria-label="Cerrar" data-i18n-aria-label-es="Cerrar" data-i18n-aria-label-en="Close">&times;</button>
+      <div class="ficha-modal-body" id="fichaModalBody"></div>
     </div>
+  </div>
+)}
 
-    {Object.entries(fichas).map(([id, f]) => (
-      <template id={`ficha-${id}`}>
+{Object.entries(fichas).map(([id, f]) => (
+  <template id={`ficha-${id}`}>
         <h3 id="fichaModalTitle" data-i18n-es={f.nombre} data-i18n-en={f.nombreEn}>{f.nombre}</h3>
         <div class="ficha-table-wrap">
           <table class="ficha-cert-table">
@@ -271,7 +265,16 @@ const fichas: Record<string, FichaQuimico> = {
             ))}</tbody>
           </table>
         </div>
-      </template>
-    ))}
-  </>
-)}
+        <a
+          class="ficha-pdf-link"
+          href={`/assets/docs/fichas/${id}-es.pdf`}
+          data-i18n-href-es={`/assets/docs/fichas/${id}-es.pdf`}
+          data-i18n-href-en={`/assets/docs/fichas/${id}-en.pdf`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <span data-i18n-es="Descargar ficha técnica (PDF)" data-i18n-en="Download technical datasheet (PDF)">Descargar ficha técnica (PDF)</span>
+        </a>
+  </template>
+))}
