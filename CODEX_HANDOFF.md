@@ -55,20 +55,13 @@ primero es confirmar en qué rama está apuntando Vercel — no asumir que es `m
   `main`.
 - Antes de cualquier operación destructiva (`reset --hard`, `checkout --`, etc.)
   corre `git status` y confirma que no se pierde nada.
-- **Estado actual: los 3 ajustes de la sección 5 están en el working tree de
-  `ajustes-finales-2026-11-24` SIN commitear** (el permiso para comitear fue denegado
-  automáticamente en la sesión anterior por tratarse de una acción que requiere
-  confirmación explícita puntual, no solo autorización general). Es decir: los
-  archivos en disco ya tienen los cambios correctos (verificados en el dev server),
-  pero `git status` los mostrará como modificados/sin trackear. Antes de hacer
-  cualquier otra cosa, corre `git status` para confirmar que sigues viendo:
-  - modificados: `public/assets/css/style.css`, `public/assets/img/solucion-ingeniero.webp`,
-    `public/assets/js/main.js`, `src/components/Metales.astro`,
-    `src/components/Quimicos.astro`, `src/components/Solucion.astro`
-  - sin trackear: `public/assets/docs/fichas/` (42 PDFs) y este mismo
-    `CODEX_HANDOFF.md`
-  - Si German pide commit, puedes hacerlo tú directamente (no hay restricción de
-    permisos de tu lado); solo recuerda no hacer push sin que él lo pida.
+- **Estado actual: los 3 ajustes de la sección 5 ya están comiteados en
+  `ajustes-finales-2026-11-24`** (commit `d2b16df`, "Ajustes de cliente: imagen de
+  Solución, tarjetas de Metales y PDFs de ficha técnica"), con confirmación explícita
+  de German. **No se hizo push** — el commit es solo local. Corre `git log --oneline
+  -1` para confirmarlo, y `git status` debería salir limpio (sin cambios pendientes)
+  salvo lo que tú mismo vayas generando para el siguiente ajuste. Avísale a German
+  cuándo conviene hacer push, pero no lo hagas sin que él lo confirme.
 
 ## 4. Servidor de desarrollo
 

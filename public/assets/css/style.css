@@ -563,6 +563,7 @@ body.ficha-modal-lock { overflow: hidden; }
 .chem-badge { color: var(--negro); }
 .chem-badge svg { width: 26px; height: 26px; }
 .metal-tile:hover .chem-badge { color: var(--blanco); }
+.chem-tiles .metal-tile-photo { background-blend-mode: luminosity; }
 /* Fotos altas en las tarjetas de metales y químicos para que luzca la imagen */
 .metal-tile-photo { height: 240px; }
 @media (max-width: 900px) { .metal-tile-photo { height: 200px; } }
@@ -743,7 +744,6 @@ body.ficha-modal-lock { overflow: hidden; }
 .maxxima-actions { display: flex; gap: 28px; flex-wrap: wrap; }
 .maxxima-home-cta { margin-top: 12px; }
 .maxxima-logo { display: block; height: 56px; width: auto; margin-bottom: 20px; }
-.btn-cta.accent-on-dark { background: var(--rojo); }
 
 
 .maxxima-contact { margin-top: 48px; border-radius: 16px; padding: 48px; }

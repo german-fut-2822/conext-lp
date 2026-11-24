@@ -70,8 +70,8 @@ const categorias: Categoria[] = [
   {
     id: 'zinc', nombre: 'Zinc', en: 'Zinc', simbolos: ['Zn'],
     bullets: [
-      { es: 'Zinc SHG (Special High Grade).', en: 'Zinc SHG (Special High Grade).', fichaId: 'zinc' },
-      { es: 'Zinc HG (High Grade).', en: 'Zinc HG (High Grade).', fichaId: 'zinc' },
+      { es: 'Zinc SHG (Grado alto especial).', en: 'Zinc SHG (Special High Grade).', fichaId: 'zinc' },
+      { es: 'Zinc HG (Grado alto).', en: 'Zinc HG (High Grade).', fichaId: 'zinc' },
     ],
   },
   {
@@ -117,7 +117,7 @@ type FichaSimple = {
 };
 type SerieAleacion = {
   grado: string;
-  comp: { el: string; val: string }[];
+  comp: { el: string; val: string; valEn?: string }[];
   uso: string; usoEn: string;
 };
 type FichaAleacion = {
@@ -181,7 +181,7 @@ const fichas: Record<string, Ficha> = {
     especificacion: 'Antimonio (Sb) 99.65% de pureza.', especificacionEn: 'Antimony (Sb) 99.65% of purity.',
     descripcion: 'Es un aleante del plomo en la fabricación de soldaduras, cojinetes y en aleaciones con zinc. Es un aleante nodulizador en el hierro dulce y perlítico en hierro gris.',
     descripcionEn: 'It is a lead alloying element used in the manufacture of welds, bearings and alloys with zinc. It is a nodulizing agent in ductile and pearlitic gray iron.',
-    presentacion: 'Lingotes de 22 kg aprox. · Granalla (Shot).', presentacionEn: 'Ingots of ~22 kg · Shot.',
+    presentacion: 'Lingotes de 22 kg aprox. · Granalla.', presentacionEn: 'Ingots of ~22 kg · Shot.',
     caracteristicas: [
       { label: 'Densidad', labelEn: 'Density', val: '6.88 kg/Dm³', valEn: '6.88 kg/Dm³' },
       { label: 'Punto de Fusión', labelEn: 'Fusion Point', val: '631°C', valEn: '631°C' },
@@ -309,12 +309,12 @@ const fichas: Record<string, Ficha> = {
     nombre: 'Aluminio Metálico (Al)', nombreEn: 'Metallic Aluminum (Al)',
     presentacion: 'Lingote de 12 kg aprox. · Mini jumbo de 200 kg aprox.', presentacionEn: 'Ingot of ~12 kg · Mini jumbo of ~200 kg.',
     series: [
-      { grado: 'Al-360', comp: [{el:'Si',val:'9.0-10.0'},{el:'Fe',val:'1.3 Max'},{el:'Cu',val:'0.6'},{el:'Mn',val:'0.35'},{el:'Mg',val:'0.4-0.6'},{el:'Cr',val:'—'},{el:'Ni',val:'0.50'},{el:'Zn',val:'0.50'},{el:'Sn',val:'0.15'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
+      { grado: 'Al-360', comp: [{el:'Si',val:'9.0-10.0'},{el:'Fe',val:'1.3 máx.',valEn:'1.3 max.'},{el:'Cu',val:'0.6'},{el:'Mn',val:'0.35'},{el:'Mg',val:'0.4-0.6'},{el:'Cr',val:'—'},{el:'Ni',val:'0.50'},{el:'Zn',val:'0.50'},{el:'Sn',val:'0.15'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
       { grado: 'Al-356', comp: [{el:'Si',val:'6.5-7.5'},{el:'Fe',val:'0.6 (i)'},{el:'Cu',val:'0.25'},{el:'Mn',val:'0.35 (i)'},{el:'Mg',val:'0.20-0.45'},{el:'Cr',val:'—'},{el:'Ni',val:'—'},{el:'Zn',val:'0.35'},{el:'Sn',val:'—'},{el:'Ti',val:'0.25'}], uso: 'Se utiliza en el vaciado en arena y molde permanente.', usoEn: 'Used in sand casting and permanent mold casting.' },
-      { grado: 'Al-319', comp: [{el:'Si',val:'5.5-6.5'},{el:'Fe',val:'1.0 max'},{el:'Cu',val:'3.0-4.0'},{el:'Mn',val:'0.50'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.35'},{el:'Zn',val:'1.0'},{el:'Sn',val:'—'},{el:'Ti',val:'0.25'}], uso: 'Se utiliza en el vaciado en arena y molde permanente.', usoEn: 'Used in sand casting and permanent mold casting.' },
-      { grado: 'Al-383', comp: [{el:'Si',val:'9.5-11.5'},{el:'Fe',val:'1.3 max'},{el:'Cu',val:'2.0-3.0'},{el:'Mn',val:'0.50'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.30'},{el:'Zn',val:'3.0'},{el:'Sn',val:'0.15'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
-      { grado: 'Al-380.1', comp: [{el:'Si',val:'7.5-9.5'},{el:'Fe',val:'2.0 max'},{el:'Cu',val:'3.0-4.0'},{el:'Mn',val:'0.50'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.50'},{el:'Zn',val:'3.0'},{el:'Sn',val:'0.35'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
-      { grado: 'Al-413', comp: [{el:'Si',val:'11.0-13.0'},{el:'Fe',val:'2.0 max'},{el:'Cu',val:'1.0'},{el:'Mn',val:'0.35'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.50'},{el:'Zn',val:'0.50'},{el:'Sn',val:'0.15'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
+      { grado: 'Al-319', comp: [{el:'Si',val:'5.5-6.5'},{el:'Fe',val:'1.0 máx.',valEn:'1.0 max.'},{el:'Cu',val:'3.0-4.0'},{el:'Mn',val:'0.50'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.35'},{el:'Zn',val:'1.0'},{el:'Sn',val:'—'},{el:'Ti',val:'0.25'}], uso: 'Se utiliza en el vaciado en arena y molde permanente.', usoEn: 'Used in sand casting and permanent mold casting.' },
+      { grado: 'Al-383', comp: [{el:'Si',val:'9.5-11.5'},{el:'Fe',val:'1.3 máx.',valEn:'1.3 max.'},{el:'Cu',val:'2.0-3.0'},{el:'Mn',val:'0.50'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.30'},{el:'Zn',val:'3.0'},{el:'Sn',val:'0.15'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
+      { grado: 'Al-380.1', comp: [{el:'Si',val:'7.5-9.5'},{el:'Fe',val:'2.0 máx.',valEn:'2.0 max.'},{el:'Cu',val:'3.0-4.0'},{el:'Mn',val:'0.50'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.50'},{el:'Zn',val:'3.0'},{el:'Sn',val:'0.35'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
+      { grado: 'Al-413', comp: [{el:'Si',val:'11.0-13.0'},{el:'Fe',val:'2.0 máx.',valEn:'2.0 max.'},{el:'Cu',val:'1.0'},{el:'Mn',val:'0.35'},{el:'Mg',val:'0.10'},{el:'Cr',val:'—'},{el:'Ni',val:'0.50'},{el:'Zn',val:'0.50'},{el:'Sn',val:'0.15'},{el:'Ti',val:'—'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
       { grado: 'Al-6063', comp: [{el:'Si',val:'0.4062'},{el:'Fe',val:'0.2065'},{el:'Cu',val:'<0.0010'},{el:'Mn',val:'<0.0100'},{el:'Mg',val:'0.4620'},{el:'Cr',val:'<0.0010'},{el:'Ni',val:'0.0055'},{el:'Zn',val:'<0.0100'},{el:'Sn',val:'<0.0010'},{el:'Ti',val:'0.0081'}], uso: 'Se utiliza en la inyección a presión.', usoEn: 'Used in pressure die-casting.' },
     ],
     caracteristicas: [
@@ -324,7 +324,7 @@ const fichas: Record<string, Ficha> = {
       { label: 'Peso Atómico', labelEn: 'Atomic Weight', val: '26.9815', valEn: '26.9815' },
       { label: 'Dureza Brinell', labelEn: 'Brinell Hardness', val: '24 HB', valEn: '24 HB' },
     ],
-    empaque: 'Lingote de 12 kg: en atados de 1 ton. Shot en costales de 30 kg en supersacos de 1 ton.',
+    empaque: 'Lingote de 12 kg: en atados de 1 ton. Granalla en costales de 30 kg en supersacos de 1 ton.',
     empaqueEn: 'Ingot of 12 kg: tied sets of 1 ton. Shot in 30 kg bags within 1 ton super sacks.',
     calidad: 'Entrega de certificado en cada lote.', calidadEn: 'Certificate delivered with every lot.',
   },
@@ -434,7 +434,7 @@ const FICHAS_CON_PDF = new Set(['estano-grado-a', 'estano-4n', 'antimonio-lingot
 <div class="ficha-modal" id="fichaModal" aria-hidden="true">
   <div class="ficha-modal-backdrop" data-ficha-close></div>
   <div class="ficha-modal-panel" role="dialog" aria-modal="true" aria-labelledby="fichaModalTitle">
-    <button type="button" class="ficha-modal-close" data-ficha-close aria-label="Cerrar">&times;</button>
+    <button type="button" class="ficha-modal-close" data-ficha-close aria-label="Cerrar" data-i18n-aria-label-es="Cerrar" data-i18n-aria-label-en="Close">&times;</button>
     <div class="ficha-modal-body" id="fichaModalBody"></div>
   </div>
 </div>
@@ -517,7 +517,7 @@ const FICHAS_CON_PDF = new Set(['estano-grado-a', 'estano-4n', 'antimonio-lingot
               <strong>{s.grado}</strong>
               <table class="ficha-comp-table">
                 <thead><tr>{s.comp.map((c) => <th>{c.el}</th>)}</tr></thead>
-                <tbody><tr>{s.comp.map((c) => <td>{c.val}</td>)}</tr></tbody>
+                <tbody><tr>{s.comp.map((c) => <td data-i18n-es={c.val} data-i18n-en={c.valEn ?? c.val}>{c.val}</td>)}</tr></tbody>
               </table>
               <p data-i18n-es={s.uso} data-i18n-en={s.usoEn}>{s.uso}</p>
             </div>
