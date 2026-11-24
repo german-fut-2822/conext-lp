@@ -372,13 +372,13 @@ const FICHAS_CON_PDF = new Set(['estano-grado-a', 'estano-4n', 'antimonio-lingot
           </summary>
           <ul class="metal-tile-products">
             {cat.bullets.map((b) => (
-              <li data-i18n-es={b.es} data-i18n-en={b.en}>{b.es}</li>
+              b.fichaId ? (
+                <li><button type="button" class="ficha-trigger" data-ficha={b.fichaId} data-i18n-es={b.es} data-i18n-en={b.en}>{b.es}</button></li>
+              ) : (
+                <li><span data-i18n-es={b.es} data-i18n-en={b.en}>{b.es}</span></li>
+              )
             ))}
           </ul>
-          <a href={`/productos/metales#${cat.id}`} class="metal-tile-more">
-            <span data-i18n-es="Ver más" data-i18n-en="View more">Ver más</span>
-            <span aria-hidden="true">→</span>
-          </a>
         </details>
       ))}
     </div>
