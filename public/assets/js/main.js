@@ -243,7 +243,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (form.empresa_web.value) return; // honeypot tripped, fail silently
 
-      if (!form.checkValidity()) {
+      var hasEmptyRequiredField = Array.prototype.some.call(form.querySelectorAll('[required]'), function (field) {
+        return !String(field.value).trim();
+      });
+      if (hasEmptyRequiredField || !form.checkValidity()) {
         feedback.textContent = translatedText('contacto.form.required', 'Por favor completa los campos requeridos.');
         feedback.className = 'form-feedback err';
         return;

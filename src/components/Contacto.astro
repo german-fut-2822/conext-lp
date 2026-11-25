@@ -22,27 +22,27 @@ const { home = false } = Astro.props;
     <form class="contact-form reveal" style="--d:1" id="contactForm" data-origen="Inicio" novalidate>
       <div class="form-row">
         <div class="form-field">
-          <label for="nombre" data-i18n="contacto.form.nombre">Nombre y apellido</label>
+          <label for="nombre" class="required-label" data-i18n="contacto.form.nombre">Nombre y apellido</label>
           <input type="text" id="nombre" name="nombre" required>
         </div>
         <div class="form-field">
-          <label for="empresa" data-i18n="contacto.form.empresa">Empresa</label>
+          <label for="empresa" class="required-label" data-i18n="contacto.form.empresa">Empresa</label>
           <input type="text" id="empresa" name="empresa" required>
         </div>
       </div>
       <div class="form-row">
         <div class="form-field">
-          <label for="correo" data-i18n="contacto.form.correo">Correo corporativo</label>
+          <label for="correo" class="required-label" data-i18n="contacto.form.correo">Correo corporativo</label>
           <input type="email" id="correo" name="correo" required>
         </div>
         <div class="form-field">
-          <label for="telefono" data-i18n="contacto.form.telefono">Teléfono</label>
+          <label for="telefono" class="required-label" data-i18n="contacto.form.telefono">Teléfono</label>
           <input type="tel" id="telefono" name="telefono" required>
         </div>
       </div>
       <div class="form-field">
-        <label for="producto" data-i18n="contacto.form.producto">Producto o material de interés</label>
-        <select id="producto" name="producto">
+        <label for="producto" class="required-label" data-i18n="contacto.form.producto">Producto o material de interés</label>
+        <select id="producto" name="producto" required>
           <option value="" data-i18n="contacto.form.opt0">Selecciona una opción</option>
           <option data-i18n="contacto.form.opt1">Metales no ferrosos</option>
           <option data-i18n="contacto.form.opt2">Químicos industriales</option>
@@ -51,7 +51,7 @@ const { home = false } = Astro.props;
         </select>
       </div>
       <div class="form-field">
-        <label for="mensaje" data-i18n="contacto.form.mensaje">Mensaje</label>
+        <label for="mensaje" class="required-label" data-i18n="contacto.form.mensaje">Mensaje</label>
         <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
       </div>
       <input type="text" name="empresa_web" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">

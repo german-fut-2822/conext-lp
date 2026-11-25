@@ -34,14 +34,14 @@ export default async function handler(request, response) {
   }
 
   const body = request.body || {};
-  const { nombre, empresa, correo, telefono, mensaje, empresa_web: honeypot } = body;
+  const { nombre, empresa, correo, telefono, producto, mensaje, empresa_web: honeypot } = body;
   const recaptchaToken = body['g-recaptcha-response'];
 
   if (honeypot) {
     return response.status(200).json({ estatus: true, message: 'Gracias, recibimos tu mensaje.' });
   }
 
-  const requeridos = { nombre, empresa, correo, telefono, mensaje };
+  const requeridos = { nombre, empresa, correo, telefono, producto, mensaje };
   for (const [campo, valor] of Object.entries(requeridos)) {
     if (!valor || !String(valor).trim()) {
       return response.status(200).json({ estatus: false, message: 'Por favor completa todos los campos requeridos.' });
@@ -58,7 +58,7 @@ export default async function handler(request, response) {
   }
 
   // TODO: envío real de correo (proveedor pendiente de definir) a ventas@conext.com.mx.
-  console.log('Contacto recibido (pendiente de envío real):', { nombre, empresa, correo, telefono });
+  console.log('Contacto recibido (pendiente de envío real):', { nombre, empresa, correo, telefono, producto });
 
   return response.status(200).json({
     estatus: true,

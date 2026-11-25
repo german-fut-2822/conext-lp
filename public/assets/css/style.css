@@ -761,6 +761,7 @@ body.ficha-modal-lock { overflow: hidden; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-field { margin-bottom: 16px; }
 .form-field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--negro); }
+.required-label::after { content: ' *'; color: var(--rojo); }
 .form-field input, .form-field select, .form-field textarea {
   width: 100%; padding: 10px 12px; border: 1px solid #d4d9de; border-radius: 6px;
   font-family: var(--font-body); font-size: 14px; transition: border-color .2s ease, box-shadow .2s ease;
