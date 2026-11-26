@@ -4,18 +4,16 @@
 // a Presencia.astro (German, 2026-10-15). Imagen de contenedores en puerto
 // generada con IA (German, 2026-11-24) para reflejar el giro de importación/
 // comercialización de CONEXT; el nombre del buque se difuminó para no sugerir
-// una asociación con una naviera real.
+// una asociación con una naviera real. Reemplazada por un video (tráiler con
+// contenedor en carretera, generado con Flow) a petición del cliente (German,
+// 2026-11-26).
 ---
 <section class="solucion" id="solucion">
   <div class="solucion-split">
     <div class="solucion-media reveal" style="--media-ratio: 1264 / 848">
-      <img
-        src="/assets/img/solucion-ingeniero.webp"
-        alt="Buque portacontenedores cargando mercancía en puerto industrial al atardecer"
-        data-i18n-alt-es="Buque portacontenedores cargando mercancía en puerto industrial al atardecer"
-        data-i18n-alt-en="Container ship loading cargo at an industrial port at sunset"
-        loading="lazy"
-      />
+      <video autoplay muted loop playsinline poster="/assets/img/solucion-trailer-poster.jpg">
+        <source src="/assets/video/solucion-trailer.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="solucion-copy reveal" style="--d:1">
       <h2 data-i18n="hero.title">La solución exacta que tu operación necesita</h2>
