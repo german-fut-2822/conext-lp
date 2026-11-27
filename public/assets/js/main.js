@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var quoteForm = document.getElementById('contactForm');
     if (quoteForm) {
       var quoteLang = document.documentElement.lang === 'en' ? 'en' : 'es';
-      var quoteNombre = quoteLang === 'en' ? (quoteProductoEn || quoteProductoEs) : (quoteProductoEs || quoteProductoEn);
+      var quoteNombre = (quoteLang === 'en' ? (quoteProductoEn || quoteProductoEs) : (quoteProductoEs || quoteProductoEn)).replace(/\.+$/, '');
       var quoteMensajeField = quoteForm.querySelector('#mensaje');
       if (quoteMensajeField) {
         quoteMensajeField.value = quoteLang === 'en'
