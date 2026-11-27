@@ -231,6 +231,29 @@ document.addEventListener('DOMContentLoaded', function () {
     if (linkPath === currentPath) link.classList.add('active');
   });
 
+  // Prefills the contact form when arriving from a product's "Contacto" link
+  // (?categoria=metales|quimicos&producto_es=...&producto_en=...).
+  var quoteParams = new URLSearchParams(location.search);
+  var quoteProductoEs = quoteParams.get('producto_es');
+  var quoteProductoEn = quoteParams.get('producto_en');
+  if (quoteProductoEs || quoteProductoEn) {
+    var quoteForm = document.getElementById('contactForm');
+    if (quoteForm) {
+      var quoteLang = document.documentElement.lang === 'en' ? 'en' : 'es';
+      var quoteNombre = quoteLang === 'en' ? (quoteProductoEn || quoteProductoEs) : (quoteProductoEs || quoteProductoEn);
+      var quoteMensajeField = quoteForm.querySelector('#mensaje');
+      if (quoteMensajeField) {
+        quoteMensajeField.value = quoteLang === 'en'
+          ? 'Hello, I would like to request more information about ' + quoteNombre + '!'
+          : '¡Hola, me gustaría solicitar más información sobre ' + quoteNombre + '!';
+      }
+      var quoteOptKey = quoteParams.get('categoria') === 'metales' ? 'contacto.form.opt1'
+        : quoteParams.get('categoria') === 'quimicos' ? 'contacto.form.opt2' : null;
+      var quoteOpt = quoteOptKey && quoteForm.querySelector('[data-i18n="' + quoteOptKey + '"]');
+      if (quoteOpt) quoteOpt.selected = true;
+    }
+  }
+
   // Contact forms (Inicio + Fundición Maxxima share the same handler)
   var CONTACT_ENDPOINT = '/api/contacto';
 
@@ -323,8 +346,11 @@ document.addEventListener('DOMContentLoaded', function () {
       p.setAttribute('data-i18n-es', msgEs);
       p.setAttribute('data-i18n-en', msgEn);
       p.textContent = msgEs;
+      var categoria = btn.getAttribute('data-categoria') || '';
       var a = document.createElement('a');
-      a.href = '/contacto';
+      a.href = '/contacto?categoria=' + encodeURIComponent(categoria) +
+        '&producto_es=' + encodeURIComponent(nombreEs) +
+        '&producto_en=' + encodeURIComponent(nombreEn);
       a.className = 'btn-cta';
       a.setAttribute('data-i18n', 'nav.contacto');
       a.textContent = 'Contacto';

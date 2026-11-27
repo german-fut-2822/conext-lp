@@ -524,6 +524,7 @@ main .legal-content h2::before, main .products-hub-card h2::before { display: no
 .metal-tile-products li { color: var(--texto); font-size: 14px; line-height: 1.45; }
 
 .ficha-trigger {
+  display: block; width: 100%; text-align: left;
   background: none; border: none; padding: 0; font: inherit; font-size: 14px; cursor: pointer;
   color: var(--rojo); text-decoration: underline; text-underline-offset: 3px;
 }
