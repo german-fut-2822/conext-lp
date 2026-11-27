@@ -2,10 +2,11 @@
 // Contenido verbatim del Google Sites (Inicio y Productos/Químicos). El catálogo
 // real de "Productos Químicos" en conext.com.mx (química de fundición: Tartrato
 // de Antimonio, Desmoldante, Nitrato de Sodio, Arena de Zirconio) no coincide con
-// estos productos aprobados por Selene — confirmado 2026-10-14. German decidió no
-// pedir fichas nuevas por ahora. Las tarjetas usan el mismo diseño que las de
-// Metales (foto + insignia + lista desplegable), con fotos en quimicos/*.webp.
-// Ver memoria del proyecto "project-sites-governs-content-and-order".
+// estos productos aprobados por Selene — confirmado 2026-10-14. Las tarjetas usan
+// el mismo diseño que las de Metales (foto + insignia + lista desplegable), con
+// fotos en quimicos/*.webp. A petición del cliente (2026-11-27) ya no se muestran
+// fichas técnicas: al dar clic en el nombre de un producto se abre un aviso para
+// contactarnos. Ver memoria del proyecto "project-sites-governs-content-and-order".
 export interface Props {
   showEyebrow?: boolean;
   showIntro?: boolean;
@@ -13,7 +14,7 @@ export interface Props {
 }
 const { showEyebrow = true, showIntro = true, home = false } = Astro.props;
 
-type Item = { es: string; en: string; fichaId?: string };
+type Item = { es: string; en: string };
 type Categoria = { id: string; nombre: string; nombreEn: string; icon: string; items: Item[] };
 
 const categorias: Categoria[] = [
@@ -23,15 +24,15 @@ const categorias: Categoria[] = [
     items: [
       { es: 'NMN (Mononucleótido de nicotinamida).', en: 'NMN (Nicotinamide Mononucleotide).' },
       { es: 'NR (Ribósido de nicotinamida).', en: 'NR (Nicotinamide Riboside).' },
-      { es: 'Taurina.', en: 'Taurine.', fichaId: 'taurina' },
-      { es: 'Monohidrato de creatina.', en: 'Creatine monohydrate.', fichaId: 'creatina' },
-      { es: 'D-glucosamina HCl.', en: 'D-glucosamine HCl.', fichaId: 'glucosamina-hcl' },
-      { es: 'Sulfato de glucosamina.', en: 'Glucosamine sulphate.', fichaId: 'glucosamina-sulfato' },
+      { es: 'Taurina.', en: 'Taurine.' },
+      { es: 'Monohidrato de creatina.', en: 'Creatine monohydrate.' },
+      { es: 'D-glucosamina HCl.', en: 'D-glucosamine HCl.' },
+      { es: 'Sulfato de glucosamina.', en: 'Glucosamine sulphate.' },
       { es: 'Condroitina.', en: 'Chondroitin.' },
       { es: 'Vitamina E.', en: 'Vitamin E.' },
-      { es: 'D-biotina 2%.', en: 'D-biotin 2%.', fichaId: 'biotina' },
-      { es: 'Ácido fólico.', en: 'Folic acid.', fichaId: 'acido-folico' },
-      { es: 'Sucralosa.', en: 'Sucralose.', fichaId: 'sucralosa' },
+      { es: 'D-biotina 2%.', en: 'D-biotin 2%.' },
+      { es: 'Ácido fólico.', en: 'Folic acid.' },
+      { es: 'Sucralosa.', en: 'Sucralose.' },
       { es: 'Fruta del monje.', en: 'Monk fruit.' },
     ],
   },
@@ -41,20 +42,20 @@ const categorias: Categoria[] = [
     items: [
       { es: 'Extracto de té verde / EGCG.', en: 'Green tea extract / EGCG.' },
       { es: 'Extracto de ginseng.', en: 'Ginseng extract.' },
-      { es: 'Extracto de hoja de Ginkgo biloba.', en: 'Ginkgo biloba leaf extract.', fichaId: 'ginkgo' },
-      { es: 'Extracto de stevia TSG95 / Rebaudiósido A 80.', en: 'Stevia extract TSG95 / Rebaudioside A 80.', fichaId: 'stevia' },
-      { es: 'Extracto de hongo Reishi.', en: 'Reishi mushroom extract.', fichaId: 'reishi' },
+      { es: 'Extracto de hoja de Ginkgo biloba.', en: 'Ginkgo biloba leaf extract.' },
+      { es: 'Extracto de stevia TSG95 / Rebaudiósido A 80.', en: 'Stevia extract TSG95 / Rebaudioside A 80.' },
+      { es: 'Extracto de hongo Reishi.', en: 'Reishi mushroom extract.' },
     ],
   },
   {
     id: 'cosmeticos', icon: 'droplet',
     nombre: 'Cosméticos y cuidado personal', nombreEn: 'Cosmetics & personal care',
     items: [
-      { es: 'Hialuronato de sodio (grado cosmético).', en: 'Sodium hyaluronate (cosmetic grade).', fichaId: 'hialuronato' },
-      { es: 'Ácido kójico.', en: 'Kojic acid.', fichaId: 'acido-kojico' },
-      { es: 'Alfa-arbutina.', en: 'Alpha-arbutin.', fichaId: 'alfa-arbutina' },
-      { es: 'Colágeno de pollo.', en: 'Chicken collagen.', fichaId: 'colageno' },
-      { es: 'Ácido etil ascórbico.', en: 'Ethyl ascorbic acid.', fichaId: 'acido-etil-ascorbico' },
+      { es: 'Hialuronato de sodio (grado cosmético).', en: 'Sodium hyaluronate (cosmetic grade).' },
+      { es: 'Ácido kójico.', en: 'Kojic acid.' },
+      { es: 'Alfa-arbutina.', en: 'Alpha-arbutin.' },
+      { es: 'Colágeno de pollo.', en: 'Chicken collagen.' },
+      { es: 'Ácido etil ascórbico.', en: 'Ethyl ascorbic acid.' },
     ],
   },
 ];
@@ -65,128 +66,6 @@ const icons: Record<string, string> = {
   droplet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/></svg>',
 };
 
-type FichaQuimico = {
-  nombre: string;
-  nombreEn: string;
-  filas: { es: string; en: string; valor: string; valorEn?: string }[];
-};
-
-const ficha = (nombre: string, nombreEn: string, filas: [string, string, string, string?][]): FichaQuimico => ({
-  nombre,
-  nombreEn,
-  filas: filas.map(([es, en, valor, valorEn]) => ({ es, en, valor, valorEn })),
-});
-
-const fichas: Record<string, FichaQuimico> = {
-  taurina: ficha('Taurina', 'Taurine', [
-    ['Descripción','Description','Cristales blancos o polvo cristalino','White crystals or crystalline powder'],
-    ['Identificación (IR)','Identification (IR)','Concordante con el espectro de referencia','Concordant with the reference spectrum'],
-    ['Valoración','Assay','99.0–101.0%'], ['pH','pH','4.1–5.6'], ['Metales pesados (Pb)','Heavy metals (Pb)','≤10 ppm'],
-    ['Cloruro (Cl)','Chloride (Cl)','≤0.011%'], ['Sulfato (SO₄)','Sulfate (SO₄)','≤0.010%'], ['Hierro','Iron','≤10 ppm'],
-    ['Amonio (NH₄)','Ammonium (NH₄)','≤0.02%'], ['Pérdida por secado','Loss on drying','≤0.2%'], ['Residuo de ignición','Residue on ignition','≤0.10%'],
-    ['Cuenta total en placa','Total plate count','≤1000 UFC/g','≤1000 CFU/g'], ['Levaduras y mohos','Yeasts and molds','≤100 UFC/g','≤100 CFU/g'],
-    ['E. coli','E. coli','Negativo','Negative'], ['Salmonella','Salmonella','Negativo/25 g','Negative/25 g'], ['Staphylococcus aureus','Staphylococcus aureus','Negativo/g','Negative/g'],
-  ]),
-  creatina: ficha('Monohidrato de Creatina', 'Creatine Monohydrate', [
-    ['Valoración','Assay','99.5% mín.','99.5% min.'], ['Apariencia','Appearance','Polvo blanco','White powder'], ['Solución','Solution','Clara e incolora','Clear and colorless'],
-    ['Residuo de ignición','Residue on ignition','0.1% máx.','0.1% max.'], ['Pérdida por secado','Loss on drying','12.0% máx.','12.0% max.'],
-    ['Creatinina','Creatinine','<50 ppm'], ['Sulfato','Sulphate','<0.03%'], ['Diciandiamida','Dicyandiamide','<20 ppm'], ['Cianuro','Cyanide','<1 ppm'],
-    ['Impurezas','Impurities','<0.5%'], ['Hierro','Iron','<10 ppm'], ['Metales pesados','Heavy metals','5 ppm máx.','5 ppm max.'],
-    ['Pb','Pb','3 ppm máx.','3 ppm max.'], ['As','As','1 ppm máx.','1 ppm max.'], ['Hg','Hg','0.1 ppm máx.','0.1 ppm max.'], ['Cd','Cd','1 ppm máx.','1 ppm max.'],
-    ['Cuenta total en placa','Total plate count','1000 UFC/g máx.','1000 CFU/g max.'], ['Levaduras y mohos','Yeast and molds','Ausente','Absent'],
-    ['Coliformes','Coliforms','Ausente','Absent'], ['Salmonella spp.','Salmonella spp.','Ausente','Absent'], ['E. coli','E. coli','Ausente','Absent'],
-  ]),
-  'glucosamina-hcl': ficha('D-Glucosamina HCl', 'D-Glucosamine HCl', [
-    ['Apariencia','Appearance','Polvo cristalino blanco','White crystalline powder'], ['Valoración','Assay','98.0–102.0%'],
-    ['Rotación específica (25 °C)','Specific rotation (25 °C)','72.0° ± 1°'], ['Cloruro','Chloride','16.2–16.7%'], ['pH (2%, 25 °C)','pH (2%, 25 °C)','3.5–5.0'],
-    ['Pérdida por secado','Loss on drying','0.5% máx.','0.5% max.'], ['Residuo de ignición','Residue on ignition','0.1% máx.','0.1% max.'],
-    ['Metales pesados (como Pb)','Heavy metals (as Pb)','10 ppm máx.','10 ppm max.'], ['Hierro','Iron','10 ppm máx.','10 ppm max.'], ['Arsénico','Arsenic','0.5 ppm máx.','0.5 ppm max.'],
-  ]),
-  'glucosamina-sulfato': ficha('Sulfato de Glucosamina', 'Glucosamine Sulphate', [
-    ['Apariencia','Appearance','Polvo cristalino blanco','White crystalline powder'], ['Valoración','Assay','98.0–102.0%'], ['Rotación específica','Specific rotation','+50°–+52°'],
-    ['Cloruro','Chloride','11–13%'], ['pH','pH','3.0–5.0'], ['Pérdida por secado','Loss on drying','<0.5%'], ['Residuo de ignición','Residue on ignition','27–29%'],
-    ['Sulfato','Sulfate','15.5–16.5%'], ['Metales pesados','Heavy metals','<10 ppm'], ['Hierro','Iron','<10 ppm'], ['Arsénico','Arsenic','<2 ppm'], ['Plomo','Lead','<2 ppm'],
-    ['Impurezas orgánicas volátiles','Organic volatile impurities','<1000 ppm'], ['Cuenta total en placa','Total plate count','≤1000 UFC/g','≤1000 CFU/g'], ['Malla','Mesh','Malla 80','80 mesh'],
-  ]),
-  biotina: ficha('D-Biotina 2%', 'D-Biotin 2%', [
-    ['Apariencia','Appearance','Polvo fluido blanco a blanquecino','White to whitish free-flowing powder'], ['Identificación','Identification','Positivo','Positive'],
-    ['Pérdida por secado','Loss on drying','≤6.0%'], ['Tamaño de partícula','Particle size','No menos de 95% pasa malla 80','NLT 95% passes 80 mesh'],
-    ['Metales pesados','Heavy metals','≤10 ppm'], ['Pb','Pb','≤2 ppm'], ['As','As','≤2 ppm'], ['Valoración (HPLC)','Assay (HPLC)','≥2%'],
-  ]),
-  'acido-folico': ficha('Ácido Fólico', 'Folic Acid', [
-    ['Apariencia','Appearance','Polvo amarillo o naranja','Yellow or orange powder'], ['Absorción UV (A256/A365)','UV absorption (A256/A365)','2.80–3.00'],
-    ['Agua','Water','8.5% máx.','8.5% max.'], ['Residuo de ignición','Residue on ignition','0.3% máx.','0.3% max.'],
-    ['Impurezas orgánicas volátiles','Organic volatile impurities','Cumple los requisitos','Meets requirements'], ['Valoración','Assay','96.0–102.0%'],
-    ['Plomo','Lead','3 mg/kg máx.','3 mg/kg max.'], ['As','As','1 mg/kg máx.','1 mg/kg max.'], ['Cadmio','Cadmium','1 mg/kg máx.','1 mg/kg max.'],
-    ['Cromo','Chromium','2 mg/kg máx.','2 mg/kg max.'], ['Salmonella','Salmonella','Negativo','Negative'],
-  ]),
-  sucralosa: ficha('Sucralosa', 'Sucralose', [
-    ['Apariencia','Appearance','Polvo cristalino blanco','White crystalline powder'], ['Valoración','Assay','98.0% mín.','98.0% min.'],
-    ['Pérdida por secado','Loss on drying','2% máx.','2% max.'], ['Rotación específica','Specific rotation','+84.0°–+87.5°'], ['Residuo de ignición','Ignited residue','0.7% máx.','0.7% max.'],
-    ['Productos de hidrólisis','Hydrolysis products','0.1% máx.','0.1% max.'], ['Metanol','Methanol','0.1% máx.','0.1% max.'],
-    ['Otros disacáridos clorados','Other chlorinated disaccharides','0.5% máx.','0.5% max.'], ['Monosacáridos clorados','Chlorinated monosaccharides','0.1% máx.','0.1% max.'],
-    ['Metales pesados','Heavy metals','10 mg/kg máx.','10 mg/kg max.'], ['Arsénico','Arsenic','3 mg/kg máx.','3 mg/kg max.'], ['Plomo','Lead','1 mg/kg máx.','1 mg/kg max.'],
-    ['Hierro','Iron','10 mg/kg máx.','10 mg/kg max.'], ['Sustancias relacionadas','Related substances','0.5% máx.','0.5% max.'], ['Óxido de trifenilfosfina','Triphenylphosphine oxide','150 mg/kg'],
-    ['pH','pH','5–7'], ['Cuenta total en placa','Total plate count','250 UFC/g máx.','250 CFU/g max.'], ['Coliformes (NMP)','Coliforms (MPN)','3 NMP/g máx.','3 MPN/g max.'],
-    ['Levaduras y mohos','Yeast and molds','50 UFC/g máx.','50 CFU/g max.'], ['E. coli','E. coli','Negativo','Negative'], ['Salmonella','Salmonella','Negativo','Negative'],
-  ]),
-  ginkgo: ficha('Extracto de Hoja de Ginkgo Biloba', 'Ginkgo Biloba Leaf Extract', [
-    ['Glucósidos de flavona de ginkgo','Ginkgo flavone glycosides','>24%'], ['Apariencia','Appearance','Polvo café','Brown powder'], ['Olor','Odor','Característico','Characteristic'],
-    ['Parte utilizada','Part used','Hoja','Leaf'], ['Solvente de extracción','Extraction solvent','Etanol y agua','Ethanol and water'], ['Método de secado','Drying method','Secado al vacío','Vacuum dried'],
-    ['Pérdida por secado','Loss on drying','≤5%'], ['Contenido de cenizas','Ash content','≤5%'], ['Metales pesados totales','Total heavy metals','≤20 ppm'],
-    ['Arsénico','Arsenic','≤2 ppm'], ['Plomo','Lead','≤2 ppm'], ['Cuenta total en placa','Total plate count','≤1000 UFC/g','≤1000 CFU/g'],
-    ['Levaduras y mohos totales','Total yeast and mold','≤100 UFC/g','≤100 CFU/g'], ['E. coli','E. coli','Negativo','Negative'], ['Salmonella','Salmonella','Negativo','Negative'], ['Staphylococcus','Staphylococcus','Negativo','Negative'],
-  ]),
-  stevia: ficha('Extracto de Stevia - TSG95 Rebaudiósido A 80', 'Stevia Extract - TSG95 Rebaudioside A 80', [
-    ['Apariencia','Appearance','Polvo fino blanco a blanquecino','White to off-white fine powder'], ['Sabor','Taste','Dulce','Sweet'],
-    ['Glucósidos de esteviol totales (base seca)','Total steviol glycosides (dry basis)','≥95.0%'], ['Rebaudiósido A (base seca)','Rebaudioside A (dry basis)','≥80.0%'],
-    ['Pérdida por secado','Loss on drying','≤5.0%'], ['Cenizas totales','Total ash','≤1.0%'], ['pH (1% en agua)','pH (1% in water)','4.5–7.0'],
-    ['Arsénico','Arsenic','≤1.0 ppm'], ['Cadmio','Cadmium','≤1.0 ppm'], ['Mercurio','Mercury','≤0.1 ppm'], ['Plomo','Lead','≤0.5 mg/kg'],
-    ['Disolventes residuales','Residual solvents','Metanol ≤200 ppm · Etanol ≤3000 ppm','Methanol ≤200 ppm · Ethanol ≤3000 ppm'],
-    ['Cuenta de aerobios en placa','Aerobic plate count','≤1000 UFC/g','≤1000 CFU/g'], ['Mohos y levaduras','Molds and yeasts','≤100 UFC/g','≤100 CFU/g'],
-    ['Escherichia coli','Escherichia coli','<3.0 NMP/g','<3.0 MPN/g'], ['Salmonella','Salmonella','Negativo/25 g','Negative/25 g'],
-  ]),
-  reishi: ficha('Extracto de Hongo Reishi', 'Reishi Mushroom Extract', [
-    ['Polisacáridos','Polysaccharides','10% mín. (UV)','10% min. (UV)'], ['Triterpenos','Triterpenes','4% mín. (UV)','4% min. (UV)'], ['Apariencia','Appearance','Polvo fino','Fine powder'],
-    ['Color','Color','Café','Brown'], ['Tamaño de partícula','Particle size','100% pasa malla 80','100% passes 80 mesh'], ['Olor y sabor','Odor and taste','Característico','Characteristic'],
-    ['Humedad','Moisture','5% máx.','5% max.'], ['Pesticidas','Pesticides','Negativo','Negative'], ['Metales pesados','Heavy metals','10 ppm máx.','10 ppm max.'],
-    ['As','As','<1 ppm'], ['Pb','Pb','<5 ppm'], ['Hg','Hg','<0.1 ppm'], ['Cd','Cd','<0.1 ppm'], ['Cuenta total en placa','Total plate count','1000 UFC/g máx.','1000 CFU/g max.'],
-    ['Levaduras / Mohos','Yeast / Mold','100 UFC/g máx.','100 CFU/g max.'], ['E. coli','E. coli','Negativo','Negative'], ['Salmonella','Salmonella','Negativo','Negative'], ['Pseudomonas aeruginosa','Pseudomonas aeruginosa','Negativo','Negative'],
-  ]),
-  hialuronato: ficha('Hialuronato de Sodio (Grado Cosmético)', 'Sodium Hyaluronate (Cosmetic Grade)', [
-    ['Características','Characteristics','Polvo blanco o casi blanco','White or almost white powder'], ['Hialuronato de sodio (base seca)','Sodium hyaluronate (dry basis)','≥90%'],
-    ['Ácido glucurónico','Glucuronic acid','≥42%'], ['pH (solución al 0.1%)','pH (0.1% solution)','6.5–8.0'], ['Peso molecular','Molecular weight','≥0.8×10⁶ Da'],
-    ['Proteína','Protein','≤0.1%'], ['Transparencia (solución al 0.1%)','Transparency (0.1% solution)','≥99%'], ['Pérdida por secado','Loss on drying','≤10.0%'],
-    ['Metales pesados (como Pb)','Heavy metals (as Pb)','≤20 ppm'], ['Arsénico','Arsenic','≤2 ppm'], ['Cuenta bacteriana','Bacteria count','≤100 UFC/g','≤100 CFU/g'],
-    ['Mohos y levaduras','Mold and yeast','≤10 UFC/g','≤10 CFU/g'], ['Pseudomonas aeruginosa','Pseudomonas aeruginosa','Negativo','Negative'], ['Staphylococcus aureus','Staphylococcus aureus','Negativo','Negative'],
-  ]),
-  'acido-kojico': ficha('Ácido Kójico', 'Kojic Acid', [
-    ['Apariencia','Appearance','Cristal o polvo cristalino casi blanco','Almost white crystal or crystalline powder'], ['Valoración','Assay','99.0% mín.','99.0% min.'],
-    ['Punto de fusión','Melting point','152–156 °C'], ['Pérdida por secado','Loss on drying','0.5% máx.','0.5% max.'], ['Residuo de ignición','Residue on ignition','0.1% máx.','0.1% max.'],
-    ['Cloruro (Cl)','Chloride (Cl)','0.005% máx.','0.005% max.'], ['Metales pesados (Pb)','Heavy metals (Pb)','0.001% máx.','0.001% max.'], ['Arsénico (As)','Arsenic (As)','0.0001% máx.','0.0001% max.'],
-    ['Hierro','Iron','2.0 mg máx.','2.0 mg max.'], ['Bacterias','Bacteria','3000 UFC/g máx.','3000 CFU/g max.'], ['Grupo coliforme','Coliform group','Negativo','Negative'], ['Eumicetos (hongos)','Eumycetes (fungi)','50 UFC/g máx.','50 CFU/g max.'],
-  ]),
-  'alfa-arbutina': ficha('Alfa-Arbutina', 'Alpha-Arbutin', [
-    ['Apariencia','Appearance','Polvo cristalino blanco','White crystalline powder'], ['Valoración','Assay','99.0% mín.','99.0% min.'], ['Punto de fusión','Melting point','203–206 ±1 °C'],
-    ['Claridad de la solución acuosa','Clarity of water solution','Transparente, incolora, sin materia suspendida','Transparent, colorless, no suspended matter'],
-    ['pH de solución acuosa al 1%','pH of 1% aqueous solution','5.0–7.0'], ['Rotación óptica específica','Specific optical rotation','[α]D²⁰ = 176° a 184°','[α]D²⁰ = 176° to 184°'],
-    ['Arsénico','Arsenic','≤2 ppm'], ['Hidroquinona','Hydroquinone','≤10 ppm'], ['Metales pesados','Heavy metals','≤10 ppm'], ['Pérdida por secado','Loss on drying','≤0.5%'],
-    ['Residuo de ignición','Ignition residue','≤0.5%'], ['Bacterias','Bacteria','≤100 UFC/g','≤100 CFU/g'], ['Hongos','Fungus','≤100 UFC/g','≤100 CFU/g'],
-  ]),
-  colageno: ficha('Colágeno de Pollo', 'Chicken Collagen', [
-    ['Color','Color','Polvo blanco o amarillo claro','White or light yellow powder'], ['Olor','Odor','Olor característico','Characteristic odor'], ['Impurezas','Impurities','Sin impurezas exógenas visibles','No visible exogenous impurities'],
-    ['Proteína (base seca, N×5.79)','Protein (dry basis, N×5.79)','≥90.0%'], ['Cenizas','Ash','≤7.0%'], ['pH (solución acuosa al 1%)','pH (1% aqueous solution)','5.0–7.0'],
-    ['Pérdida por secado','Loss on drying','≤7.0%'], ['Tamaño de partícula','Particle size','100% pasa malla 80','100% passes 80 mesh'],
-    ['Arsénico','Arsenic','≤1.0 mg/kg'], ['Plomo','Lead','≤1.0 mg/kg'], ['Cromo','Chromium','≤2.0 mg/kg'], ['Mercurio','Mercury','≤0.1 mg/kg'], ['Cadmio','Cadmium','≤0.3 mg/kg'],
-    ['Cuenta bacteriana total','Total bacterial count','≤3000 UFC/g','≤3000 CFU/g'], ['Mohos y levaduras','Molds and yeast','≤100 UFC/g','≤100 CFU/g'],
-    ['Bacterias coliformes','Coliform bacteria','<40 NMP/100 g','<40 MPN/100 g'], ['Bacterias patógenas','Pathogenic bacteria','Negativo','Negative'],
-  ]),
-  'acido-etil-ascorbico': ficha('Ácido Etil Ascórbico', 'Ethyl Ascorbic Acid', [
-    ['Apariencia','Appearance','Polvo cristalino blanco','White crystalline powder'], ['Valoración','Assay','99% mín.','99% min.'], ['Punto de fusión','Melting point','110.0–115.0 °C'],
-    ['pH (solución acuosa al 3%)','pH (3% water solution)','3.5–5.5'], ['Vitamina C libre','Free vitamin C','≤10 ppm'], ['Metales pesados','Heavy metals','≤10 ppm'],
-    ['Pérdida por secado','Loss on drying','≤0.5%'], ['Residuo de ignición','Ignition residue','≤0.2%'],
-  ]),
-};
 ---
 <section class="products alt" id="quimicos">
   <div class="container">
@@ -228,11 +107,7 @@ const fichas: Record<string, FichaQuimico> = {
           </summary>
           <ul class="metal-tile-products">
             {cat.items.map((it) => (
-              it.fichaId ? (
-                <li><button type="button" class="ficha-trigger" data-ficha={it.fichaId} data-i18n-es={it.es} data-i18n-en={it.en}>{it.es}</button></li>
-              ) : (
-                <li><span data-i18n-es={it.es} data-i18n-en={it.en}>{it.es}</span></li>
-              )
+              <li><button type="button" class="ficha-trigger" data-i18n-es={it.es} data-i18n-en={it.en}>{it.es}</button></li>
             ))}
           </ul>
         </details>
@@ -242,39 +117,11 @@ const fichas: Record<string, FichaQuimico> = {
 </section>
 
 {!home && (
-  <div class="ficha-modal" id="fichaModal" aria-hidden="true">
-    <div class="ficha-modal-backdrop" data-ficha-close></div>
-    <div class="ficha-modal-panel" role="dialog" aria-modal="true" aria-labelledby="fichaModalTitle">
-      <button type="button" class="ficha-modal-close" data-ficha-close aria-label="Cerrar" data-i18n-aria-label-es="Cerrar" data-i18n-aria-label-en="Close">&times;</button>
-      <div class="ficha-modal-body" id="fichaModalBody"></div>
-    </div>
+<div class="ficha-modal" id="fichaModal" aria-hidden="true">
+  <div class="ficha-modal-backdrop" data-ficha-close></div>
+  <div class="ficha-modal-panel" role="dialog" aria-modal="true" aria-labelledby="fichaModalTitle">
+    <button type="button" class="ficha-modal-close" data-ficha-close aria-label="Cerrar" data-i18n-aria-label-es="Cerrar" data-i18n-aria-label-en="Close">&times;</button>
+    <div class="ficha-modal-body" id="fichaModalBody"></div>
   </div>
+</div>
 )}
-
-{Object.entries(fichas).map(([id, f]) => (
-  <template id={`ficha-${id}`}>
-        <h3 id="fichaModalTitle" data-i18n-es={f.nombre} data-i18n-en={f.nombreEn}>{f.nombre}</h3>
-        <div class="ficha-table-wrap">
-          <table class="ficha-cert-table">
-            <thead><tr><th data-i18n-es="Parámetro" data-i18n-en="Parameter">Parámetro</th><th data-i18n-es="Especificación" data-i18n-en="Specification">Especificación</th></tr></thead>
-            <tbody>{f.filas.map((fila) => (
-              <tr>
-                <th data-i18n-es={fila.es} data-i18n-en={fila.en}>{fila.es}</th>
-                <td data-i18n-es={fila.valor} data-i18n-en={fila.valorEn ?? fila.valor}>{fila.valor}</td>
-              </tr>
-            ))}</tbody>
-          </table>
-        </div>
-        <a
-          class="ficha-pdf-link"
-          href={`/assets/docs/fichas/${id}-es.pdf`}
-          data-i18n-href-es={`/assets/docs/fichas/${id}-es.pdf`}
-          data-i18n-href-en={`/assets/docs/fichas/${id}-en.pdf`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <span data-i18n-es="Descargar ficha técnica (PDF)" data-i18n-en="Download technical datasheet (PDF)">Descargar ficha técnica (PDF)</span>
-        </a>
-  </template>
-))}

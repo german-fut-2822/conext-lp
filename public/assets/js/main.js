@@ -297,21 +297,41 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Product spec-sheet ("ficha") modal — used on both product pages. Each
-  // trigger clones its matching <template id="ficha-{id}"> into the shared
-  // modal body, then re-applies the current language to the injected markup
-  // (applyLangWithin only runs once on load, so dynamically inserted content
-  // needs a manual pass).
+  // Product contact-notice modal — used on both product pages. Each trigger
+  // carries the product name in data-i18n-es/en; the modal just shows that
+  // name plus a fixed notice asking to contact us for the technical
+  // datasheet or more information (no specs are published on the site).
   var fichaModal = document.getElementById('fichaModal');
   if (fichaModal) {
     var fichaModalBody = document.getElementById('fichaModalBody');
     var lastFocused = null;
 
-    var openFichaModal = function (id) {
-      var tpl = document.getElementById('ficha-' + id);
-      if (!tpl) return;
+    var openFichaModal = function (btn) {
+      var nombreEs = btn.getAttribute('data-i18n-es') || '';
+      var nombreEn = btn.getAttribute('data-i18n-en') || nombreEs;
+      var msgEs = 'Para la ficha técnica o más información de este producto, ponte en contacto con nosotros.';
+      var msgEn = 'For the technical datasheet or more information about this product, please contact us.';
+
       fichaModalBody.innerHTML = '';
-      fichaModalBody.appendChild(tpl.content.cloneNode(true));
+      var h3 = document.createElement('h3');
+      h3.id = 'fichaModalTitle';
+      h3.setAttribute('data-i18n-es', nombreEs);
+      h3.setAttribute('data-i18n-en', nombreEn);
+      h3.textContent = nombreEs;
+      var p = document.createElement('p');
+      p.className = 'ficha-desc';
+      p.setAttribute('data-i18n-es', msgEs);
+      p.setAttribute('data-i18n-en', msgEn);
+      p.textContent = msgEs;
+      var a = document.createElement('a');
+      a.href = '/contacto';
+      a.className = 'btn-cta';
+      a.setAttribute('data-i18n', 'nav.contacto');
+      a.textContent = 'Contacto';
+      fichaModalBody.appendChild(h3);
+      fichaModalBody.appendChild(p);
+      fichaModalBody.appendChild(a);
+
       var currentLang = document.documentElement.lang === 'en' ? 'en' : 'es';
       applyLangWithin(fichaModalBody, currentLang);
       lastFocused = document.activeElement;
@@ -329,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     document.querySelectorAll('.ficha-trigger').forEach(function (btn) {
-      btn.addEventListener('click', function () { openFichaModal(btn.getAttribute('data-ficha')); });
+      btn.addEventListener('click', function () { openFichaModal(btn); });
     });
     fichaModal.querySelectorAll('[data-ficha-close]').forEach(function (el) {
       el.addEventListener('click', closeFichaModal);

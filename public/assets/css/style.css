@@ -529,7 +529,7 @@ main .legal-content h2::before, main .products-hub-card h2::before { display: no
 }
 .ficha-trigger:hover { color: var(--rojo-oscuro); }
 
-/* Product spec-sheet ("ficha") modal */
+/* Product contact-notice modal */
 body.ficha-modal-lock { overflow: hidden; }
 .ficha-modal { position: fixed; inset: 0; z-index: 1000; display: none; }
 .ficha-modal.open { display: block; }
@@ -543,8 +543,7 @@ body.ficha-modal-lock { overflow: hidden; }
 .ficha-modal-close:hover { color: var(--rojo); }
 /* Element badges — periodic-table-style symbol tiles overlaid on the category
    photo in Metales (client provided real product photos, 2026-10-16, to pair
-   with the symbol instead of replacing it). Two sizes: default (grid tiles,
-   overlaid on .metal-tile-photo) and .lg (ficha modal). */
+   with the symbol instead of replacing it). */
 .elem-badge {
   position: relative; display: inline-flex; align-items: center; justify-content: center;
   width: 52px; height: 52px; border: 2px solid var(--rojo); border-radius: 8px;
@@ -582,41 +581,13 @@ body.ficha-modal-lock { overflow: hidden; }
   .home-metal-elements.count-4 .home-element-symbol { font-size: 30px; }
   .home-metal-elements.count-4 .home-element-name { display: none; }
 }
-.elem-badge.lg { width: 92px; height: 92px; border-radius: 12px; }
-.elem-badge.lg .elem-badge-num { top: 8px; left: 10px; font-size: 12px; }
-.elem-badge.lg .elem-badge-symbol { font-size: 36px; }
-.metal-tile-elems, .ficha-elems { display: flex; gap: 8px; }
-.metal-tile-elems { margin-bottom: 4px; }
-.metal-tile-elems.multi .elem-badge, .ficha-elems.multi .elem-badge.lg { width: 44px; height: 44px; border-radius: 6px; }
+.metal-tile-elems { display: flex; gap: 8px; margin-bottom: 4px; }
+.metal-tile-elems.multi .elem-badge { width: 44px; height: 44px; border-radius: 6px; }
 .metal-tile-elems.multi .elem-badge-symbol { font-size: 15px; }
 .metal-tile-elems.multi .elem-badge-num { font-size: 7px; top: 3px; left: 4px; }
-.ficha-elems { margin-bottom: 20px; }
-.ficha-elems.multi .elem-badge.lg { width: 68px; height: 68px; }
-.ficha-elems.multi .elem-badge.lg .elem-badge-symbol { font-size: 24px; }
-.ficha-elems.multi .elem-badge.lg .elem-badge-num { font-size: 10px; }
-.ficha-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; margin: 0 0 16px; }
-.ficha-specs dt { font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: var(--gris-acero); margin: 0; }
-.ficha-specs dd { margin: 2px 0 0; font-size: 14px; }
 .ficha-desc { font-size: 14px; color: var(--texto); }
-.ficha-table-wrap { width: 100%; overflow-x: auto; }
-.ficha-cert-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.ficha-cert-table th, .ficha-cert-table td { border-bottom: 1px solid #e2e4e7; padding: 8px 10px; text-align: left; vertical-align: top; }
-.ficha-cert-table thead th { background: var(--gris-claro); color: var(--gris-acero); font-size: 11px; text-transform: uppercase; letter-spacing: .4px; }
-.ficha-cert-table tbody th { font-weight: 500; }
-.ficha-cert-table tbody td { font-weight: 600; white-space: nowrap; }
-.ficha-modal-body h4 { font-size: 14px; text-transform: uppercase; letter-spacing: .5px; margin: 20px 0 10px; }
-.ficha-caracteristicas { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 14px; }
-.ficha-series-grid { display: flex; flex-direction: column; gap: 16px; }
-.ficha-serie { border: 1px solid #e2e4e7; border-radius: 8px; padding: 14px; }
-.ficha-serie p { font-size: 13px; color: var(--texto); margin: 8px 0 0; }
-.ficha-comp-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; }
-.ficha-comp-table th, .ficha-comp-table td { border: 1px solid #e2e4e7; padding: 4px 6px; text-align: center; }
-.ficha-comp-table th { background: var(--gris-claro); font-weight: 600; }
-.ficha-pdf-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; font-size: 13px; font-weight: 600; color: var(--rojo); text-decoration: none; }
-.ficha-pdf-link:hover { color: var(--rojo-oscuro); text-decoration: underline; }
-.ficha-pdf-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+.ficha-modal-body .btn-cta { margin-top: 16px; }
 @media (max-width: 600px) {
-  .ficha-specs, .ficha-caracteristicas { grid-template-columns: 1fr; }
   .ficha-modal-panel { margin: 0; max-height: 100vh; height: 100%; border-radius: 0; }
 }
 
