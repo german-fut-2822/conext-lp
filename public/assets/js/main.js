@@ -244,8 +244,8 @@ document.addEventListener('DOMContentLoaded', function () {
       var quoteMensajeField = quoteForm.querySelector('#mensaje');
       if (quoteMensajeField) {
         quoteMensajeField.value = quoteLang === 'en'
-          ? 'Hello, I would like to request more information about ' + quoteNombre + '!'
-          : '¡Hola, me gustaría solicitar más información sobre ' + quoteNombre + '!';
+          ? 'Hello, I would like to request more information about ' + quoteNombre + '.'
+          : 'Hola, me gustaría solicitar más información sobre ' + quoteNombre + '.';
       }
       var quoteOptKey = quoteParams.get('categoria') === 'metales' ? 'contacto.form.opt1'
         : quoteParams.get('categoria') === 'quimicos' ? 'contacto.form.opt2' : null;
